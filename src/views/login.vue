@@ -38,13 +38,7 @@
         </el-form-item>
         <!--<el-checkbox v-model="loginForm.rememberMe" style="margin:0px 0px 25px 0px;">记住密码</el-checkbox>-->
         <el-form-item style="width:100%;">
-          <el-button
-            :loading="loading"
-            size="medium"
-            type="primary"
-            style="width:100%;"
-            @click.native.prevent="handleLogin"
-          >
+          <el-button :loading="loading" size="medium" type="primary" style="width:100%;" @click.native.prevent="handleLogin">
             <span v-if="!loading">登 录</span>
             <span v-else>登 录 中...</span>
           </el-button>

@@ -35,8 +35,9 @@ export default {
   },
   data() {
     return {
-      title: '若依管理系统',
-      logo: logoImg
+      //title: '管理平台',
+      title: '人才评审专家库信息管理平台',
+      //logo: logoImg
     }
   }
 }

@@ -52,7 +52,7 @@
             </el-form-item>
             <!--个人注册/忘记密码-->
             <div>
-              <el-link type="primary" style="float:left">立即注册</el-link>
+              <el-link type="primary" style="float:left" href="individual_registration">立即注册</el-link>
               <el-link type="primary" style="float:right">忘记密码/账号</el-link>
             </div>
 
