@@ -49,8 +49,13 @@ export const constantRoutes = [
     hidden: true
   },
   {
-    path: '/individual_registration',
-    component: (resolve) => require(['@/views/individual_registration'], resolve),
+    path: '/geren_zhuce',
+    component: (resolve) => require(['@/views/geren_zhuce'], resolve),
+    hidden: true
+  },
+  {
+    path: '/guanli_wangji',
+    component: (resolve) => require(['@/views/guanli_wangji'], resolve),
     hidden: true
   },
   {
