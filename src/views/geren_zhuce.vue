@@ -52,7 +52,7 @@
 
 <script>
     export default {
-      name: "individual_registration",
+      name: "geren_zhuce",
       data() {
         return {
           form: {
