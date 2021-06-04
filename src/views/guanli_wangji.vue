@@ -131,7 +131,7 @@
 
           <!-- Unnamed (椭圆形) -->
           <div id="u1162" class="ax_default ellipse">
-            <img id="u1162_img" class="img " src="../assets/images/找回密码/u145.svg"/>
+            <img id="u1162_img" class="img " src="../assets/images/找回密码/u133.svg"/>
             <div id="u1162_text" class="text ">
               <p></p>
             </div>
@@ -263,7 +263,7 @@
 
           <!-- Unnamed (椭圆形) -->
           <div id="u1184" class="ax_default ellipse">
-            <img id="u1184_img" class="img " src="../assets/images/找回密码/u145.svg"/>
+            <img id="u1184_img" class="img " src="../assets/images/找回密码/u133.svg"/>
             <div id="u1184_text" class="text " style="display:none; visibility: hidden">
               <p></p>
             </div>
@@ -287,7 +287,7 @@
 
           <!-- Unnamed (椭圆形) -->
           <div id="u1187" class="ax_default ellipse">
-            <img id="u1187_img" class="img " src="../assets/images/找回密码/u145.svg"/>
+            <img id="u1187_img" class="img " src="../assets/images/找回密码/u133.svg"/>
             <div id="u1187_text" class="text " style="display:none; visibility: hidden">
               <p></p>
             </div>
@@ -423,7 +423,7 @@
 
           /**1、先判断验证码是否正确*/
 
-          /**2、隐藏第一个模块页面*/
+          /**2、隐藏第一个、第三个模块页面*/
           modelOne.style.display="none";
           /**3、显示第二个模块页面*/
           modelTwo.style.display="inline";
@@ -442,7 +442,7 @@
           setTimeout(()=>{
             //需要延迟的代码 :3秒后延迟跳转到首页，可以加提示什么的
             this.$router.push({
-              name:"login"
+              path:"login"
             });
             //延迟时间：3秒
           },3000)
