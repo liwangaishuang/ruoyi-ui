@@ -10,42 +10,6 @@
           @keyup.enter.native="handleQuery"
         />
       </el-form-item>
-      <el-form-item label="登陆密码" prop="password">
-        <el-input
-          v-model="queryParams.password"
-          placeholder="请输入登陆密码"
-          clearable
-          size="small"
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item label="身份证号" prop="userIdNumber">
-        <el-input
-          v-model="queryParams.userIdNumber"
-          placeholder="请输入身份证号"
-          clearable
-          size="small"
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item label="性别(1:男2:女)" prop="userSex">
-        <el-select v-model="queryParams.userSex" placeholder="请选择性别(1:男2:女)" clearable size="small">
-          <el-option
-            v-for="dict in userSexOptions"
-            :key="dict.dictValue"
-            :label="dict.dictLabel"
-            :value="dict.dictValue"
-          />
-        </el-select>
-      </el-form-item>
-      <el-form-item label="出生日期" prop="birthDate">
-        <el-date-picker clearable size="small"
-                        v-model="queryParams.birthDate"
-                        type="date"
-                        value-format="yyyy-MM-dd"
-                        placeholder="选择出生日期">
-        </el-date-picker>
-      </el-form-item>
       <el-form-item label="年龄" prop="age">
         <el-input
           v-model="queryParams.age"
@@ -54,99 +18,6 @@
           size="small"
           @keyup.enter.native="handleQuery"
         />
-      </el-form-item>
-      <el-form-item label="手机号码" prop="phoneNumber">
-        <el-input
-          v-model="queryParams.phoneNumber"
-          placeholder="请输入手机号码"
-          clearable
-          size="small"
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item label="邮箱地址" prop="email">
-        <el-input
-          v-model="queryParams.email"
-          placeholder="请输入邮箱地址"
-          clearable
-          size="small"
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item label="办公电话" prop="officePhone">
-        <el-input
-          v-model="queryParams.officePhone"
-          placeholder="请输入办公电话"
-          clearable
-          size="small"
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item label="家庭电话" prop="homeTelephone">
-        <el-input
-          v-model="queryParams.homeTelephone"
-          placeholder="请输入家庭电话"
-          clearable
-          size="small"
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item label="国籍" prop="nationality">
-        <el-select v-model="queryParams.nationality" placeholder="请选择国籍" clearable size="small">
-          <el-option label="请选择字典生成" value="" />
-        </el-select>
-      </el-form-item>
-      <el-form-item label="民族" prop="nation">
-        <el-select v-model="queryParams.nation" placeholder="请选择民族" clearable size="small">
-          <el-option label="请选择字典生成" value="" />
-        </el-select>
-      </el-form-item>
-      <el-form-item label="政治面貌" prop="politicsStatus">
-        <el-select v-model="queryParams.politicsStatus" placeholder="请选择政治面貌" clearable size="small">
-          <el-option label="请选择字典生成" value="" />
-        </el-select>
-      </el-form-item>
-      <el-form-item label="邮政编码" prop="postalCode">
-        <el-input
-          v-model="queryParams.postalCode"
-          placeholder="请输入邮政编码"
-          clearable
-          size="small"
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item label="职称" prop="professional">
-        <el-input
-          v-model="queryParams.professional"
-          placeholder="请输入职称"
-          clearable
-          size="small"
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item label="居住地区" prop="dwellRegion">
-        <el-select v-model="queryParams.dwellRegion" placeholder="请选择居住地区" clearable size="small">
-          <el-option label="请选择字典生成" value="" />
-        </el-select>
-      </el-form-item>
-      <el-form-item label="居住地址" prop="dwellSite">
-        <el-input
-          v-model="queryParams.dwellSite"
-          placeholder="请输入居住地址"
-          clearable
-          size="small"
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item label="专业类别" prop="specialtyType">
-        <el-select v-model="queryParams.specialtyType" placeholder="请选择专业类别" clearable size="small">
-          <el-option label="请选择字典生成" value="" />
-        </el-select>
-      </el-form-item>
-      <el-form-item label="工作性质" prop="jobNature">
-        <el-select v-model="queryParams.jobNature" placeholder="请选择工作性质" clearable size="small">
-          <el-option label="请选择字典生成" value="" />
-        </el-select>
       </el-form-item>
       <el-form-item label="单位名称" prop="companyName">
         <el-input
@@ -157,172 +28,42 @@
           @keyup.enter.native="handleQuery"
         />
       </el-form-item>
-      <el-form-item label="单位类型" prop="companyType">
-        <el-select v-model="queryParams.companyType" placeholder="请选择单位类型" clearable size="small">
-          <el-option label="请选择字典生成" value="" />
-        </el-select>
-      </el-form-item>
-      <el-form-item label="二级部门" prop="secondLevelDepartment">
-        <el-input
-          v-model="queryParams.secondLevelDepartment"
-          placeholder="请输入二级部门"
-          clearable
-          size="small"
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item label="职务" prop="position">
-        <el-input
-          v-model="queryParams.position"
-          placeholder="请输入职务"
-          clearable
-          size="small"
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
       <el-form-item label="单位地区" prop="companyRegion">
         <el-select v-model="queryParams.companyRegion" placeholder="请选择单位地区" clearable size="small">
           <el-option label="请选择字典生成" value="" />
         </el-select>
       </el-form-item>
-      <el-form-item label="单位地址" prop="companySite">
-        <el-input
-          v-model="queryParams.companySite"
-          placeholder="请输入单位地址"
-          clearable
-          size="small"
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item label="最高学历" prop="highestEducation">
-        <el-select v-model="queryParams.highestEducation" placeholder="请选择最高学历" clearable size="small">
-          <el-option label="请选择字典生成" value="" />
-        </el-select>
-      </el-form-item>
-      <el-form-item label="毕业院校" prop="graduateAcademy">
-        <el-input
-          v-model="queryParams.graduateAcademy"
-          placeholder="请输入毕业院校"
-          clearable
-          size="small"
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item label="学历所学专业" prop="major">
-        <el-select v-model="queryParams.major" placeholder="请选择学历所学专业" clearable size="small">
-          <el-option label="请选择字典生成" value="" />
-        </el-select>
-      </el-form-item>
-      <el-form-item label="最高学位" prop="highestDegree">
-        <el-select v-model="queryParams.highestDegree" placeholder="请选择最高学位" clearable size="small">
-          <el-option label="请选择字典生成" value="" />
-        </el-select>
-      </el-form-item>
-      <el-form-item label="授予院校" prop="awardAcademy">
-        <el-input
-          v-model="queryParams.awardAcademy"
-          placeholder="请输入授予院校"
-          clearable
-          size="small"
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item label="是否两院院士" prop="isAcademician">
-        <el-select v-model="queryParams.isAcademician" placeholder="请选择是否两院院士" clearable size="small">
-          <el-option label="请选择字典生成" value="" />
-        </el-select>
-      </el-form-item>
-      <el-form-item label="是否博士生导师" prop="isDoctoral supervisor">
-        <el-select v-model="queryParams.isDoctoralSupervisor" placeholder="请选择是否博士生导师" clearable size="small">
-          <el-option label="请选择字典生成" value="" />
-        </el-select>
-      </el-form-item>
-      <el-form-item label="熟悉外语语种" prop="language">
-        <el-input
-          v-model="queryParams.language"
-          placeholder="请输入熟悉外语语种"
-          clearable
-          size="small"
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item label="学位所学专业" prop="majorAcademy">
-        <el-select v-model="queryParams.majorAcademy" placeholder="请选择学位所学专业" clearable size="small">
-          <el-option label="请选择字典生成" value="" />
-        </el-select>
-      </el-form-item>
-      <el-form-item label="熟悉程度" prop="degree">
-        <el-input
-          v-model="queryParams.degree"
-          placeholder="请输入熟悉程度"
-          clearable
-          size="small"
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item label="主要行业领域" prop="mainIndustry">
-        <el-select v-model="queryParams.mainIndustry" placeholder="请选择主要行业领域" clearable size="small">
-          <el-option label="请选择字典生成" value="" />
-        </el-select>
-      </el-form-item>
-      <el-form-item label="其他行业领域" prop="elseIndustry">
-        <el-select v-model="queryParams.elseIndustry" placeholder="请选择其他行业领域" clearable size="small">
-          <el-option label="请选择字典生成" value="" />
-        </el-select>
-      </el-form-item>
-      <el-form-item label="奖惩情况" prop="rewardsPunishment">
-        <el-input
-          v-model="queryParams.rewardsPunishment"
-          placeholder="请输入奖惩情况"
-          clearable
-          size="small"
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item label="参与评审需回避单位" prop="avoidCompany">
-        <el-input
-          v-model="queryParams.avoidCompany"
-          placeholder="请输入参与评审需回避单位"
-          clearable
-          size="small"
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item label="成果或专利" prop="resultsOrPatents">
-        <el-input
-          v-model="queryParams.resultsOrPatents"
-          placeholder="请输入成果或专利"
-          clearable
-          size="small"
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item label="荣誉或头衔" prop="honorsOrTitles">
-        <el-input
-          v-model="queryParams.honorsOrTitles"
-          placeholder="请输入荣誉或头衔"
-          clearable
-          size="small"
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item label="简历地址" prop="resumeSite">
-        <el-input
-          v-model="queryParams.resumeSite"
-          placeholder="请输入简历地址"
-          clearable
-          size="small"
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item>
-        <el-button type="primary" icon="el-icon-search" size="mini" @click="handleQuery">搜索</el-button>
-        <el-button icon="el-icon-refresh" size="mini" @click="resetQuery">重置</el-button>
-      </el-form-item>
+      <div>
+        <el-form-item label="单位类型" prop="companyType">
+          <el-select v-model="queryParams.companyType" placeholder="请选择单位类型" clearable size="small">
+            <el-option label="请选择字典生成" value="" />
+          </el-select>
+        </el-form-item>
+        <!--原名：主要行业领域-->
+        <el-form-item label="专业领域" prop="mainIndustry">
+          <el-select v-model="queryParams.mainIndustry" placeholder="专业领域" clearable size="small">
+            <el-option label="请选择字典生成" value="" />
+          </el-select>
+        </el-form-item>
+        <el-form-item label="默认">
+          <el-date-picker
+            v-model="updateTime"
+            type="daterange"
+            range-separator="至"
+            start-placeholder="开始日期"
+            end-placeholder="结束日期">
+          </el-date-picker>
+        </el-form-item>
+        <el-form-item>
+          <el-button type="primary" icon="el-icon-search" size="mini" @click="handleQuery">搜索</el-button>
+          <el-button icon="el-icon-refresh" size="mini" @click="resetQuery">重置</el-button>
+        </el-form-item>
+      </div>
     </el-form>
 
     <el-row :gutter="10" class="mb8">
-      <el-col :span="1.5">
+      <!--增删改操作-->
+      <!--<el-col :span="1.5">
         <el-button
           type="primary"
           plain
@@ -342,6 +83,17 @@
           @click="handleUpdate"
           v-hasPermi="['system:user:edit']"
         >修改</el-button>
+      </el-col>-->
+      <el-col :span="1.5">
+        <el-button
+          type="primary"
+          plain
+          icon="el-icon-download"
+          size="mini"
+          :loading="exportLoading"
+          @click="handleExport"
+          v-hasPermi="['system:user:export']"
+        >发送短信</el-button>
       </el-col>
       <el-col :span="1.5">
         <el-button
@@ -352,7 +104,29 @@
           :disabled="multiple"
           @click="handleDelete"
           v-hasPermi="['system:user:remove']"
-        >删除</el-button>
+        >移除人才库</el-button>
+      </el-col>
+      <el-col :span="1.5">
+        <el-button
+          type="primary"
+          plain
+          icon="el-icon-download"
+          size="mini"
+          :loading="exportLoading"
+          @click="handleExport"
+          v-hasPermi="['system:user:export']"
+        >下载简历</el-button>
+      </el-col>
+      <el-col :span="1.5">
+        <el-button
+          type="primary"
+          plain
+          icon="el-icon-download"
+          size="mini"
+          :loading="exportLoading"
+          @click="handleExport"
+          v-hasPermi="['system:user:export']"
+        >下载登记表</el-button>
       </el-col>
       <el-col :span="1.5">
         <el-button
@@ -370,57 +144,20 @@
 
     <el-table v-loading="loading" :data="userList" @selection-change="handleSelectionChange">
       <el-table-column type="selection" width="55" align="center" />
-      <el-table-column label="简历地址" align="center" prop="id" />
       <el-table-column label="用户姓名" align="center" prop="userName" />
-      <el-table-column label="登陆密码" align="center" prop="password" />
-      <el-table-column label="身份证号" align="center" prop="userIdNumber" />
-      <el-table-column label="性别(1:男2:女)" align="center" prop="userSex" :formatter="userSexFormat" />
-      <el-table-column label="出生日期" align="center" prop="birthDate" width="180">
+      <el-table-column label="年龄" align="center" prop="age" />
+      <el-table-column label="单位名称" align="center" prop="companyName" />
+      <el-table-column label="单位地区" align="center" prop="companyRegion" />
+      <el-table-column label="单位类型" align="center" prop="companyType" />
+      <el-table-column label="主要行业领域" align="center" prop="mainIndustry" />
+      <el-table-column label="更新时间" align="center" prop="updateTime" width="180">
         <template slot-scope="scope">
-          <span>{{ parseTime(scope.row.birthDate, '{y}-{m}-{d}') }}</span>
+          <span>{{ parseTime(scope.row.updateTime, '{y}-{m}-{d}') }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="年龄" align="center" prop="age" />
-      <el-table-column label="手机号码" align="center" prop="phoneNumber" />
-      <el-table-column label="邮箱地址" align="center" prop="email" />
-      <el-table-column label="办公电话" align="center" prop="officePhone" />
-      <el-table-column label="家庭电话" align="center" prop="homeTelephone" />
-      <el-table-column label="国籍" align="center" prop="nationality" />
-      <el-table-column label="民族" align="center" prop="nation" />
-      <el-table-column label="政治面貌" align="center" prop="politicsStatus" />
-      <el-table-column label="邮政编码" align="center" prop="postalCode" />
-      <el-table-column label="职称" align="center" prop="professional" />
-      <el-table-column label="居住地区" align="center" prop="dwellRegion" />
-      <el-table-column label="居住地址" align="center" prop="dwellSite" />
-      <el-table-column label="专业类别" align="center" prop="specialtyType" />
-      <el-table-column label="工作性质" align="center" prop="jobNature" />
-      <el-table-column label="单位名称" align="center" prop="companyName" />
-      <el-table-column label="单位类型" align="center" prop="companyType" />
-      <el-table-column label="二级部门" align="center" prop="secondLevelDepartment" />
-      <el-table-column label="职务" align="center" prop="position" />
-      <el-table-column label="单位地区" align="center" prop="companyRegion" />
-      <el-table-column label="单位地址" align="center" prop="companySite" />
-      <el-table-column label="最高学历" align="center" prop="highestEducation" />
-      <el-table-column label="毕业院校" align="center" prop="graduateAcademy" />
-      <el-table-column label="学历所学专业" align="center" prop="major" />
-      <el-table-column label="最高学位" align="center" prop="highestDegree" />
-      <el-table-column label="授予院校" align="center" prop="awardAcademy" />
-      <el-table-column label="是否两院院士" align="center" prop="isAcademician" />
-      <el-table-column label="是否博士生导师" align="center" prop="isDoctoral supervisor" />
-      <el-table-column label="熟悉外语语种" align="center" prop="language" />
-      <el-table-column label="学位所学专业" align="center" prop="majorAcademy" />
-      <el-table-column label="熟悉程度" align="center" prop="degree" />
-      <el-table-column label="主要行业领域" align="center" prop="mainIndustry" />
-      <el-table-column label="其他行业领域" align="center" prop="elseIndustry" />
-      <el-table-column label="研究或工作内容" align="center" prop="workContent" />
-      <el-table-column label="主要业绩及贡献" align="center" prop="mainContribution" />
-      <el-table-column label="奖惩情况" align="center" prop="rewardsPunishment" />
-      <el-table-column label="参与评审需回避单位" align="center" prop="avoidCompany" />
-      <el-table-column label="成果或专利" align="center" prop="resultsOrPatents" />
-      <el-table-column label="荣誉或头衔" align="center" prop="honorsOrTitles" />
-      <el-table-column label="简历地址" align="center" prop="resumeSite" />
       <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
         <template slot-scope="scope">
+          <!--修改、删除-->
           <el-button
             size="mini"
             type="text"
@@ -637,6 +374,7 @@
 <script>
   import { listUser, getUser, delUser, addUser, updateUser, exportUser } from "@/api/declare/user";
   import Editor from '@/components/Editor';
+  import ElFormItem from "element-ui/packages/form/src/form-item";
 
   export default {
     name: "User",
@@ -645,6 +383,9 @@
     },
     data() {
       return {
+        //时间区间两端数据
+        createTime: '',
+        updateTime: '',
         // 遮罩层
         loading: true,
         // 导出遮罩层
@@ -714,13 +455,43 @@
           avoidCompany: null,
           resultsOrPatents: null,
           honorsOrTitles: null,
-          resumeSite: null
+          resumeSite: null,
+          createTime:null,
+          updateTime:null
     },
       // 表单参数
       form: {},
       // 表单校验
       rules: {
-      }
+      },
+      //时间区间
+      pickerOptions: {
+        shortcuts: [{
+          text: '最近一周',
+          onClick(picker) {
+            const end = new Date();
+            const start = new Date();
+            start.setTime(start.getTime() - 3600 * 1000 * 24 * 7);
+            picker.$emit('pick', [start, end]);
+          }
+        }, {
+          text: '最近一个月',
+          onClick(picker) {
+            const end = new Date();
+            const start = new Date();
+            start.setTime(start.getTime() - 3600 * 1000 * 24 * 30);
+            picker.$emit('pick', [start, end]);
+          }
+        }, {
+          text: '最近三个月',
+          onClick(picker) {
+            const end = new Date();
+            const start = new Date();
+            start.setTime(start.getTime() - 3600 * 1000 * 24 * 90);
+            picker.$emit('pick', [start, end]);
+          }
+        }]
+      },
     };
     },
     created() {
@@ -795,7 +566,9 @@
           avoidCompany: null,
           resultsOrPatents: null,
           honorsOrTitles: null,
-          resumeSite: null
+          resumeSite: null,
+          createTime:null,
+          updateTime:null
       };
         this.resetForm("form");
       },
