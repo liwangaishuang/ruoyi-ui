@@ -177,6 +177,7 @@
   width:100%;
 }
 #u29_text {
+  top: -40px;
   border-width:0px;
   white-space:nowrap;
   text-transform:none;
@@ -221,6 +222,7 @@
   width:100%;
 }
 #u30_text {
+  top: -30px;
   border-width:0px;
   white-space:nowrap;
   text-transform:none;
@@ -289,6 +291,7 @@
   width:100%;
 }
 #u32_text {
+  top: -20px;
   border-width:0px;
   white-space:nowrap;
   text-transform:none;
@@ -427,6 +430,7 @@
   width:100%;
 }
 #u34_text {
+  top:-20px;
   border-width:0px;
   white-space:nowrap;
   text-transform:none;
@@ -565,6 +569,7 @@
   width:100%;
 }
 #u36_text {
+  top:-20px;
   border-width:0px;
   white-space:nowrap;
   text-transform:none;
@@ -703,6 +708,7 @@
   width:100%;
 }
 #u38_text {
+  top:-20px;
   border-width:0px;
   white-space:nowrap;
   text-transform:none;
@@ -841,6 +847,7 @@
   width:100%;
 }
 #u40_text {
+  top:-20px;
   border-width:0px;
   white-space:nowrap;
   text-transform:none;
@@ -985,6 +992,7 @@
   width:100%;
 }
 #u42_text {
+  top:-30px;
   border-width:0px;
   white-space:nowrap;
   text-transform:none;
@@ -1027,7 +1035,6 @@
   width:112px;
   height:36px;
   background:inherit;
-  background-color:rgba(2, 167, 240, 1);
   border:none;
   border-radius:0px;
   -moz-box-shadow:none;
@@ -1065,6 +1072,10 @@
   word-wrap:break-word;
   text-transform:none;
 }
+#u44_btn{
+  font-weight: 700;
+  font-size: 18px;
+}
 #u45_div {
   border-width:0px;
   position:absolute;
@@ -1099,6 +1110,7 @@
   width:100%;
 }
 #u45_text {
+  top:-20px;
   border-width:0px;
   white-space:nowrap;
   text-transform:none;
@@ -1337,6 +1349,7 @@
   width:100%;
 }
 #u48_text {
+  top:-20px;
   border-width:0px;
   white-space:nowrap;
   text-transform:none;
@@ -1375,6 +1388,7 @@
   width:100%;
 }
 #u49_text {
+  top: -20px;
   border-width:0px;
   white-space:nowrap;
   text-transform:none;
@@ -1513,6 +1527,7 @@
   width:100%;
 }
 #u51_text {
+  top: -20px;
   border-width:0px;
   white-space:nowrap;
   text-transform:none;
@@ -1751,6 +1766,7 @@
   width:100%;
 }
 #u54_text {
+  top: -20px;
   border-width:0px;
   white-space:nowrap;
   text-transform:none;
@@ -1889,6 +1905,7 @@
   width:100%;
 }
 #u56_text {
+  top: -20px;
   border-width:0px;
   white-space:nowrap;
   text-transform:none;
@@ -2001,7 +2018,6 @@
   width:228px;
   height:60px;
   background:inherit;
-  background-color:rgba(2, 167, 240, 1);
   border:none;
   border-radius:0px;
   -moz-box-shadow:none;
@@ -2038,6 +2054,12 @@
   border-width:0px;
   word-wrap:break-word;
   text-transform:none;
+}
+#u58_btn {
+  font-weight: 700;
+  font-size: 30px;
+  width: 230px;
+  height: 60px;
 }
 #u59_div {
   border-width:0px;
@@ -2084,6 +2106,10 @@
   border-width:0px;
   white-space:nowrap;
   text-transform:none;
+}
+#u59_link{
+  font-weight: 700;
+  font-size: 20px;
 }
 #u60 {
   border-width:0px;
