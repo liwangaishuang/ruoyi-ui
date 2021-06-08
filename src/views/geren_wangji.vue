@@ -17,7 +17,7 @@
 
           <!-- Unnamed (椭圆形) -->
           <div id="u110" class="ax_default ellipse">
-            <img id="u110_img" class="img " src="../assets/images/找回密码/u110.svg"/>
+            <img id="u110_img" class="img " src="../assets/images/填报端找回密码/u110.svg"/>
             <div id="u110_text" class="text ">
               <p><span style="text-decoration:none;">1</span></p>
             </div>
@@ -33,7 +33,7 @@
 
           <!-- Unnamed (线) -->
           <div id="u112" class="ax_default line">
-            <img id="u112_img" class="img " src="../assets/images/找回密码/u112.svg"/>
+            <img id="u112_img" class="img " src="../assets/images/填报端找回密码/u112.svg"/>
             <div id="u112_text" class="text " style="display:none; visibility: hidden">
               <p></p>
             </div>
@@ -41,7 +41,7 @@
 
           <!-- Unnamed (椭圆形) -->
           <div id="u113" class="ax_default ellipse">
-            <img id="u113_img" class="img " src="../assets/images/找回密码/u113.svg"/>
+            <img id="u113_img" class="img " src="../assets/images/填报端找回密码/u113.svg"/>
             <div id="u113_text" class="text ">
               <p><span style="text-decoration:none;">2</span></p>
             </div>
@@ -57,7 +57,7 @@
 
           <!-- Unnamed (线) -->
           <div id="u115" class="ax_default line">
-            <img id="u115_img" class="img " src="../assets/images/找回密码/u112.svg"/>
+            <img id="u115_img" class="img " src="../assets/images/填报端找回密码/u112.svg"/>
             <div id="u115_text" class="text " style="display:none; visibility: hidden">
               <p></p>
             </div>
@@ -65,7 +65,7 @@
 
           <!-- Unnamed (椭圆形) -->
           <div id="u116" class="ax_default ellipse">
-            <img id="u116_img" class="img " src="../assets/images/找回密码/u113.svg"/>
+            <img id="u116_img" class="img " src="../assets/images/填报端找回密码/u113.svg"/>
             <div id="u116_text" class="text ">
               <p><span style="text-decoration:none;">3</span></p>
             </div>
@@ -81,7 +81,7 @@
 
           <!-- Unnamed (线) -->
           <div id="u118" class="ax_default line">
-            <img id="u118_img" class="img " src="../assets/images/找回密码/u112.svg"/>
+            <img id="u118_img" class="img " src="../assets/images/填报端找回密码/u112.svg"/>
             <div id="u118_text" class="text " style="display:none; visibility: hidden">
               <p></p>
             </div>
@@ -89,7 +89,7 @@
 
           <!-- Unnamed (椭圆形) -->
           <div id="u119" class="ax_default ellipse">
-            <img id="u119_img" class="img " src="../assets/images/找回密码/u113.svg"/>
+            <img id="u119_img" class="img " src="../assets/images/填报端找回密码/u113.svg"/>
             <div id="u119_text" class="text ">
               <p><span style="text-decoration:none;">4</span></p>
             </div>
@@ -162,7 +162,7 @@
         <div id="u132" class="ax_default" data-left="489" data-top="271" data-width="943" data-height="96">
           <!-- Unnamed (椭圆形) -->
           <div id="u133" class="ax_default ellipse">
-            <img id="u133_img" class="img " src="../assets/images/找回密码/u133.svg"/>
+            <img id="u133_img" class="img " src="../assets/images/填报端找回密码/u133.svg"/>
             <div id="u133_text" class="text " style="display:none; visibility: hidden">
               <p></p>
             </div>
@@ -178,7 +178,7 @@
 
           <!-- Unnamed (线) -->
           <div id="u135" class="ax_default line">
-            <img id="u135_img" class="img " src="../assets/images/找回密码/u112.svg"/>
+            <img id="u135_img" class="img " src="../assets/images/填报端找回密码/u112.svg"/>
             <div id="u135_text" class="text " style="display:none; visibility: hidden">
               <p></p>
             </div>
@@ -186,7 +186,7 @@
 
           <!-- Unnamed (椭圆形) -->
           <div id="u136" class="ax_default ellipse">
-            <img id="u136_img" class="img " src="../assets/images/找回密码/u110.svg"/>
+            <img id="u136_img" class="img " src="../assets/images/填报端找回密码/u110.svg"/>
             <div id="u136_text" class="text ">
               <p><span style="text-decoration:none;">2</span></p>
             </div>
@@ -202,7 +202,7 @@
 
           <!-- Unnamed (线) -->
           <div id="u138" class="ax_default line">
-            <img id="u138_img" class="img " src="../assets/images/找回密码/u112.svg"/>
+            <img id="u138_img" class="img " src="../assets/images/填报端找回密码/u112.svg"/>
             <div id="u138_text" class="text " style="display:none; visibility: hidden">
               <p></p>
             </div>
@@ -210,7 +210,7 @@
 
           <!-- Unnamed (椭圆形) -->
           <div id="u139" class="ax_default ellipse">
-            <img id="u139_img" class="img " src="../assets/images/找回密码/u113.svg"/>
+            <img id="u139_img" class="img " src="../assets/images/填报端找回密码/u113.svg"/>
             <div id="u139_text" class="text ">
               <p><span style="text-decoration:none;">3</span></p>
             </div>
@@ -226,7 +226,7 @@
 
           <!-- Unnamed (线) -->
           <div id="u141" class="ax_default line">
-            <img id="u141_img" class="img " src="../assets/images/找回密码/u112.svg"/>
+            <img id="u141_img" class="img " src="../assets/images/填报端找回密码/u112.svg"/>
             <div id="u141_text" class="text " style="display:none; visibility: hidden">
               <p></p>
             </div>
@@ -234,7 +234,7 @@
 
           <!-- Unnamed (椭圆形) -->
           <div id="u142" class="ax_default ellipse">
-            <img id="u142_img" class="img " src="../assets/images/找回密码/u113.svg"/>
+            <img id="u142_img" class="img " src="../assets/images/填报端找回密码/u113.svg"/>
             <div id="u142_text" class="text ">
               <p><span style="text-decoration:none;">4</span></p>
             </div>
@@ -252,7 +252,7 @@
       <el-form>
         <!-- Unnamed (形状) -->
         <div id="u145" class="ax_default icon">
-          <img id="u145_img" class="img " src="../assets/images/找回密码/u145.svg"/>
+          <img id="u145_img" class="img " src="../assets/images/填报端找回密码/u145.svg"/>
           <div id="u145_text" class="text " style="display:none; visibility: hidden">
             <p></p>
           </div>
@@ -309,7 +309,7 @@
 
           <!-- Unnamed (椭圆形) -->
           <div id="u157" class="ax_default ellipse">
-            <img id="u157_img" class="img " src="../assets/images/找回密码/u133.svg"/>
+            <img id="u157_img" class="img " src="../assets/images/填报端找回密码/u133.svg"/>
             <div id="u157_text" class="text " style="display:none; visibility: hidden">
               <p></p>
             </div>
@@ -325,7 +325,7 @@
 
           <!-- Unnamed (线) -->
           <div id="u159" class="ax_default line">
-            <img id="u159_img" class="img " src="../assets/images/找回密码/u112.svg"/>
+            <img id="u159_img" class="img " src="../assets/images/填报端找回密码/u112.svg"/>
             <div id="u159_text" class="text " style="display:none; visibility: hidden">
               <p></p>
             </div>
@@ -333,7 +333,7 @@
 
           <!-- Unnamed (椭圆形) -->
           <div id="u160" class="ax_default ellipse">
-            <img id="u160_img" class="img " src="../assets/images/找回密码/u133.svg"/>
+            <img id="u160_img" class="img " src="../assets/images/填报端找回密码/u133.svg"/>
             <div id="u160_text" class="text " style="display:none; visibility: hidden">
               <p></p>
             </div>
@@ -349,7 +349,7 @@
 
           <!-- Unnamed (线) -->
           <div id="u162" class="ax_default line">
-            <img id="u162_img" class="img " src="../assets/images/找回密码/u112.svg"/>
+            <img id="u162_img" class="img " src="../assets/images/填报端找回密码/u112.svg"/>
             <div id="u162_text" class="text " style="display:none; visibility: hidden">
               <p></p>
             </div>
@@ -357,7 +357,7 @@
 
           <!-- Unnamed (椭圆形) -->
           <div id="u163" class="ax_default ellipse">
-            <img id="u163_img" class="img " src="../assets/images/找回密码/u110.svg"/>
+            <img id="u163_img" class="img " src="../assets/images/填报端找回密码/u110.svg"/>
             <div id="u163_text" class="text ">
               <p><span style="text-decoration:none;">3</span></p>
             </div>
@@ -373,7 +373,7 @@
 
           <!-- Unnamed (线) -->
           <div id="u165" class="ax_default line">
-            <img id="u165_img" class="img " src="../assets/images/找回密码/u112.svg"/>
+            <img id="u165_img" class="img " src="../assets/images/填报端找回密码/u112.svg"/>
             <div id="u165_text" class="text " style="display:none; visibility: hidden">
               <p></p>
             </div>
@@ -381,7 +381,7 @@
 
           <!-- Unnamed (椭圆形) -->
           <div id="u166" class="ax_default ellipse">
-            <img id="u166_img" class="img " src="../assets/images/找回密码/u113.svg"/>
+            <img id="u166_img" class="img " src="../assets/images/填报端找回密码/u113.svg"/>
             <div id="u166_text" class="text ">
               <p><span style="text-decoration:none;">4</span></p>
             </div>
@@ -399,7 +399,7 @@
       <el-form>
         <!-- Unnamed (形状) -->
         <div id="u169" class="ax_default icon">
-          <img id="u169_img" class="img " src="../assets/images/找回密码/u145.svg"/>
+          <img id="u169_img" class="img " src="../assets/images/填报端找回密码/u145.svg"/>
           <div id="u169_text" class="text " style="display:none; visibility: hidden">
             <p></p>
           </div>
@@ -407,7 +407,7 @@
 
         <!-- Unnamed (形状) -->
         <div id="u170" class="ax_default icon">
-          <img id="u170_img" class="img " src="../assets/images/找回密码/u145.svg"/>
+          <img id="u170_img" class="img " src="../assets/images/填报端找回密码/u145.svg"/>
           <div id="u170_text" class="text " style="display:none; visibility: hidden">
             <p></p>
           </div>
@@ -472,7 +472,7 @@
 
           <!-- Unnamed (椭圆形) -->
           <div id="u183" class="ax_default ellipse">
-            <img id="u183_img" class="img " src="../assets/images/找回密码/u133.svg"/>
+            <img id="u183_img" class="img " src="../assets/images/填报端找回密码/u133.svg"/>
             <div id="u183_text" class="text " style="display:none; visibility: hidden">
               <p></p>
             </div>
@@ -488,7 +488,7 @@
 
           <!-- Unnamed (线) -->
           <div id="u185" class="ax_default line">
-            <img id="u185_img" class="img " src="../assets/images/找回密码/u112.svg"/>
+            <img id="u185_img" class="img " src="../assets/images/填报端找回密码/u112.svg"/>
             <div id="u185_text" class="text " style="display:none; visibility: hidden">
               <p></p>
             </div>
@@ -496,7 +496,7 @@
 
           <!-- Unnamed (椭圆形) -->
           <div id="u186" class="ax_default ellipse">
-            <img id="u186_img" class="img " src="../assets/images/找回密码/u133.svg"/>
+            <img id="u186_img" class="img " src="../assets/images/填报端找回密码/u133.svg"/>
             <div id="u186_text" class="text " style="display:none; visibility: hidden">
               <p></p>
             </div>
@@ -512,7 +512,7 @@
 
           <!-- Unnamed (线) -->
           <div id="u188" class="ax_default line">
-            <img id="u188_img" class="img " src="../assets/images/找回密码/u112.svg"/>
+            <img id="u188_img" class="img " src="../assets/images/填报端找回密码/u112.svg"/>
             <div id="u188_text" class="text " style="display:none; visibility: hidden">
               <p></p>
             </div>
@@ -520,7 +520,7 @@
 
           <!-- Unnamed (椭圆形) -->
           <div id="u189" class="ax_default ellipse">
-            <img id="u189_img" class="img " src="../assets/images/找回密码/u133.svg"/>
+            <img id="u189_img" class="img " src="../assets/images/填报端找回密码/u133.svg"/>
             <div id="u189_text" class="text " style="display:none; visibility: hidden">
               <p></p>
             </div>
@@ -536,7 +536,7 @@
 
           <!-- Unnamed (线) -->
           <div id="u191" class="ax_default line">
-            <img id="u191_img" class="img " src="../assets/images/找回密码/u112.svg"/>
+            <img id="u191_img" class="img " src="../assets/images/填报端找回密码/u112.svg"/>
             <div id="u191_text" class="text " style="display:none; visibility: hidden">
               <p></p>
             </div>
@@ -544,7 +544,7 @@
 
           <!-- Unnamed (椭圆形) -->
           <div id="u192" class="ax_default ellipse">
-            <img id="u192_img" class="img " src="../assets/images/找回密码/u110.svg"/>
+            <img id="u192_img" class="img " src="../assets/images/填报端找回密码/u110.svg"/>
             <div id="u192_text" class="text ">
               <p><span style="text-decoration:none;">4</span></p>
             </div>
@@ -562,7 +562,7 @@
       <el-form>
         <!-- Unnamed (形状) -->
         <div id="u194" class="ax_default icon">
-          <img id="u194_img" class="img " src="../assets/images/找回密码/u145.svg"/>
+          <img id="u194_img" class="img " src="../assets/images/填报端找回密码/u145.svg"/>
           <div id="u194_text" class="text " style="display:none; visibility: hidden">
             <p></p>
           </div>
@@ -570,7 +570,7 @@
 
         <!-- Unnamed (形状) -->
         <div id="u195" class="ax_default icon">
-          <img id="u195_img" class="img " src="../assets/images/找回密码/u145.svg"/>
+          <img id="u195_img" class="img " src="../assets/images/填报端找回密码/u145.svg"/>
           <div id="u195_text" class="text " style="display:none; visibility: hidden">
             <p></p>
           </div>
@@ -578,7 +578,7 @@
 
         <!-- Unnamed (形状) -->
         <div id="u196" class="ax_default icon">
-          <img id="u196_img" class="img " src="../assets/images/找回密码/u145.svg"/>
+          <img id="u196_img" class="img " src="../assets/images/填报端找回密码/u145.svg"/>
           <div id="u196_text" class="text " style="display:none; visibility: hidden">
             <p></p>
           </div>
@@ -586,7 +586,7 @@
 
         <!-- Unnamed (形状) -->
         <div id="u197" class="ax_default icon">
-          <img id="u197_img" class="img " src="../assets/images/找回密码/u197.svg"/>
+          <img id="u197_img" class="img " src="../assets/images/填报端找回密码/u197.svg"/>
           <div id="u197_text" class="text " style="display:none; visibility: hidden">
             <p></p>
           </div>
@@ -614,7 +614,7 @@
 </template>
 
 <script>
-  import {  resetUserPwd2 } from "@/api/system/user";
+    import {  resetUserPwd2 } from "@/api/system/user";
     import Vue from 'vue';
     import '../views/css/geren_styles.css';
     import ElForm from "element-ui/packages/form/src/form";
