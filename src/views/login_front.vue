@@ -6,113 +6,55 @@
       </div>
       <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form">
         <h3 class="title">用户登录</h3>
-        <el-tabs type="border-card">
-          <el-tab-pane label="个人登录">
-            <el-form-item prop="username">
-              <el-input v-model="loginForm.username" type="text" auto-complete="off" placeholder="个人账号">
-                <svg-icon slot="prefix" icon-class="user" class="el-input__icon input-icon" />
-              </el-input>
-            </el-form-item>
-            <el-form-item prop="password">
-              <el-input
-                v-model="loginForm.password"
-                type="password"
-                auto-complete="off"
-                placeholder="个人密码"
-                @keyup.enter.native="handleLogin">
-                <svg-icon slot="prefix" icon-class="password" class="el-input__icon input-icon" />
-              </el-input>
-            </el-form-item>
-            <el-form-item prop="code">
-              <el-input
-                v-model="loginForm.code"
-                auto-complete="off"
-                placeholder="验证码"
-                style="width: 63%"
-                @keyup.enter.native="handleLogin"
-              >
-                <svg-icon slot="prefix" icon-class="validCode" class="el-input__icon input-icon" />
-              </el-input>
-              <div class="login-code">
-                <img :src="codeUrl" @click="getCode" class="login-code-img"/>
-              </div>
-            </el-form-item>
-            <!--<el-checkbox v-model="loginForm.rememberMe" style="margin:0px 0px 25px 0px;">记住密码</el-checkbox>-->
-            <el-form-item style="width:100%;">
-              <el-button
-                :loading="loading"
-                size="medium"
-                type="primary"
-                style="width:100%;"
-                @click.native.prevent="handleLogin"
-              >
-                <span v-if="!loading">登 录</span>
-                <span v-else>登 录 中...</span>
-              </el-button>
-            </el-form-item>
-            <!--个人注册/忘记密码-->
-            <div>
-              <el-link type="primary" style="float:left" href="geren_zhuce">立即注册</el-link>
-              <el-link type="primary" style="float:right" href="geren_wangji">忘记密码/账号</el-link>
+          <el-form-item prop="username">
+            <el-input v-model="loginForm.username" type="text" auto-complete="off" placeholder="个人账号">
+              <svg-icon slot="prefix" icon-class="user" class="el-input__icon input-icon" />
+            </el-input>
+          </el-form-item>
+          <el-form-item prop="password">
+            <el-input
+              v-model="loginForm.password"
+              type="password"
+              auto-complete="off"
+              placeholder="个人密码"
+              @keyup.enter.native="handleLogin">
+              <svg-icon slot="prefix" icon-class="password" class="el-input__icon input-icon" />
+            </el-input>
+          </el-form-item>
+          <el-form-item prop="code">
+            <el-input
+              v-model="loginForm.code"
+              auto-complete="off"
+              placeholder="验证码"
+              style="width: 63%"
+              @keyup.enter.native="handleLogin"
+            >
+              <svg-icon slot="prefix" icon-class="validCode" class="el-input__icon input-icon" />
+            </el-input>
+            <div class="login-code">
+              <img :src="codeUrl" @click="getCode" class="login-code-img"/>
             </div>
-
-
-          </el-tab-pane>
-          <el-tab-pane label="企业登录">
-            <el-form-item prop="username">
-              <el-input v-model="loginForm.username" type="text" auto-complete="off" placeholder="企业账号">
-                <svg-icon slot="prefix" icon-class="user" class="el-input__icon input-icon" />
-              </el-input>
-            </el-form-item>
-            <el-form-item prop="password">
-              <el-input
-                v-model="loginForm.password"
-                type="password"
-                auto-complete="off"
-                placeholder="企业密码"
-                @keyup.enter.native="handleLogin">
-                <svg-icon slot="prefix" icon-class="password" class="el-input__icon input-icon" />
-              </el-input>
-            </el-form-item>
-            <el-form-item prop="code">
-              <el-input
-                v-model="loginForm.code"
-                auto-complete="off"
-                placeholder="验证码"
-                style="width: 63%"
-                @keyup.enter.native="handleLogin"
-              >
-                <svg-icon slot="prefix" icon-class="validCode" class="el-input__icon input-icon" />
-              </el-input>
-              <div class="login-code">
-                <img :src="codeUrl" @click="getCode" class="login-code-img"/>
-              </div>
-            </el-form-item>
-            <!---<el-checkbox v-model="loginForm.rememberMe" style="margin:0px 0px 25px 0px;">记住密码</el-checkbox>-->
-            <el-form-item style="width:100%;">
-              <el-button
-                :loading="loading"
-                size="medium"
-                type="primary"
-                style="width:100%;"
-                @click.native.prevent="handleLogin"
-              >
-                <span v-if="!loading">登 录</span>
-                <span v-else>登 录 中...</span>
-              </el-button>
-            </el-form-item>
-            <div>
-              <el-link type="primary" style="float:left" href="index.vue">立即注册</el-link>
-              <el-link type="primary" style="float:right">忘记密码/账号</el-link>
-            </div>
-          </el-tab-pane>
-        </el-tabs>
+          </el-form-item>
+          <!--<el-checkbox v-model="loginForm.rememberMe" style="margin:0px 0px 25px 0px;">记住密码</el-checkbox>-->
+          <el-form-item style="width:100%;">
+            <el-button
+              :loading="loading"
+              size="medium"
+              type="primary"
+              style="width:100%;"
+              @click.native.prevent="handleLogin"
+            >
+              <span v-if="!loading">登 录</span>
+              <span v-else>登 录 中...</span>
+            </el-button>
+          </el-form-item>
+          <!--个人注册/忘记密码-->
+          <div>
+            <el-link type="primary" style="float:left" href="geren_zhuce">立即注册</el-link>
+            <el-link type="primary" style="float:right" href="geren_wangji">忘记密码/账号</el-link>
+          </div>
       </el-form>
     </el-form>
-    <!--  底部  -->
-    <!--<div class="el-login-footer">
-      <span>Copyright © 2018-2021 ruoyi.vip All Rights Reserved.</span>
-    </div>-->
   </div>
 </template>
 
@@ -235,7 +177,7 @@ export default {
   border-radius: 6px;
   background: #ffffff;
   width: 400px;
-  padding: 25px 25px 5px 25px;
+  padding: 25px 25px 35px 25px;
   .el-input {
     height: 38px;
     input {

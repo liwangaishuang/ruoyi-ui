@@ -269,7 +269,7 @@
         <!-- Unnamed (文本框) -->
         <div id="u147" class="ax_default text_field">
           <div id="u147_div" class=""></div>
-          <input id="u147_input" type="text" value="请输入手机号码" class="u147_input"/>
+          <input id="u147_input" type="text" placeholder="请输入手机号码" class="u147_input"/>
         </div>
 
         <!-- Unnamed (矩形) -->
@@ -283,7 +283,7 @@
         <!-- Unnamed (文本框) -->
         <div id="u149" class="ax_default text_field">
           <div id="u149_div" class=""></div>
-          <input id="u149_input" type="text" value="请输入手机验证码" class="u149_input"/>
+          <input id="u149_input" type="text" placeholder="请输入手机验证码" class="u149_input"/>
         </div>
 
         <!-- Unnamed (矩形) -->
@@ -440,7 +440,7 @@
         <!-- Unnamed (文本框) -->
         <div id="u174" class="ax_default text_field">
           <div id="u174_div" class=""></div>
-          <input id="u174_input" type="text" value="8~20位字符，含数字、大写字母、小写字母、特殊字符中的两种及以上" class="u174_input"/>
+          <input id="u174_input" type="text" placeholder="8~20位字符，含数字、大写字母、小写字母、特殊字符中的两种及以上" class="u174_input"/>
         </div>
 
         <!-- Unnamed (矩形) -->
@@ -454,7 +454,7 @@
         <!-- Unnamed (文本框) -->
         <div id="u176" class="ax_default text_field">
           <div id="u176_div" class=""></div>
-          <input id="u176_input" type="text" value="请再次输入密码" class="u176_input"/>
+          <input id="u176_input" type="text" placeholder="请再次输入密码" class="u176_input"/>
         </div>
 
         <!-- Unnamed (矩形) -->
@@ -614,6 +614,7 @@
 </template>
 
 <script>
+  import {  resetUserPwd2 } from "@/api/system/user";
     import Vue from 'vue';
     import '../views/css/geren_styles.css';
     import ElForm from "element-ui/packages/form/src/form";
@@ -643,6 +644,8 @@
             idNumber:'',
             //专家姓名
             expertsName:'',
+            //专家用户id
+            userId:'102'
           }
         }
       },
@@ -670,26 +673,25 @@
           modelTwo2.style.display="none";
           /**3、显示第二个模块页面*/
           modelThree.style.display="inline";
-
-          /*setTimeout(()=>{
-            //需要延迟的代码 :3秒后延迟跳转到首页，可以加提示什么的
-            this.$router.push({
-              name:"login_front"
-            });
-            //延迟时间：3秒
-          },3000)*/
         },
         next_three(){
           /**定义model*/
           let modelThree = document.getElementById("model_three");
           let modelFour = document.getElementById("model_four");
+          let u176Input = document.getElementById("u176_input");
 
+          let value = u176Input.value;
+          let userId = 102;
+          resetUserPwd2(userId, value).then(response => {
+            console.log(response)
+            //this.msgSuccess("修改成功，新密码是：" + value);
+          });
           /**1、先判断验证码是否正确*/
-          /**2、隐藏第一个模块页面*/
+          /**2、隐藏第三个模块页面*/
           modelThree.style.display="none";
-          /**3、显示第二个模块页面*/
+          /**3、显示第四个模块页面*/
           modelFour.style.display="inline";
-
+          /**跳转*/
           setTimeout(()=>{
             //需要延迟的代码 :3秒后延迟跳转到首页，可以加提示什么的
             this.$router.push({

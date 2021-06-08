@@ -66,6 +66,19 @@ export function resetUserPwd(userId, password) {
   })
 }
 
+// 用户密码重置
+export function resetUserPwd2(userId, password) {
+  const data = {
+    userId,
+    password
+  }
+  return request({
+    url: '/system/user/resetPwd2',
+    method: 'put',
+    data: data
+  })
+}
+
 // 用户状态修改
 export function changeUserStatus(userId, status) {
   const data = {
