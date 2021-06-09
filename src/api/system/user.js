@@ -26,6 +26,14 @@ export function addUser(data) {
     data: data
   })
 }
+// 新增用户2
+export function addUser2(data) {
+  return request({
+    url: '/system/user/add2',
+    method: 'post',
+    data: data
+  })
+}
 
 // 修改用户
 export function updateUser(data) {

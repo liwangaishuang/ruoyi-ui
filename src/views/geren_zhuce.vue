@@ -1,5 +1,5 @@
 <template>
-  <div class="personal_login" style="margin:0 auto">
+  <div class="personal_login">
     <el-form>
       <!-- Unnamed (矩形) -->
       <div id="u26" class="ax_default box_1">
@@ -57,7 +57,7 @@
       </div>
       <div id="u33" class="ax_default text_field">
         <div id="u33_div" class=""></div>
-        <input id="u33_input" type="text" value="请输入用户账号" class="u33_input"/>
+        <input id="u33_input" type="text" v-model="queryParams.userName" placeholder="请输入用户账号" class="u33_input"/>
       </div>
 
       <!-- 登录密码 -->
@@ -69,7 +69,7 @@
       </div>
       <div id="u35" class="ax_default text_field">
         <div id="u35_div" class=""></div>
-        <input id="u35_input" type="text" value="8~20位字符，含数字、大写字母、小写字母、特殊字符中的两种及以上" class="u35_input"/>
+        <input id="u35_input" type="text" v-model="queryParams.password" placeholder="8~20位字符，含数字、大写字母、小写字母、特殊字符中的两种及以上" class="u35_input"/>
       </div>
 
       <!-- 确认密码 -->
@@ -81,7 +81,7 @@
       </div>
       <div id="u37" class="ax_default text_field">
         <div id="u37_div" class=""></div>
-        <input id="u37_input" type="text" value="请再次输入密码" class="u37_input"/>
+        <input id="u37_input" type="text" v-model="queryParams.againPassword" placeholder="请再次输入密码" class="u37_input"/>
       </div>
 
       <!-- 手机号码 -->
@@ -93,7 +93,7 @@
       </div>
       <div id="u39" class="ax_default text_field">
         <div id="u39_div" class=""></div>
-        <input id="u39_input" type="text" value="请输入手机号码" class="u39_input"/>
+        <input id="u39_input" type="text" v-model="queryParams.phonenumber" placeholder="请输入手机号码" class="u39_input"/>
       </div>
 
       <!-- 手机验证码 -->
@@ -105,7 +105,7 @@
       </div>
       <div id="u41" class="ax_default text_field">
         <div id="u41_div" class=""></div>
-        <input id="u41_input" type="text" value="请输入手机验证码" class="u41_input"/>
+        <input id="u41_input" type="text" v-model="queryParams.phoneCode" placeholder="请输入手机验证码" class="u41_input"/>
       </div>
       <div id="u44" class="ax_default box_1">
         <div id="u44_div" class=""></div>
@@ -128,7 +128,6 @@
           <p></p>
         </div>
       </div>
-
       <!-- 专家姓名 -->
       <div id="u45" class="ax_default label">
         <div id="u45_div" class=""></div>
@@ -138,7 +137,7 @@
       </div>
       <div id="u46" class="ax_default text_field">
         <div id="u46_div" class=""></div>
-        <el-input id="u46_input" type="text" v-model="form.name" placeholder="请输入专家姓名" class="u46_input"></el-input>
+        <el-input id="u46_input" type="text" v-model="queryParams.expertsName" placeholder="请输入专家姓名" class="u46_input"></el-input>
       </div>
 
       <!-- 证件号码 -->
@@ -149,20 +148,20 @@
         </div>
       </div>
       <div id="u53" class="ax_default droplist">
-        <div id="u53_div" class=""></div>
-        <select id="u53_input" class="u53_input">
-          <option class="u53_input_option" selected value="身份证">身份证</option>
-          <option class="u53_input_option" value="港澳居民来往内地通行证">港澳居民来往内地通行证</option>
-          <option class="u53_input_option" value="台湾居民来往大陆通行证">台湾居民来往大陆通行证</option>
-          <option class="u53_input_option" value="中国护照">中国护照</option>
-          <option class="u53_input_option" value="港澳台居民居住证">港澳台居民居住证</option>
-          <option class="u53_input_option" value="外国人永久居留居住证">外国人永久居留居住证</option>
-          <option class="u53_input_option" value="其它">其它</option>
-        </select>
+        <div id="u523_div" class=""></div>
+        <el-select id="u53_input" placeholder="请选择证件类型"   v-model="queryParams.idNumberType" class="u53_input">
+          <el-option class="u53_input_option" value="身份证">身份证</el-option>
+          <el-option class="u53_input_option" value="港澳居民来往内地通行证">港澳居民来往内地通行证</el-option>
+          <el-option class="u53_input_option" value="台湾居民来往大陆通行证">台湾居民来往大陆通行证</el-option>
+          <el-option class="u53_input_option" value="中国护照">中国护照</el-option>
+          <el-option class="u53_input_option" value="港澳台居民居住证">港澳台居民居住证</el-option>
+          <el-option class="u53_input_option" value="外国人永久居留居住证">外国人永久居留居住证</el-option>
+          <el-option class="u53_input_option" value="其它">其它</el-option>
+        </el-select>
       </div>
       <div id="u47" class="ax_default text_field">
         <div id="u47_div" class=""></div>
-        <el-input id="u47_input" type="text" v-model="form.name" placeholder="请输入证件号码" class="u47_input"></el-input>
+        <el-input id="u47_input" type="text" v-model="queryParams.userIdNumber" placeholder="请输入证件号码" class="u47_input"></el-input>
       </div>
 
       <!-- 单位名称 -->
@@ -174,7 +173,7 @@
       </div>
       <div id="u50" class="ax_default text_field">
         <div id="u50_div" class=""></div>
-        <input id="u50_input" type="text" v-model="form.name" placeholder="请输入单位名称" class="u50_input"/>
+        <input id="u50_input" type="text" v-model="queryParams.companyName" placeholder="请输入单位名称" class="u50_input"/>
       </div>
 
       <!-- 单位类型 -->
@@ -186,23 +185,22 @@
       </div>
       <div id="u52" class="ax_default droplist">
         <div id="u52_div" class=""></div>
-        <select id="u52_input" class="u52_input">
-          <option class="u52_input_option" value="请选择单位类型">请选择单位类型</option>
-          <option class="u52_input_option" value="政府机关">政府机关</option>
-          <option class="u52_input_option" value="大专院校">大专院校</option>
-          <option class="u52_input_option" value="研究院校">研究院校</option>
-          <option class="u52_input_option" value="其它事业单位">其它事业单位</option>
-          <option class="u52_input_option" value="国有企业">国有企业</option>
-          <option class="u52_input_option" value="集体私有制企业">集体私有制企业</option>
-          <option class="u52_input_option" value="私营企业">私营企业</option>
-          <option class="u52_input_option" value="港澳台投资企业">港澳台投资企业</option>
-          <option class="u52_input_option" value="外商投资企业">外商投资企业</option>
-          <option class="u52_input_option" value="合资企业">合资企业</option>
-          <option class="u52_input_option" value="个体经营">个体经营</option>
-          <option class="u52_input_option" value="其它所有制企业">其它所有制企业</option>
-          <option class="u52_input_option" value="社会团休">社会团休</option>
-          <option class="u52_input_option" value="其它企业">其它企业</option>
-        </select>
+        <el-select id="u52_input" placeholder="请选择单位类型" v-model="queryParams.companyType" class="u52_input">
+          <el-option class="u52_input_option" value="政府机关">政府机关</el-option>
+          <el-option class="u52_input_option" value="大专院校">大专院校</el-option>
+          <el-option class="u52_input_option" value="研究院校">研究院校</el-option>
+          <el-option class="u52_input_option" value="其它事业单位">其它事业单位</el-option>
+          <el-option class="u52_input_option" value="国有企业">国有企业</el-option>
+          <el-option class="u52_input_option" value="集体私有制企业">集体私有制企业</el-option>
+          <el-option class="u52_input_option" value="私营企业">私营企业</el-option>
+          <el-option class="u52_input_option" value="港澳台投资企业">港澳台投资企业</el-option>
+          <el-option class="u52_input_option" value="外商投资企业">外商投资企业</el-option>
+          <el-option class="u52_input_option" value="合资企业">合资企业</el-option>
+          <el-option class="u52_input_option" value="个体经营">个体经营</el-option>
+          <el-option class="u52_input_option" value="其它所有制企业">其它所有制企业</el-option>
+          <el-option class="u52_input_option" value="社会团休">社会团休</el-option>
+          <el-option class="u52_input_option" value="其它企业">其它企业</el-option>
+        </el-select>
       </div>
 
       <!-- 单位地区 -->
@@ -213,22 +211,21 @@
         </div>
       </div>
       <div id="u55" class="ax_default droplist">
-        <div id="u55_div" class=""></div>
-        <select id="u55_input" class="u55_input">
-          <option class="u55_input_option" value="请选择单位地区">请选择单位地区</option>
-          <option class="u55_input_option" value="福田区">福田区</option>
-          <option class="u55_input_option" value="罗湖区">罗湖区</option>
-          <option class="u55_input_option" value="南山区">南山区</option>
-          <option class="u55_input_option" value="宝安区">宝安区</option>
-          <option class="u55_input_option" value="龙华区">龙华区</option>
-          <option class="u55_input_option" value="龙岗区">龙岗区</option>
-          <option class="u55_input_option" value="大鹏新区">大鹏新区</option>
-          <option class="u55_input_option" value="盐田区">盐田区</option>
-          <option class="u55_input_option" value="坪山区">坪山区</option>
-          <option class="u55_input_option" value="光明区">光明区</option>
-          <option class="u55_input_option" value="深汕特别合作区">深汕特别合作区</option>
-          <option class="u55_input_option" value="其它地区">其它地区</option>
-        </select>
+        <div id="u552_div" class=""></div>
+        <el-select id="u55_input" placeholder="请选择单位地区" v-model="queryParams.companyRegion" class="u55_input">
+          <el-option class="u55_input_option" value="福田区">福田区</el-option>
+          <el-option class="u55_input_option" value="罗湖区">罗湖区</el-option>
+          <el-option class="u55_input_option" value="南山区">南山区</el-option>
+          <el-option class="u55_input_option" value="宝安区">宝安区</el-option>
+          <el-option class="u55_input_option" value="龙华区">龙华区</el-option>
+          <el-option class="u55_input_option" value="龙岗区">龙岗区</el-option>
+          <el-option class="u55_input_option" value="大鹏新区">大鹏新区</el-option>
+          <el-option class="u55_input_option" value="盐田区">盐田区</el-option>
+          <el-option class="u55_input_option" value="坪山区">坪山区</el-option>
+          <el-option class="u55_input_option" value="光明区">光明区</el-option>
+          <el-option class="u55_input_option" value="深汕特别合作区">深汕特别合作区</el-option>
+          <el-option class="u55_input_option" value="其它地区">其它地区</el-option>
+        </el-select>
       </div>
 
       <!-- 单位地址 -->
@@ -240,7 +237,7 @@
       </div>
       <div id="u57" class="ax_default text_field">
         <div id="u57_div" class=""></div>
-        <input id="u57_input" type="text" v-model="form.name" placeholder="请输入详细地址" class="u57_input"/>
+        <input id="u57_input" type="text" v-model="queryParams.companySite" placeholder="请输入详细地址" class="u57_input"/>
       </div>
     </el-form>
     <!--注册-->
@@ -249,7 +246,7 @@
       <div id="u58" class="ax_default box_1">
         <div id="u58_div" class=""></div>
         <div id="u58_text" class="text ">
-          <el-button id="u58_btn" v-on:click="zhuce()" type="primary" style="text-decoration:none x;">注册</el-button>
+          <el-button id="u58_btn" v-on:click="zhuce()" type="primary" style="text-decoration:none;">注册</el-button>
         </div>
       </div>
       <div id="u59" class="ax_default label">
@@ -259,48 +256,11 @@
         </div>
       </div>
     </el-form>
-    <el-form>
-
-      <!-- 注册成功-提示 -->
-      <!--<div id="u60" class="ax_default ax_default_hidden" data-label="注册成功-提示">
-        <div id="u60_state0" class="panel_state" data-label="State1" style="">
-          <div id="u60_state0_content" class="panel_state_content">
-            &lt;!&ndash; Unnamed (矩形) &ndash;&gt;
-            <div id="u63" class="ax_default label">
-              <div id="u63_div" class=""></div>
-              <div id="u63_text" class="text ">
-                <p><span style="text-decoration:none;">温馨提示</span></p>
-              </div>
-            </div>
-
-            &lt;!&ndash; Unnamed (矩形) &ndash;&gt;
-            <div id="u64" class="ax_default label">
-              <div id="u64_div" class=""></div>
-              <div id="u64_text" class="text ">
-                <p><span style="text-decoration:none;">您已注册成功，请登录</span></p>
-              </div>
-            </div>
-
-            &lt;!&ndash; Unnamed (矩形) &ndash;&gt;
-            <div id="u65" class="ax_default box_1">
-              <div id="u65_div" class=""></div>
-              <div id="u65_text" class="text ">
-                <p><span style="text-decoration:none;">确定</span></p>
-              </div>
-            </div>
-
-            &lt;!&ndash; Unnamed (热区) &ndash;&gt;
-            <div id="u66" class="ax_default">
-            </div>
-          </div>
-        </div>
-      </div>-->
-    </el-form>
   </div>
 </template>
 
 <script>
-
+  import { addUser2 } from "@/api/system/user";
   import '../views/css/zhuce_styles.css';
   import ElForm from "element-ui/packages/form/src/form";
   import ElButton from "element-ui/packages/button/src/button";
@@ -321,11 +281,39 @@
             type: [],
             resource: '',
             desc: ''
-          }
+          },
+          // 查询参数
+          queryParams: {
+            pageNum: 1,
+            pageSize: 10,
+            deptId: null,
+            userName: null,
+            nickName: null,
+            userType: null,
+            email: null,
+            phonenumber: null,
+            phoneCode: null,
+            sex: null,
+            avatar: null,
+            password: null,
+            againPassword: null,
+            status: null,
+            loginIp: null,
+            loginDate: null,
+            expertsName: null,
+            idNumberType: null,
+            userIdNumber: null,
+            companyName: null,
+            companyType: null,
+            companyRegion: null,
+            companySite: null
+          },
         }
       },
       methods: {
         zhuce(){
+          addUser2(this.queryParams).then(response => {
+            }),
           this.$alert('您已注册成功，请登录', '温馨提示', {
             confirmButtonText: '确定',
             callback: action => {

@@ -1533,7 +1533,6 @@
   text-transform:none;
 }
 #u52_input {
-  position:absolute;
   left:0px;
   top:0px;
   width:587px;
@@ -1633,7 +1632,7 @@
   font-size:18px;
 }
 #u53_input {
-  position:absolute;
+  transform:translateX(-5px);
   left:0px;
   top:0px;
   width:231px;
@@ -1650,7 +1649,7 @@
   text-align:left;
   text-transform:none;
   background-color:transparent;
-  border-color:transparent;
+  border-color:#6F6F6F;
 }
 #u53_input.disabled {
   position:absolute;
@@ -1772,7 +1771,6 @@
   text-transform:none;
 }
 #u55_input {
-  position:absolute;
   left:0px;
   top:0px;
   width:587px;
@@ -1784,12 +1782,12 @@
   font-size:18px;
   text-decoration:none;
   letter-spacing:normal;
-  color:#000000;
+  color:#AAAAAA;
   vertical-align:none;
   text-align:left;
   text-transform:none;
   background-color:transparent;
-  border-color:transparent;
+  border-color:#6F6F6F;
 }
 #u55_input.disabled {
   position:absolute;
