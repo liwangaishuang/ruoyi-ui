@@ -1,19 +1,23 @@
 <template>
-  <el-form ref="form" :model="user" :rules="rules" label-width="80px">
-    <el-form-item label="用户昵称" prop="nickName">
-      <el-input v-model="user.nickName" />
-    </el-form-item> 
-    <el-form-item label="手机号码" prop="phonenumber">
+  <el-form ref="form" :model="user" :rules="rules" label-width="120px">
+    <el-form-item label="用户账号：" prop="nickName">
+      {{user.nickName}}
+    </el-form-item>
+    <el-form-item label="手机号码：" prop="phonenumber">
       <el-input v-model="user.phonenumber" maxlength="11" />
     </el-form-item>
-    <el-form-item label="邮箱" prop="email">
-      <el-input v-model="user.email" maxlength="50" />
+    <el-form-item label="手机验证码：" prop="phonenumber">
+      <el-input v-model="user.phonenumber" maxlength="11" style="width: 30%"/>
+      <el-button type="primary" style="margin-left:5px">发送验证码</el-button>
     </el-form-item>
-    <el-form-item label="性别">
-      <el-radio-group v-model="user.sex">
-        <el-radio label="0">男</el-radio>
-        <el-radio label="1">女</el-radio>
-      </el-radio-group>
+    <el-form-item label="专家姓名：" prop="phonenumber">
+      <el-input v-model="user.phonenumber"/>
+    </el-form-item>
+    <el-form-item label="产品状态">
+      <el-select v-model="user.nickName" placeholder="请选择" style="width: 30%">
+        <el-option :key="user.nickName" :label="user.nickName" :value="user.nickName"></el-option>
+      </el-select>
+      <el-input v-model="user.phonenumber" style="width: 70%" />
     </el-form-item>
     <el-form-item>
       <el-button type="primary" size="mini" @click="submit">保存</el-button>
@@ -24,8 +28,10 @@
 
 <script>
 import { updateUserProfile } from "@/api/system/user";
+import ElButton from "element-ui/packages/button/src/button";
 
 export default {
+  components: {ElButton},
   props: {
     user: {
       type: Object
