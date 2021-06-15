@@ -1,585 +1,13 @@
 <template>
   <div class="app-container">
-    <el-form :model="queryParams" ref="queryForm" :inline="true" v-show="showSearch" label-width="68px">
-      <el-form-item label="用户表id" prop="userId">
-        <el-input
-          v-model="queryParams.userId"
-          placeholder="请输入用户表id"
-          clearable
-          size="small"
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item label="用户姓名" prop="userName">
-        <el-input
-          v-model="queryParams.userName"
-          placeholder="请输入用户姓名"
-          clearable
-          size="small"
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item label="登陆密码" prop="password">
-        <el-input
-          v-model="queryParams.password"
-          placeholder="请输入登陆密码"
-          clearable
-          size="small"
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item label="证件类型" prop="idNumberType">
-        <el-select v-model="queryParams.idNumberType" placeholder="请选择证件类型" clearable size="small">
-          <el-option
-            v-for="dict in idNumberTypeOptions"
-            :key="dict.dictValue"
-            :label="dict.dictLabel"
-            :value="dict.dictValue"
-          />
-        </el-select>
-      </el-form-item>
-      <el-form-item label="身份证号" prop="userIdNumber">
-        <el-input
-          v-model="queryParams.userIdNumber"
-          placeholder="请输入身份证号"
-          clearable
-          size="small"
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item label="出生日期" prop="birthDate">
-        <el-date-picker clearable size="small"
-          v-model="queryParams.birthDate"
-          type="date"
-          value-format="yyyy-MM-dd"
-          placeholder="选择出生日期">
-        </el-date-picker>
-      </el-form-item>
-      <el-form-item label="年龄" prop="age">
-        <el-input
-          v-model="queryParams.age"
-          placeholder="请输入年龄"
-          clearable
-          size="small"
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item label="手机号码" prop="phoneNumber">
-        <el-input
-          v-model="queryParams.phoneNumber"
-          placeholder="请输入手机号码"
-          clearable
-          size="small"
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item label="邮箱地址" prop="email">
-        <el-input
-          v-model="queryParams.email"
-          placeholder="请输入邮箱地址"
-          clearable
-          size="small"
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item label="办公电话" prop="officePhone">
-        <el-input
-          v-model="queryParams.officePhone"
-          placeholder="请输入办公电话"
-          clearable
-          size="small"
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item label="家庭电话" prop="homeTelephone">
-        <el-input
-          v-model="queryParams.homeTelephone"
-          placeholder="请输入家庭电话"
-          clearable
-          size="small"
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item label="性别(1:男2:女)" prop="userSex">
-        <el-select v-model="queryParams.userSex" placeholder="请选择性别(1:男2:女)" clearable size="small">
-          <el-option
-            v-for="dict in userSexOptions"
-            :key="dict.dictValue"
-            :label="dict.dictLabel"
-            :value="dict.dictValue"
-          />
-        </el-select>
-      </el-form-item>
-      <el-form-item label="国籍" prop="nationality">
-        <el-select v-model="queryParams.nationality" placeholder="请选择国籍" clearable size="small">
-          <el-option
-            v-for="dict in nationalityOptions"
-            :key="dict.dictValue"
-            :label="dict.dictLabel"
-            :value="dict.dictValue"
-          />
-        </el-select>
-      </el-form-item>
-      <el-form-item label="民族" prop="nation">
-        <el-select v-model="queryParams.nation" placeholder="请选择民族" clearable size="small">
-          <el-option
-            v-for="dict in nationOptions"
-            :key="dict.dictValue"
-            :label="dict.dictLabel"
-            :value="dict.dictValue"
-          />
-        </el-select>
-      </el-form-item>
-      <el-form-item label="邮政编码" prop="postalCode">
-        <el-input
-          v-model="queryParams.postalCode"
-          placeholder="请输入邮政编码"
-          clearable
-          size="small"
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item label="政治面貌" prop="politicsStatus">
-        <el-select v-model="queryParams.politicsStatus" placeholder="请选择政治面貌" clearable size="small">
-          <el-option
-            v-for="dict in politicsStatusOptions"
-            :key="dict.dictValue"
-            :label="dict.dictLabel"
-            :value="dict.dictValue"
-          />
-        </el-select>
-      </el-form-item>
-      <el-form-item label="职称" prop="professional">
-        <el-select v-model="queryParams.professional" placeholder="请选择职称" clearable size="small">
-          <el-option
-            v-for="dict in professionalOptions"
-            :key="dict.dictValue"
-            :label="dict.dictLabel"
-            :value="dict.dictValue"
-          />
-        </el-select>
-      </el-form-item>
-      <el-form-item label="居住地区" prop="dwellRegion">
-        <el-select v-model="queryParams.dwellRegion" placeholder="请选择居住地区" clearable size="small">
-          <el-option
-            v-for="dict in dwellRegionOptions"
-            :key="dict.dictValue"
-            :label="dict.dictLabel"
-            :value="dict.dictValue"
-          />
-        </el-select>
-      </el-form-item>
-      <el-form-item label="居住地址" prop="dwellSite">
-        <el-input
-          v-model="queryParams.dwellSite"
-          placeholder="请输入居住地址"
-          clearable
-          size="small"
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item label="专业类别" prop="specialtyType">
-        <el-select v-model="queryParams.specialtyType" placeholder="请选择专业类别" clearable size="small">
-          <el-option
-            v-for="dict in specialtyTypeOptions"
-            :key="dict.dictValue"
-            :label="dict.dictLabel"
-            :value="dict.dictValue"
-          />
-        </el-select>
-      </el-form-item>
-      <el-form-item label="工作性质" prop="jobNature">
-        <el-select v-model="queryParams.jobNature" placeholder="请选择工作性质" clearable size="small">
-          <el-option
-            v-for="dict in jobNatureOptions"
-            :key="dict.dictValue"
-            :label="dict.dictLabel"
-            :value="dict.dictValue"
-          />
-        </el-select>
-      </el-form-item>
-      <el-form-item label="单位名称" prop="companyName">
-        <el-input
-          v-model="queryParams.companyName"
-          placeholder="请输入单位名称"
-          clearable
-          size="small"
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item label="单位类型" prop="companyType">
-        <el-select v-model="queryParams.companyType" placeholder="请选择单位类型" clearable size="small">
-          <el-option
-            v-for="dict in companyTypeOptions"
-            :key="dict.dictValue"
-            :label="dict.dictLabel"
-            :value="dict.dictValue"
-          />
-        </el-select>
-      </el-form-item>
-      <el-form-item label="单位地区" prop="companyRegion">
-        <el-select v-model="queryParams.companyRegion" placeholder="请选择单位地区" clearable size="small">
-          <el-option
-            v-for="dict in companyRegionOptions"
-            :key="dict.dictValue"
-            :label="dict.dictLabel"
-            :value="dict.dictValue"
-          />
-        </el-select>
-      </el-form-item>
-      <el-form-item label="统一社会信用代码" prop="creditCode">
-        <el-input
-          v-model="queryParams.creditCode"
-          placeholder="请输入统一社会信用代码"
-          clearable
-          size="small"
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item label="二级部门" prop="secondLevelDepartment">
-        <el-input
-          v-model="queryParams.secondLevelDepartment"
-          placeholder="请输入二级部门"
-          clearable
-          size="small"
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item label="职务" prop="position">
-        <el-input
-          v-model="queryParams.position"
-          placeholder="请输入职务"
-          clearable
-          size="small"
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item label="单位地址" prop="companySite">
-        <el-input
-          v-model="queryParams.companySite"
-          placeholder="请输入单位地址"
-          clearable
-          size="small"
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item label="最高学历" prop="highestEducation">
-        <el-select v-model="queryParams.highestEducation" placeholder="请选择最高学历" clearable size="small">
-          <el-option
-            v-for="dict in highestEducationOptions"
-            :key="dict.dictValue"
-            :label="dict.dictLabel"
-            :value="dict.dictValue"
-          />
-        </el-select>
-      </el-form-item>
-      <el-form-item label="毕业院校" prop="graduateAcademy">
-        <el-input
-          v-model="queryParams.graduateAcademy"
-          placeholder="请输入毕业院校"
-          clearable
-          size="small"
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item label="学历所学专业" prop="major">
-        <el-select v-model="queryParams.major" placeholder="请选择学历所学专业" clearable size="small">
-          <el-option label="请选择字典生成" value="" />
-        </el-select>
-      </el-form-item>
-      <el-form-item label="最高学位" prop="highestDegree">
-        <el-select v-model="queryParams.highestDegree" placeholder="请选择最高学位" clearable size="small">
-          <el-option
-            v-for="dict in highestDegreeOptions"
-            :key="dict.dictValue"
-            :label="dict.dictLabel"
-            :value="dict.dictValue"
-          />
-        </el-select>
-      </el-form-item>
-      <el-form-item label="授予院校" prop="awardAcademy">
-        <el-input
-          v-model="queryParams.awardAcademy"
-          placeholder="请输入授予院校"
-          clearable
-          size="small"
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item label="学位所学专业" prop="majorAcademy">
-        <el-input
-          v-model="queryParams.majorAcademy"
-          placeholder="请输入学位所学专业"
-          clearable
-          size="small"
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item label="是否两院院士" prop="isAcademician">
-        <el-select v-model="queryParams.isAcademician" placeholder="请选择是否两院院士" clearable size="small">
-          <el-option label="请选择字典生成" value="" />
-        </el-select>
-      </el-form-item>
-      <el-form-item label="是否博士生导师" prop="isDoctoralSupervisor">
-        <el-select v-model="queryParams.isDoctoralSupervisor" placeholder="请选择是否博士生导师" clearable size="small">
-          <el-option label="请选择字典生成" value="" />
-        </el-select>
-      </el-form-item>
-      <el-form-item label="熟悉外语语种" prop="language">
-        <el-input
-          v-model="queryParams.language"
-          placeholder="请输入熟悉外语语种"
-          clearable
-          size="small"
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item label="熟悉程度" prop="degree">
-        <el-input
-          v-model="queryParams.degree"
-          placeholder="请输入熟悉程度"
-          clearable
-          size="small"
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item label="主要行业领域" prop="mainIndustry">
-        <el-select v-model="queryParams.mainIndustry" placeholder="请选择主要行业领域" clearable size="small">
-          <el-option
-            v-for="dict in mainIndustryOptions"
-            :key="dict.dictValue"
-            :label="dict.dictLabel"
-            :value="dict.dictValue"
-          />
-        </el-select>
-      </el-form-item>
-      <el-form-item label="基金学科" prop="fundSubject">
-        <el-select v-model="queryParams.fundSubject" placeholder="请选择基金学科" clearable size="small">
-          <el-option label="请选择字典生成" value="" />
-        </el-select>
-      </el-form-item>
-      <el-form-item label="国际学科" prop="internationalDiscipline">
-        <el-select v-model="queryParams.internationalDiscipline" placeholder="请选择国际学科" clearable size="small">
-          <el-option label="请选择字典生成" value="" />
-        </el-select>
-      </el-form-item>
-      <el-form-item label="教育学科" prop="educationSubject">
-        <el-select v-model="queryParams.educationSubject" placeholder="请选择教育学科" clearable size="small">
-          <el-option label="请选择字典生成" value="" />
-        </el-select>
-      </el-form-item>
-      <el-form-item label="工业行业" prop="industries">
-        <el-select v-model="queryParams.industries" placeholder="请选择工业行业" clearable size="small">
-          <el-option label="请选择字典生成" value="" />
-        </el-select>
-      </el-form-item>
-      <el-form-item label="奖惩情况" prop="rewardsPunishment">
-        <el-input
-          v-model="queryParams.rewardsPunishment"
-          placeholder="请输入奖惩情况"
-          clearable
-          size="small"
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item label="参与评审需回避单位" prop="avoidCompany">
-        <el-input
-          v-model="queryParams.avoidCompany"
-          placeholder="请输入参与评审需回避单位"
-          clearable
-          size="small"
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item label="成果或专利" prop="resultsOrPatents">
-        <el-input
-          v-model="queryParams.resultsOrPatents"
-          placeholder="请输入成果或专利"
-          clearable
-          size="small"
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item label="荣誉或头衔" prop="honorsOrTitles">
-        <el-input
-          v-model="queryParams.honorsOrTitles"
-          placeholder="请输入荣誉或头衔"
-          clearable
-          size="small"
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item label="简历地址" prop="resumeSite">
-        <el-input
-          v-model="queryParams.resumeSite"
-          placeholder="请输入简历地址"
-          clearable
-          size="small"
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item label="申报状态(0:暂存 1:未审核 2:已审核 3:已删除)" prop="status">
-        <el-select v-model="queryParams.status" placeholder="请选择申报状态(0:暂存 1:未审核 2:已审核 3:已删除)" clearable size="small">
-          <el-option label="请选择字典生成" value="" />
-        </el-select>
-      </el-form-item>
-      <el-form-item>
-        <el-button type="primary" icon="el-icon-search" size="mini" @click="handleQuery">搜索</el-button>
-        <el-button icon="el-icon-refresh" size="mini" @click="resetQuery">重置</el-button>
-      </el-form-item>
-    </el-form>
 
-    <el-row :gutter="10" class="mb8">
-      <el-col :span="1.5">
-        <el-button
-          type="primary"
-          plain
-          icon="el-icon-plus"
-          size="mini"
-          @click="handleAdd"
-        >新增</el-button>
-      </el-col>
-      <el-col :span="1.5">
-        <el-button
-          type="success"
-          plain
-          icon="el-icon-edit"
-          size="mini"
-          :disabled="single"
-          @click="handleUpdate"
-          v-hasPermi="['talents:user:edit']"
-        >修改</el-button>
-      </el-col>
-      <el-col :span="1.5">
-        <el-button
-          type="danger"
-          plain
-          icon="el-icon-delete"
-          size="mini"
-          :disabled="multiple"
-          @click="handleDelete"
-          v-hasPermi="['talents:user:remove']"
-        >删除</el-button>
-      </el-col>
-      <el-col :span="1.5">
-        <el-button
-          type="warning"
-          plain
-          icon="el-icon-download"
-          size="mini"
-		  :loading="exportLoading"
-          @click="handleExport"
-          v-hasPermi="['talents:user:export']"
-        >导出</el-button>
-      </el-col>
-      <right-toolbar :showSearch.sync="showSearch" @queryTable="getList"></right-toolbar>
-    </el-row>
-
-    <el-table v-loading="loading" :data="userList" @selection-change="handleSelectionChange">
-      <el-table-column type="selection" width="55" align="center" />
-      <el-table-column label="申报状态(0:暂存 1:未审核 2:已审核 3:已删除)" align="center" prop="id" />
-      <el-table-column label="用户表id" align="center" prop="userId" />
-      <el-table-column label="用户姓名" align="center" prop="userName" />
-      <el-table-column label="头像" align="center" prop="portrait" />
-      <el-table-column label="登陆密码" align="center" prop="password" />
-      <el-table-column label="证件类型" align="center" prop="idNumberType" :formatter="idNumberTypeFormat" />
-      <el-table-column label="身份证号" align="center" prop="userIdNumber" />
-      <el-table-column label="出生日期" align="center" prop="birthDate" width="180">
-        <template slot-scope="scope">
-          <span>{{ parseTime(scope.row.birthDate, '{y}-{m}-{d}') }}</span>
-        </template>
-      </el-table-column>
-      <el-table-column label="年龄" align="center" prop="age" />
-      <el-table-column label="手机号码" align="center" prop="phoneNumber" />
-      <el-table-column label="邮箱地址" align="center" prop="email" />
-      <el-table-column label="办公电话" align="center" prop="officePhone" />
-      <el-table-column label="家庭电话" align="center" prop="homeTelephone" />
-      <el-table-column label="性别(1:男2:女)" align="center" prop="userSex" :formatter="userSexFormat" />
-      <el-table-column label="国籍" align="center" prop="nationality" :formatter="nationalityFormat" />
-      <el-table-column label="民族" align="center" prop="nation" :formatter="nationFormat" />
-      <el-table-column label="邮政编码" align="center" prop="postalCode" />
-      <el-table-column label="政治面貌" align="center" prop="politicsStatus" :formatter="politicsStatusFormat" />
-      <el-table-column label="职称" align="center" prop="professional" :formatter="professionalFormat" />
-      <el-table-column label="居住地区" align="center" prop="dwellRegion" :formatter="dwellRegionFormat" />
-      <el-table-column label="居住地址" align="center" prop="dwellSite" />
-      <el-table-column label="专业类别" align="center" prop="specialtyType" :formatter="specialtyTypeFormat" />
-      <el-table-column label="工作性质" align="center" prop="jobNature" :formatter="jobNatureFormat" />
-      <el-table-column label="单位名称" align="center" prop="companyName" />
-      <el-table-column label="单位类型" align="center" prop="companyType" :formatter="companyTypeFormat" />
-      <el-table-column label="单位地区" align="center" prop="companyRegion" :formatter="companyRegionFormat" />
-      <el-table-column label="统一社会信用代码" align="center" prop="creditCode" />
-      <el-table-column label="二级部门" align="center" prop="secondLevelDepartment" />
-      <el-table-column label="职务" align="center" prop="position" />
-      <el-table-column label="单位地址" align="center" prop="companySite" />
-      <el-table-column label="最高学历" align="center" prop="highestEducation" :formatter="highestEducationFormat" />
-      <el-table-column label="毕业院校" align="center" prop="graduateAcademy" />
-      <el-table-column label="学历所学专业" align="center" prop="major" />
-      <el-table-column label="最高学位" align="center" prop="highestDegree" :formatter="highestDegreeFormat" />
-      <el-table-column label="授予院校" align="center" prop="awardAcademy" />
-      <el-table-column label="学位所学专业" align="center" prop="majorAcademy" />
-      <el-table-column label="是否两院院士" align="center" prop="isAcademician" />
-      <el-table-column label="是否博士生导师" align="center" prop="isDoctoralSupervisor" />
-      <el-table-column label="熟悉外语语种" align="center" prop="language" />
-      <el-table-column label="熟悉程度" align="center" prop="degree" />
-      <el-table-column label="入库标准" align="center" prop="standard" />
-      <el-table-column label="参与评审/公共服务经历" align="center" prop="reviewExperience" />
-      <el-table-column label="主要行业领域" align="center" prop="mainIndustry" :formatter="mainIndustryFormat" />
-      <el-table-column label="其他行业领域" align="center" prop="elseIndustry" :formatter="elseIndustryFormat" />
-      <el-table-column label="基金学科" align="center" prop="fundSubject" />
-      <el-table-column label="国际学科" align="center" prop="internationalDiscipline" />
-      <el-table-column label="教育学科" align="center" prop="educationSubject" />
-      <el-table-column label="工业行业" align="center" prop="industries" />
-      <el-table-column label="研究方向或关键词" align="center" prop="researchDirection" />
-      <el-table-column label="研究或工作内容" align="center" prop="workContent" />
-      <el-table-column label="主要业绩及贡献" align="center" prop="mainContribution" />
-      <el-table-column label="奖惩情况" align="center" prop="rewardsPunishment" />
-      <el-table-column label="参与评审需回避单位" align="center" prop="avoidCompany" />
-      <el-table-column label="成果或专利" align="center" prop="resultsOrPatents" />
-      <el-table-column label="荣誉或头衔" align="center" prop="honorsOrTitles" />
-      <el-table-column label="简历地址" align="center" prop="resumeSite" />
-      <el-table-column label="申报状态(0:暂存 1:未审核 2:已审核 3:已删除)" align="center" prop="status" />
-      <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
-        <template slot-scope="scope">
-          <el-button
-            size="mini"
-            type="text"
-            icon="el-icon-edit"
-            @click="handleUpdate(scope.row)"
-            v-hasPermi="['talents:user:edit']"
-          >修改</el-button>
-          <el-button
-            size="mini"
-            type="text"
-            icon="el-icon-delete"
-            @click="handleDelete(scope.row)"
-            v-hasPermi="['talents:user:remove']"
-          >删除</el-button>
-        </template>
-      </el-table-column>
-    </el-table>
-
-    <pagination
-      v-show="total>0"
-      :total="total"
-      :page.sync="queryParams.pageNum"
-      :limit.sync="queryParams.pageSize"
-      @pagination="getList"
-    />
-
-    <!-- 添加或修改用户对话框 -->
-    <el-dialog :title="title" :visible.sync="open" width="500px" append-to-body>
-      <el-form ref="form" :model="form" :rules="rules" label-width="80px">
-        <el-form-item label="用户表id" prop="userId">
-          <el-input v-model="form.userId" placeholder="请输入用户表id" />
-        </el-form-item>
+    <el-form ref="form" :model="form" :rules="rules" label-width="80px">
+      <div>
         <el-form-item label="用户姓名" prop="userName">
           <el-input v-model="form.userName" placeholder="请输入用户姓名" />
         </el-form-item>
         <el-form-item label="头像">
           <imageUpload v-model="form.portrait"/>
-        </el-form-item>
-        <el-form-item label="登陆密码" prop="password">
-          <el-input v-model="form.password" placeholder="请输入登陆密码" />
         </el-form-item>
         <el-form-item label="证件类型" prop="idNumberType">
           <el-select v-model="form.idNumberType" placeholder="请选择证件类型">
@@ -591,15 +19,15 @@
             ></el-option>
           </el-select>
         </el-form-item>
-        <el-form-item label="身份证号" prop="userIdNumber">
+        <el-form-item label="证件号" prop="userIdNumber" style="width: 50%;">
           <el-input v-model="form.userIdNumber" placeholder="请输入身份证号" />
         </el-form-item>
         <el-form-item label="出生日期" prop="birthDate">
           <el-date-picker clearable size="small"
-            v-model="form.birthDate"
-            type="date"
-            value-format="yyyy-MM-dd"
-            placeholder="选择出生日期">
+                          v-model="form.birthDate"
+                          type="date"
+                          value-format="yyyy-MM-dd"
+                          placeholder="选择出生日期">
           </el-date-picker>
         </el-form-item>
         <el-form-item label="年龄" prop="age">
@@ -703,165 +131,178 @@
             ></el-option>
           </el-select>
         </el-form-item>
-        <el-form-item label="单位名称" prop="companyName">
-          <el-input v-model="form.companyName" placeholder="请输入单位名称" />
-        </el-form-item>
-        <el-form-item label="单位类型" prop="companyType">
-          <el-select v-model="form.companyType" placeholder="请选择单位类型">
-            <el-option
-              v-for="dict in companyTypeOptions"
-              :key="dict.dictValue"
-              :label="dict.dictLabel"
-              :value="dict.dictValue"
-            ></el-option>
-          </el-select>
-        </el-form-item>
-        <el-form-item label="单位地区" prop="companyRegion">
-          <el-select v-model="form.companyRegion" placeholder="请选择单位地区">
-            <el-option
-              v-for="dict in companyRegionOptions"
-              :key="dict.dictValue"
-              :label="dict.dictLabel"
-              :value="dict.dictValue"
-            ></el-option>
-          </el-select>
-        </el-form-item>
-        <el-form-item label="统一社会信用代码" prop="creditCode">
-          <el-input v-model="form.creditCode" placeholder="请输入统一社会信用代码" />
-        </el-form-item>
-        <el-form-item label="二级部门" prop="secondLevelDepartment">
-          <el-input v-model="form.secondLevelDepartment" placeholder="请输入二级部门" />
-        </el-form-item>
-        <el-form-item label="职务" prop="position">
-          <el-input v-model="form.position" placeholder="请输入职务" />
-        </el-form-item>
-        <el-form-item label="单位地址" prop="companySite">
-          <el-input v-model="form.companySite" placeholder="请输入单位地址" />
-        </el-form-item>
-        <el-form-item label="最高学历" prop="highestEducation">
-          <el-select v-model="form.highestEducation" placeholder="请选择最高学历">
-            <el-option
-              v-for="dict in highestEducationOptions"
-              :key="dict.dictValue"
-              :label="dict.dictLabel"
-              :value="dict.dictValue"
-            ></el-option>
-          </el-select>
-        </el-form-item>
-        <el-form-item label="毕业院校" prop="graduateAcademy">
-          <el-input v-model="form.graduateAcademy" placeholder="请输入毕业院校" />
-        </el-form-item>
-        <el-form-item label="学历所学专业" prop="major">
-          <el-select v-model="form.major" placeholder="请选择学历所学专业">
-            <el-option label="请选择字典生成" value="" />
-          </el-select>
-        </el-form-item>
-        <el-form-item label="最高学位" prop="highestDegree">
-          <el-select v-model="form.highestDegree" placeholder="请选择最高学位">
-            <el-option
-              v-for="dict in highestDegreeOptions"
-              :key="dict.dictValue"
-              :label="dict.dictLabel"
-              :value="dict.dictValue"
-            ></el-option>
-          </el-select>
-        </el-form-item>
-        <el-form-item label="授予院校" prop="awardAcademy">
-          <el-input v-model="form.awardAcademy" placeholder="请输入授予院校" />
-        </el-form-item>
-        <el-form-item label="学位所学专业" prop="majorAcademy">
-          <el-input v-model="form.majorAcademy" placeholder="请输入学位所学专业" />
-        </el-form-item>
-        <el-form-item label="是否两院院士" prop="isAcademician">
-          <el-select v-model="form.isAcademician" placeholder="请选择是否两院院士">
-            <el-option label="请选择字典生成" value="" />
-          </el-select>
-        </el-form-item>
-        <el-form-item label="是否博士生导师" prop="isDoctoralSupervisor">
-          <el-select v-model="form.isDoctoralSupervisor" placeholder="请选择是否博士生导师">
-            <el-option label="请选择字典生成" value="" />
-          </el-select>
-        </el-form-item>
-        <el-form-item label="熟悉外语语种" prop="language">
-          <el-input v-model="form.language" placeholder="请输入熟悉外语语种" />
-        </el-form-item>
-        <el-form-item label="熟悉程度" prop="degree">
-          <el-input v-model="form.degree" placeholder="请输入熟悉程度" />
-        </el-form-item>
-        <el-form-item label="入库标准" prop="standard">
-          <el-input v-model="form.standard" type="textarea" placeholder="请输入内容" />
-        </el-form-item>
-        <el-form-item label="参与评审/公共服务经历" prop="reviewExperience">
-          <el-input v-model="form.reviewExperience" type="textarea" placeholder="请输入内容" />
-        </el-form-item>
-        <el-form-item label="主要行业领域" prop="mainIndustry">
-          <el-select v-model="form.mainIndustry" placeholder="请选择主要行业领域">
-            <el-option
-              v-for="dict in mainIndustryOptions"
-              :key="dict.dictValue"
-              :label="dict.dictLabel"
-              :value="dict.dictValue"
-            ></el-option>
-          </el-select>
-        </el-form-item>
-        <el-form-item label="其他行业领域" prop="elseIndustry">
-          <el-input v-model="form.elseIndustry" type="textarea" placeholder="请输入内容" />
-        </el-form-item>
-        <el-form-item label="基金学科" prop="fundSubject">
-          <el-select v-model="form.fundSubject" placeholder="请选择基金学科">
-            <el-option label="请选择字典生成" value="" />
-          </el-select>
-        </el-form-item>
-        <el-form-item label="国际学科" prop="internationalDiscipline">
-          <el-select v-model="form.internationalDiscipline" placeholder="请选择国际学科">
-            <el-option label="请选择字典生成" value="" />
-          </el-select>
-        </el-form-item>
-        <el-form-item label="教育学科" prop="educationSubject">
-          <el-select v-model="form.educationSubject" placeholder="请选择教育学科">
-            <el-option label="请选择字典生成" value="" />
-          </el-select>
-        </el-form-item>
-        <el-form-item label="工业行业" prop="industries">
-          <el-select v-model="form.industries" placeholder="请选择工业行业">
-            <el-option label="请选择字典生成" value="" />
-          </el-select>
-        </el-form-item>
-        <el-form-item label="研究方向或关键词" prop="researchDirection">
-          <el-input v-model="form.researchDirection" type="textarea" placeholder="请输入内容" />
-        </el-form-item>
-        <el-form-item label="研究或工作内容">
-          <editor v-model="form.workContent" :min-height="192"/>
-        </el-form-item>
-        <el-form-item label="主要业绩及贡献" prop="mainContribution">
-          <el-input v-model="form.mainContribution" type="textarea" placeholder="请输入内容" />
-        </el-form-item>
-        <el-form-item label="奖惩情况" prop="rewardsPunishment">
-          <el-input v-model="form.rewardsPunishment" placeholder="请输入奖惩情况" />
-        </el-form-item>
-        <el-form-item label="参与评审需回避单位" prop="avoidCompany">
-          <el-input v-model="form.avoidCompany" placeholder="请输入参与评审需回避单位" />
-        </el-form-item>
-        <el-form-item label="成果或专利" prop="resultsOrPatents">
-          <el-input v-model="form.resultsOrPatents" placeholder="请输入成果或专利" />
-        </el-form-item>
-        <el-form-item label="荣誉或头衔" prop="honorsOrTitles">
-          <el-input v-model="form.honorsOrTitles" placeholder="请输入荣誉或头衔" />
-        </el-form-item>
-        <el-form-item label="简历地址" prop="resumeSite">
-          <el-input v-model="form.resumeSite" placeholder="请输入简历地址" />
-        </el-form-item>
-        <el-form-item label="申报状态(0:暂存 1:未审核 2:已审核 3:已删除)">
-          <el-radio-group v-model="form.status">
-            <el-radio label="1">请选择字典生成</el-radio>
-          </el-radio-group>
-        </el-form-item>
-      </el-form>
-      <div slot="footer" class="dialog-footer">
+      </div>
+      <el-form-item label="单位名称" prop="companyName">
+        <el-input v-model="form.companyName" placeholder="请输入单位名称" />
+      </el-form-item>
+      <el-form-item label="单位类型" prop="companyType">
+        <el-select v-model="form.companyType" placeholder="请选择单位类型">
+          <el-option
+            v-for="dict in companyTypeOptions"
+            :key="dict.dictValue"
+            :label="dict.dictLabel"
+            :value="dict.dictValue"
+          ></el-option>
+        </el-select>
+      </el-form-item>
+      <el-form-item label="单位地区" prop="companyRegion">
+        <el-select v-model="form.companyRegion" placeholder="请选择单位地区">
+          <el-option
+            v-for="dict in companyRegionOptions"
+            :key="dict.dictValue"
+            :label="dict.dictLabel"
+            :value="dict.dictValue"
+          ></el-option>
+        </el-select>
+      </el-form-item>
+      <el-form-item label="统一社会信用代码" prop="creditCode">
+        <el-input v-model="form.creditCode" placeholder="请输入统一社会信用代码" />
+      </el-form-item>
+      <el-form-item label="二级部门" prop="secondLevelDepartment">
+        <el-input v-model="form.secondLevelDepartment" placeholder="请输入二级部门" />
+      </el-form-item>
+      <el-form-item label="职务" prop="position">
+        <el-input v-model="form.position" placeholder="请输入职务" />
+      </el-form-item>
+      <el-form-item label="单位地址" prop="companySite">
+        <el-input v-model="form.companySite" placeholder="请输入单位地址" />
+      </el-form-item>
+      <el-form-item label="最高学历" prop="highestEducation">
+        <el-select v-model="form.highestEducation" placeholder="请选择最高学历">
+          <el-option
+            v-for="dict in highestEducationOptions"
+            :key="dict.dictValue"
+            :label="dict.dictLabel"
+            :value="dict.dictValue"
+          ></el-option>
+        </el-select>
+      </el-form-item>
+      <el-form-item label="毕业院校" prop="graduateAcademy">
+        <el-input v-model="form.graduateAcademy" placeholder="请输入毕业院校" />
+      </el-form-item>
+      <el-form-item label="学历所学专业" prop="major">
+        <el-select v-model="form.major" placeholder="请选择学历所学专业">
+          <el-option label="请选择字典生成" value="" />
+        </el-select>
+      </el-form-item>
+      <el-form-item label="最高学位" prop="highestDegree">
+        <el-select v-model="form.highestDegree" placeholder="请选择最高学位">
+          <el-option
+            v-for="dict in highestDegreeOptions"
+            :key="dict.dictValue"
+            :label="dict.dictLabel"
+            :value="dict.dictValue"
+          ></el-option>
+        </el-select>
+      </el-form-item>
+      <el-form-item label="授予院校" prop="awardAcademy">
+        <el-input v-model="form.awardAcademy" placeholder="请输入授予院校" />
+      </el-form-item>
+      <el-form-item label="学位所学专业" prop="majorAcademy">
+        <el-select v-model="form.majorAcademy" placeholder="请输入学位所学专业">
+          <el-option label="请选择字典生成" value="" />
+        </el-select>
+      </el-form-item>
+      <el-form-item label="是否两院院士" prop="isAcademician">
+        <el-select v-model="form.isAcademician" placeholder="请选择是否两院院士">
+          <el-option key="是" lable="是" value="是"></el-option>
+          <el-option key="否" lable="否" value="否"></el-option>
+        </el-select>
+      </el-form-item>
+      <el-form-item label="是否博士生导师" prop="isDoctoralSupervisor">
+        <el-select v-model="form.isDoctoralSupervisor" placeholder="请选择是否博士生导师">
+          <el-option key="是" lable="是" value="是"></el-option>
+          <el-option key="否" lable="否" value="否"></el-option>
+        </el-select>
+      </el-form-item>
+      <el-form-item label="熟悉外语语种" prop="language">
+        <el-input v-model="form.language" placeholder="可填写多个，填写多个用“/”隔开" />
+      </el-form-item>
+      <el-form-item label="熟悉程度" prop="degree">
+        <el-input v-model="form.degree" placeholder="填写内容为“精通、熟悉、一般、了解”，多个用“/”分开，与外语对应" />
+      </el-form-item>
+      <el-form-item label="入库标准" prop="standard" v-model="form.standard">
+        <el-checkbox label="作为负责人承担过中央财政支持的科技计划（专项、基金）项目（课题）或国家科技奖励获得者"></el-checkbox>
+        <el-checkbox label="知识产权法、民商法等相关领域，具有副高级以上职称的专家或律师事务所合伙人"></el-checkbox>
+        <el-checkbox label="在科技型上市公司、国家高新技术企业、国家级高新区、科技园区和各类创业服务机构、行业协会学会担任高级管理职务或技术骨干"></el-checkbox>
+        <el-checkbox label="在高等学校和科研院所工作具有副高级及以上职称，在相关领域工作五年以上"></el-checkbox>
+        <el-checkbox label="在法律、财务、审计、金融等领域具有执业资格的专业人员"></el-checkbox>
+        <el-checkbox label="天使投资或创业投资机构的高级管理人员、创始合伙人，资本市场、银行信贷及保险等机构的高级管理人员"></el-checkbox>
+        <el-checkbox label="在主要国际学术组织中任中高级职务，或参与国际标准制修订"></el-checkbox>
+        <el-checkbox label="其他"></el-checkbox>
+      </el-form-item>
+      <el-form-item label="参与评审/公共服务经历">
+        <el-checkbox-group v-model="form.reviewExperience">
+          <el-checkbox
+            v-for="dict in reviewExperienceOptions"
+            :key="dict.dictValue"
+            :label="dict.dictValue">
+            {{dict.dictLabel}}
+          </el-checkbox>
+        </el-checkbox-group>
+      </el-form-item>
+      <el-form-item label="主要行业领域" prop="mainIndustry">
+        <el-select v-model="form.mainIndustry" placeholder="请选择主要行业领域">
+          <el-option
+            v-for="dict in mainIndustryOptions"
+            :key="dict.dictValue"
+            :label="dict.dictLabel"
+            :value="dict.dictValue"
+          ></el-option>
+        </el-select>
+      </el-form-item>
+      <el-form-item label="其他行业领域" prop="elseIndustry">
+        <el-input v-model="form.elseIndustry" type="textarea" placeholder="请输入内容" />
+      </el-form-item>
+      <el-form-item label="基金学科" prop="fundSubject">
+        <el-select v-model="form.fundSubject" placeholder="请选择基金学科">
+          <el-option label="请选择字典生成" value="" />
+        </el-select>
+      </el-form-item>
+      <el-form-item label="国际学科" prop="internationalDiscipline">
+        <el-select v-model="form.internationalDiscipline" placeholder="请选择国际学科">
+          <el-option label="请选择字典生成" value="" />
+        </el-select>
+      </el-form-item>
+      <el-form-item label="教育学科" prop="educationSubject">
+        <el-select v-model="form.educationSubject" placeholder="请选择教育学科">
+          <el-option label="请选择字典生成" value="" />
+        </el-select>
+      </el-form-item>
+      <el-form-item label="工业行业" prop="industries">
+        <el-select v-model="form.industries" placeholder="请选择工业行业">
+          <el-option label="请选择字典生成" value="" />
+        </el-select>
+      </el-form-item>
+      <el-form-item label="研究方向或关键词" prop="researchDirection">
+        <el-input v-model="form.researchDirection" type="textarea" placeholder="请输入内容" />
+      </el-form-item>
+      <el-form-item label="研究或工作内容">
+        <editor v-model="form.workContent" :min-height="192"/>
+      </el-form-item>
+      <el-form-item label="主要业绩及贡献" prop="mainContribution">
+        <el-input v-model="form.mainContribution" type="textarea" placeholder="请输入内容" />
+      </el-form-item>
+      <el-form-item label="奖惩情况" prop="rewardsPunishment">
+        <el-input v-model="form.rewardsPunishment" placeholder="请输入奖惩情况" />
+      </el-form-item>
+      <el-form-item label="参与评审需回避单位" prop="avoidCompany">
+        <el-input v-model="form.avoidCompany" placeholder="请输入参与评审需回避单位" />
+      </el-form-item>
+      <el-form-item label="成果或专利" prop="resultsOrPatents">
+        <el-input v-model="form.resultsOrPatents" placeholder="请输入成果或专利" />
+      </el-form-item>
+      <el-form-item label="荣誉或头衔" prop="honorsOrTitles">
+        <el-input v-model="form.honorsOrTitles" placeholder="请输入荣誉或头衔" />
+      </el-form-item>
+      <el-form-item label="简历地址" prop="resumeSite">
+        <el-input v-model="form.resumeSite" placeholder="请输入简历地址" />
+      </el-form-item>
+      <div class="dialog-footer">
         <el-button type="primary" @click="submitForm">确 定</el-button>
         <el-button @click="cancel">取 消</el-button>
       </div>
-    </el-dialog>
+    </el-form>
   </div>
 </template>
 
@@ -928,6 +369,8 @@ export default {
       mainIndustryOptions: [],
       // 其他行业领域字典
       elseIndustryOptions: [],
+      // 参与评审/公共服务经历
+      reviewExperienceOptions: [],
       // 查询参数
       queryParams: {
         pageNum: 1,
@@ -971,7 +414,7 @@ export default {
         isDoctoralSupervisor: null,
         language: null,
         degree: null,
-        standard: null,
+        standard: [],
         reviewExperience: null,
         mainIndustry: null,
         elseIndustry: null,
@@ -1042,6 +485,9 @@ export default {
     });
     this.getDicts("main_industry").then(response => {
       this.elseIndustryOptions = response.data;
+    });
+    this.getDicts("review_experience").then(response => {
+      this.reviewExperienceOptions = response.data;
     });
   },
   methods: {
@@ -1114,6 +560,10 @@ export default {
     elseIndustryFormat(row, column) {
       return this.selectDictLabel(this.elseIndustryOptions, row.elseIndustry);
     },
+    // 参与评审/公共服务经历
+    reviewExperienceFormat(row, column) {
+      return this.selectDictLabels(this.reviewExperienceOptions, row.reviewExperience);
+    },
     // 取消按钮
     cancel() {
       this.open = false;
@@ -1162,8 +612,8 @@ export default {
         isDoctoralSupervisor: null,
         language: null,
         degree: null,
-        standard: null,
-        reviewExperience: null,
+        standard: [],
+        reviewExperience: [],
         mainIndustry: null,
         elseIndustry: null,
         fundSubject: null,
