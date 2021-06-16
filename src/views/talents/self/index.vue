@@ -278,7 +278,7 @@
         <el-input v-model="form.researchDirection" type="textarea" placeholder="请输入内容" />
       </el-form-item>
       <el-form-item label="研究或工作内容">
-        <editor v-model="form.workContent" :min-height="192"/>
+        <el-input v-model="form.workContent" type="textarea" placeholder="请输入内容"/>
       </el-form-item>
       <el-form-item label="主要业绩及贡献" prop="mainContribution">
         <el-input v-model="form.mainContribution" type="textarea" placeholder="请输入内容" />
@@ -287,16 +287,13 @@
         <el-input v-model="form.rewardsPunishment" placeholder="请输入奖惩情况" />
       </el-form-item>
       <el-form-item label="参与评审需回避单位" prop="avoidCompany">
-        <el-input v-model="form.avoidCompany" placeholder="请输入参与评审需回避单位" />
+        <el-input v-model="form.avoidCompany" placeholder="请输入单位名称，输入多个则用“；”号进行隔开" />
       </el-form-item>
       <el-form-item label="成果或专利" prop="resultsOrPatents">
         <el-input v-model="form.resultsOrPatents" placeholder="请输入成果或专利" />
       </el-form-item>
       <el-form-item label="荣誉或头衔" prop="honorsOrTitles">
         <el-input v-model="form.honorsOrTitles" placeholder="请输入荣誉或头衔" />
-      </el-form-item>
-      <el-form-item label="简历地址" prop="resumeSite">
-        <el-input v-model="form.resumeSite" placeholder="请输入简历地址" />
       </el-form-item>
       <div class="dialog-footer">
         <el-button type="primary" @click="submitForm">确 定</el-button>
