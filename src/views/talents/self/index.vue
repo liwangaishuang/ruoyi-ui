@@ -46,11 +46,10 @@
         <el-button  type="primary" v-on:click="dianji" :disabled="isDisabled">下一步</el-button>
       </div>
     </div>
-
     <!--第二页-->
     <div id="div_two" style="display: inline">
       <div id="div_two_1">
-        <img src="../../../assets/images/专家申报/test2.png" alt="">
+        <img src="../../../assets/images/专家申报/test2.png" alt="" style="width: 100%">
       </div>
       <el-form ref="form" :model="form" :rules="rules" label-width="80px">
         <!--基本信息-->
@@ -562,11 +561,30 @@
             </el-form-item>
           </div>
         </div>
-        <div class="dialog-footer">
-          <el-button type="primary" @click="submitForm">确 定</el-button>
-          <el-button @click="cancel">取 消</el-button>
+        <!--提交-->
+        <div class="dialog-footer" style="text-align: center">
+          <el-button type="info">上一步</el-button>
+          <el-button type="primary">暂 存</el-button>
+          <el-button type="primary" @click="submitForm">提 交</el-button>
+          <!--<el-button @click="cancel">取 消</el-button>-->
         </div>
       </el-form>
+    </div>
+    <!--第三页-->
+    <div id="div_three" style="display: none">
+      <div id="div_three_1">
+        <img src="../../../assets/images/专家申报/test3.png" alt=""  style="width: 100%">
+      </div>
+      <div id="div_three_2">
+        <img src="../../../assets/images/专家申报/u478.svg" alt="" style="width: 11%;height: 11%">
+        <p style="font-size: 30px;font-weight: bold">您的申报信息已成功提交！</p>
+        <div>
+          <p>我们正在抓紧进行审核，审核结果将短信通知您，</p>
+          <p>同时您也可以至“申报进度查看”页面查看审核结果及相关信息。</p>
+          <p>在此之前，您不可以再次申报。</p>
+          <el-link type="primary" href="http://baidu.com">查看申报信息>></el-link>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -765,7 +783,7 @@ export default {
       if (this.radio==='1'){
         let divOne = document.getElementById("div_one");
         let divTwo = document.getElementById("div_two");
-        /**1、显示第一个模块页面*/
+        /**1、隐藏第一个模块页面*/
         divOne.style.display="none";
         /**2、显示第二个模块页面*/
         divTwo.style.display="inline";
@@ -956,7 +974,13 @@ export default {
     },
     /** 提交按钮 */
     submitForm() {
-      this.$refs["form"].validate(valid => {
+      let divTwo = document.getElementById("div_two");
+      let divThree = document.getElementById("div_three");
+      /**1、隐藏第二个模块页面*/
+      divTwo.style.display="none";
+      /**2、显示第三个模块页面*/
+      divThree.style.display="inline";
+      /*this.$refs["form"].validate(valid => {
         if (valid) {
           if (this.form.id != null) {
             updateUser(this.form).then(response => {
@@ -972,7 +996,7 @@ export default {
             });
           }
         }
-      });
+      });*/
     },
     /** 删除按钮操作 */
     handleDelete(row) {
