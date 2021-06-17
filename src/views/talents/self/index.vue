@@ -58,175 +58,270 @@
           <div id="div_two_2">
             <span>1.基本信息</span>
           </div>
-          <el-form-item label="用户姓名" prop="userName">
-            <el-input v-model="form.userName" placeholder="请输入用户姓名" />
-          </el-form-item>
-          <el-form-item label="头像">
-            <imageUpload v-model="form.portrait"/>
-          </el-form-item>
-          <el-form-item label="证件类型" prop="idNumberType">
-            <el-select v-model="form.idNumberType" placeholder="请选择证件类型">
-              <el-option
-                v-for="dict in idNumberTypeOptions"
-                :key="dict.dictValue"
-                :label="dict.dictLabel"
-                :value="dict.dictValue"
-              ></el-option>
-            </el-select>
-          </el-form-item>
-          <el-form-item label="证件号" prop="userIdNumber" style="width: 50%;">
-            <el-input v-model="form.userIdNumber" placeholder="请输入身份证号" />
-          </el-form-item>
-          <el-form-item label="出生日期" prop="birthDate">
-            <el-date-picker clearable size="small"
-                            v-model="form.birthDate"
-                            type="date"
-                            value-format="yyyy-MM-dd"
-                            placeholder="选择出生日期">
-            </el-date-picker>
-          </el-form-item>
-          <el-form-item label="年龄" prop="age">
-            <el-input v-model="form.age" placeholder="请输入年龄" />
-          </el-form-item>
-          <el-form-item label="手机号码" prop="phoneNumber">
-            <el-input v-model="form.phoneNumber" placeholder="请输入手机号码" />
-          </el-form-item>
-          <el-form-item label="邮箱地址" prop="email">
-            <el-input v-model="form.email" placeholder="请输入邮箱地址" />
-          </el-form-item>
-          <el-form-item label="办公电话" prop="officePhone">
-            <el-input v-model="form.officePhone" placeholder="请输入办公电话" />
-          </el-form-item>
-          <el-form-item label="家庭电话" prop="homeTelephone">
-            <el-input v-model="form.homeTelephone" placeholder="请输入家庭电话" />
-          </el-form-item>
-          <el-form-item label="性别(1:男2:女)" prop="userSex">
-            <el-select v-model="form.userSex" placeholder="请选择性别(1:男2:女)">
-              <el-option
-                v-for="dict in userSexOptions"
-                :key="dict.dictValue"
-                :label="dict.dictLabel"
-                :value="dict.dictValue"
-              ></el-option>
-            </el-select>
-          </el-form-item>
-          <el-form-item label="国籍" prop="nationality">
-            <el-select v-model="form.nationality" placeholder="请选择国籍">
-              <el-option
-                v-for="dict in nationalityOptions"
-                :key="dict.dictValue"
-                :label="dict.dictLabel"
-                :value="dict.dictValue"
-              ></el-option>
-            </el-select>
-          </el-form-item>
-          <el-form-item label="民族" prop="nation">
-            <el-select v-model="form.nation" placeholder="请选择民族">
-              <el-option
-                v-for="dict in nationOptions"
-                :key="dict.dictValue"
-                :label="dict.dictLabel"
-                :value="dict.dictValue"
-              ></el-option>
-            </el-select>
-          </el-form-item>
-          <el-form-item label="邮政编码" prop="postalCode">
-            <el-input v-model="form.postalCode" placeholder="请输入邮政编码" />
-          </el-form-item>
-          <el-form-item label="政治面貌" prop="politicsStatus">
-            <el-select v-model="form.politicsStatus" placeholder="请选择政治面貌">
-              <el-option
-                v-for="dict in politicsStatusOptions"
-                :key="dict.dictValue"
-                :label="dict.dictLabel"
-                :value="dict.dictValue"
-              ></el-option>
-            </el-select>
-          </el-form-item>
-          <el-form-item label="职称" prop="professional">
-            <el-select v-model="form.professional" placeholder="请选择职称">
-              <el-option
-                v-for="dict in professionalOptions"
-                :key="dict.dictValue"
-                :label="dict.dictLabel"
-                :value="dict.dictValue"
-              ></el-option>
-            </el-select>
-          </el-form-item>
-          <el-form-item label="居住地区" prop="dwellRegion">
-            <el-select v-model="form.dwellRegion" placeholder="请选择居住地区">
-              <el-option
-                v-for="dict in dwellRegionOptions"
-                :key="dict.dictValue"
-                :label="dict.dictLabel"
-                :value="dict.dictValue"
-              ></el-option>
-            </el-select>
-          </el-form-item>
-          <el-form-item label="居住地址" prop="dwellSite">
-            <el-input v-model="form.dwellSite" placeholder="请输入居住地址" />
-          </el-form-item>
-          <el-form-item label="专业类别" prop="specialtyType">
-            <el-select v-model="form.specialtyType" placeholder="请选择专业类别">
-              <el-option
-                v-for="dict in specialtyTypeOptions"
-                :key="dict.dictValue"
-                :label="dict.dictLabel"
-                :value="dict.dictValue"
-              ></el-option>
-            </el-select>
-          </el-form-item>
-          <el-form-item label="工作性质" prop="jobNature">
-            <el-select v-model="form.jobNature" placeholder="请选择工作性质">
-              <el-option
-                v-for="dict in jobNatureOptions"
-                :key="dict.dictValue"
-                :label="dict.dictLabel"
-                :value="dict.dictValue"
-              ></el-option>
-            </el-select>
-          </el-form-item>
+          <el-container >
+            <el-main >
+              <!--专家姓名-->
+              <el-row>
+                <el-col :span="10">
+                  <el-form-item label="专家姓名" prop="userName">
+                    <el-input v-model="form.userName" placeholder="请输专家姓名" />
+                  </el-form-item>
+                </el-col>
+                <el-col :span="6" :offset="2">
+                  <el-form-item label="证件类型" prop="idNumberType">
+                    <el-select v-model="form.idNumberType" placeholder="请选择证件类型">
+                      <el-option
+                        v-for="dict in idNumberTypeOptions"
+                        :key="dict.dictValue"
+                        :label="dict.dictLabel"
+                        :value="dict.dictValue"
+                      ></el-option>
+                    </el-select>
+                  </el-form-item>
+                </el-col>
+                <el-col :span="4">
+                  <el-input v-model="form.userIdNumber" placeholder="请输入身份证号" />
+                </el-col>
+              </el-row>
+              <!--出生日期-->
+              <el-row>
+                <el-col :span="10">
+                  <el-form-item label="出生日期" prop="birthDate">
+                    <el-date-picker clearable size="medium"
+                                    v-model="form.birthDate"
+                                    type="date"
+                                    value-format="yyyy-MM-dd"
+                                    placeholder="选择出生日期" style="width:100%">
+                    </el-date-picker>
+                  </el-form-item>
+                </el-col>
+                <el-col :span="10" :offset="2">
+                  <el-form-item label="年龄" prop="age">
+                    <el-input v-model="form.age" placeholder="请输入年龄" />
+                  </el-form-item>
+                </el-col>
+              </el-row>
+              <!--手机号码-->
+              <el-row>
+                <el-col :span="10">
+                  <el-form-item label="手机号码" prop="phoneNumber">
+                    <el-input v-model="form.phoneNumber" placeholder="请输入手机号码" />
+                  </el-form-item>
+                </el-col>
+                <el-col :span="10" :offset="2">
+                  <el-form-item label="邮箱地址" prop="email">
+                    <el-input v-model="form.email" placeholder="请输入邮箱地址" />
+                  </el-form-item>
+                </el-col>
+              </el-row>
+              <!--办公电话-->
+              <el-row>
+                <el-col :span="10">
+                  <el-form-item label="办公电话" prop="officePhone">
+                    <el-input v-model="form.officePhone" placeholder="请输入办公电话" />
+                  </el-form-item>
+                </el-col>
+                <el-col :span="10" :offset="2">
+                  <el-form-item label="家庭电话" prop="homeTelephone">
+                    <el-input v-model="form.homeTelephone" placeholder="请输入家庭电话" />
+                  </el-form-item>
+                </el-col>
+              </el-row>
+              <!--性别-->
+              <el-row>
+                <el-col :span="10">
+                  <el-form-item label="性别" prop="userSex">
+                    <el-select v-model="form.userSex" placeholder="请选择性别" style="width:100%">
+                      <el-option
+                        v-for="dict in userSexOptions"
+                        :key="dict.dictValue"
+                        :label="dict.dictLabel"
+                        :value="dict.dictValue"
+                      ></el-option>
+                    </el-select>
+                  </el-form-item>
+                </el-col>
+                <el-col :span="10" :offset="2">
+                  <el-form-item label="国籍" prop="nationality">
+                    <el-select v-model="form.nationality" placeholder="请选择国籍" style="width:100%">
+                      <el-option
+                        v-for="dict in nationalityOptions"
+                        :key="dict.dictValue"
+                        :label="dict.dictLabel"
+                        :value="dict.dictValue"
+                      ></el-option>
+                    </el-select>
+                  </el-form-item>
+                </el-col>
+              </el-row>
+              <!--民族-->
+              <el-row>
+                <el-col :span="10">
+                  <el-form-item label="民族" prop="nation">
+                    <el-select v-model="form.nation" placeholder="请选择民族" style="width:100%">
+                      <el-option
+                        v-for="dict in nationOptions"
+                        :key="dict.dictValue"
+                        :label="dict.dictLabel"
+                        :value="dict.dictValue"
+                      ></el-option>
+                    </el-select>
+                  </el-form-item>
+                </el-col>
+                <el-col :span="10" :offset="2">
+                  <el-form-item label="邮政编码" prop="postalCode">
+                    <el-input v-model="form.postalCode" placeholder="请输入邮政编码" />
+                  </el-form-item>
+                </el-col>
+              </el-row>
+              <!--政治面貌-->
+              <el-row>
+                <el-col :span="10">
+                  <el-form-item label="政治面貌" prop="politicsStatus">
+                    <el-select v-model="form.politicsStatus" placeholder="请选择政治面貌" style="width: 100%">
+                      <el-option
+                        v-for="dict in politicsStatusOptions"
+                        :key="dict.dictValue"
+                        :label="dict.dictLabel"
+                        :value="dict.dictValue"
+                      ></el-option>
+                    </el-select>
+                  </el-form-item>
+                </el-col>
+                <el-col :span="10" :offset="2">
+                  <el-form-item label="职称" prop="professional">
+                    <el-select v-model="form.professional" placeholder="请选择职称" style="width: 100%">
+                      <el-option
+                        v-for="dict in professionalOptions"
+                        :key="dict.dictValue"
+                        :label="dict.dictLabel"
+                        :value="dict.dictValue"
+                      ></el-option>
+                    </el-select>
+                  </el-form-item>
+                </el-col>
+              </el-row>
+              <!--居住地区-->
+              <el-row>
+                <el-col :span="10">
+                  <el-form-item label="居住地区" prop="dwellRegion">
+                    <el-select v-model="form.dwellRegion" placeholder="请选择居住地区" style="width: 100%">
+                      <el-option
+                        v-for="dict in dwellRegionOptions"
+                        :key="dict.dictValue"
+                        :label="dict.dictLabel"
+                        :value="dict.dictValue"
+                      ></el-option>
+                    </el-select>
+                  </el-form-item>
+                </el-col>
+                <el-col :span="10" :offset="2">
+                  <el-form-item label="居住地址" prop="dwellSite">
+                    <el-input v-model="form.dwellSite" placeholder="请输入居住地址" />
+                  </el-form-item>
+                </el-col>
+              </el-row>
+              <!--专业类别-->
+              <el-row>
+                <el-col :span="10">
+                  <el-form-item label="专业类别" prop="specialtyType">
+                    <el-select v-model="form.specialtyType" placeholder="请选择专业类别" style="width: 100%">
+                      <el-option
+                        v-for="dict in specialtyTypeOptions"
+                        :key="dict.dictValue"
+                        :label="dict.dictLabel"
+                        :value="dict.dictValue"
+                      ></el-option>
+                    </el-select>
+                  </el-form-item>
+                </el-col>
+                <el-col :span="10" :offset="2">
+                  <el-form-item label="工作性质" prop="jobNature">
+                    <el-select v-model="form.jobNature" placeholder="请选择工作性质" style="width: 100%">
+                      <el-option
+                        v-for="dict in jobNatureOptions"
+                        :key="dict.dictValue"
+                        :label="dict.dictLabel"
+                        :value="dict.dictValue"
+                      ></el-option>
+                    </el-select>
+                  </el-form-item>
+                </el-col>
+              </el-row>
+            </el-main>
+            <!--头像-->
+            <div style="width: 20%">
+              <p style="text-align: left"><span>头像上传</span></p>
+              <imageUpload v-model="form.portrait"/>
+            </div>
+          </el-container>
         </div>
         <!--工作单位-->
         <div>
           <div id="div_two_3">
             <span>2.工作单位</span>
           </div>
-          <el-form-item label="单位名称" prop="companyName">
-            <el-input v-model="form.companyName" placeholder="请输入单位名称" />
-          </el-form-item>
-          <el-form-item label="单位类型" prop="companyType">
-            <el-select v-model="form.companyType" placeholder="请选择单位类型">
-              <el-option
-                v-for="dict in companyTypeOptions"
-                :key="dict.dictValue"
-                :label="dict.dictLabel"
-                :value="dict.dictValue"
-              ></el-option>
-            </el-select>
-          </el-form-item>
-          <el-form-item label="单位地区" prop="companyRegion">
-            <el-select v-model="form.companyRegion" placeholder="请选择单位地区">
-              <el-option
-                v-for="dict in companyRegionOptions"
-                :key="dict.dictValue"
-                :label="dict.dictLabel"
-                :value="dict.dictValue"
-              ></el-option>
-            </el-select>
-          </el-form-item>
-          <el-form-item label="统一社会信用代码" prop="creditCode">
-            <el-input v-model="form.creditCode" placeholder="请输入统一社会信用代码" />
-          </el-form-item>
-          <el-form-item label="二级部门" prop="secondLevelDepartment">
-            <el-input v-model="form.secondLevelDepartment" placeholder="请输入二级部门" />
-          </el-form-item>
-          <el-form-item label="职务" prop="position">
-            <el-input v-model="form.position" placeholder="请输入职务" />
-          </el-form-item>
-          <el-form-item label="单位地址" prop="companySite">
-            <el-input v-model="form.companySite" placeholder="请输入单位地址" />
-          </el-form-item>
+          <!--单位名称-->
+          <el-row>
+            <el-col :span="10">
+              <el-form-item label="单位名称" prop="companyName">
+                <el-input v-model="form.companyName" placeholder="请输入单位名称" />
+              </el-form-item>
+            </el-col>
+            <el-col :span="10" :offset="2">
+              <el-form-item label="单位类型" prop="companyType">
+                <el-select v-model="form.companyType" placeholder="请选择单位类型" style="width: 100%">
+                  <el-option
+                    v-for="dict in companyTypeOptions"
+                    :key="dict.dictValue"
+                    :label="dict.dictLabel"
+                    :value="dict.dictValue"
+                  ></el-option>
+                </el-select>
+              </el-form-item>
+            </el-col>
+          </el-row>
+          <!--单位地区-->
+          <el-row>
+            <el-col :span="10">
+              <el-form-item label="单位地区" prop="companyRegion">
+                <el-select v-model="form.companyRegion" placeholder="请选择单位地区" style="width: 100%">
+                  <el-option
+                    v-for="dict in companyRegionOptions"
+                    :key="dict.dictValue"
+                    :label="dict.dictLabel"
+                    :value="dict.dictValue"
+                  ></el-option>
+                </el-select>
+              </el-form-item>
+            </el-col>
+            <el-col :span="11" :offset="1">
+              <el-form-item label="统一社会信用代码" prop="creditCode" label-width="25%">
+                <el-input v-model="form.creditCode" placeholder="请输入统一社会信用代码" />
+              </el-form-item>
+            </el-col>
+          </el-row>
+          <!--二级部门-->
+          <el-row>
+            <el-col :span="10">
+              <el-form-item label="二级部门" prop="secondLevelDepartment">
+                <el-input v-model="form.secondLevelDepartment" placeholder="请输入二级部门" />
+              </el-form-item>
+            </el-col>
+            <el-col :span="10" :offset="2">
+              <el-form-item label="职务" prop="position">
+                <el-input v-model="form.position" placeholder="请输入职务" />
+              </el-form-item>
+            </el-col>
+          </el-row>
+          <!--单位地址-->
+          <el-row>
+            <el-col :span="22">
+              <el-form-item label="单位地址" prop="companySite">
+                <el-input v-model="form.companySite" placeholder="请输入单位地址" />
+              </el-form-item>
+            </el-col>
+          </el-row>
         </div>
         <!--学历学位-->
         <div>
@@ -235,60 +330,92 @@
               <span>3.学历学位</span>
             </div>
           </div>
-          <el-form-item label="最高学历" prop="highestEducation">
-            <el-select v-model="form.highestEducation" placeholder="请选择最高学历">
-              <el-option
-                v-for="dict in highestEducationOptions"
-                :key="dict.dictValue"
-                :label="dict.dictLabel"
-                :value="dict.dictValue"
-              ></el-option>
-            </el-select>
-          </el-form-item>
-          <el-form-item label="毕业院校" prop="graduateAcademy">
-            <el-input v-model="form.graduateAcademy" placeholder="请输入毕业院校" />
-          </el-form-item>
-          <el-form-item label="学历所学专业" prop="major">
-            <el-select v-model="form.major" placeholder="请选择学历所学专业">
-              <el-option label="请选择字典生成" value="" />
-            </el-select>
-          </el-form-item>
-          <el-form-item label="最高学位" prop="highestDegree">
-            <el-select v-model="form.highestDegree" placeholder="请选择最高学位">
-              <el-option
-                v-for="dict in highestDegreeOptions"
-                :key="dict.dictValue"
-                :label="dict.dictLabel"
-                :value="dict.dictValue"
-              ></el-option>
-            </el-select>
-          </el-form-item>
-          <el-form-item label="授予院校" prop="awardAcademy">
-            <el-input v-model="form.awardAcademy" placeholder="请输入授予院校" />
-          </el-form-item>
-          <el-form-item label="学位所学专业" prop="majorAcademy">
-            <el-select v-model="form.majorAcademy" placeholder="请输入学位所学专业">
-              <el-option label="请选择字典生成" value="" />
-            </el-select>
-          </el-form-item>
-          <el-form-item label="是否两院院士" prop="isAcademician">
-            <el-select v-model="form.isAcademician" placeholder="请选择是否两院院士">
-              <el-option key="是" lable="是" value="是"></el-option>
-              <el-option key="否" lable="否" value="否"></el-option>
-            </el-select>
-          </el-form-item>
-          <el-form-item label="是否博士生导师" prop="isDoctoralSupervisor">
-            <el-select v-model="form.isDoctoralSupervisor" placeholder="请选择是否博士生导师">
-              <el-option key="是" lable="是" value="是"></el-option>
-              <el-option key="否" lable="否" value="否"></el-option>
-            </el-select>
-          </el-form-item>
-          <el-form-item label="熟悉外语语种" prop="language">
-            <el-input v-model="form.language" placeholder="可填写多个，填写多个用“/”隔开" />
-          </el-form-item>
-          <el-form-item label="熟悉程度" prop="degree">
-            <el-input v-model="form.degree" placeholder="填写内容为“精通、熟悉、一般、了解”，多个用“/”分开，与外语对应" />
-          </el-form-item>
+          <!--最高学历-->
+          <el-row>
+            <el-col :span="6">
+              <el-form-item label="最高学历" prop="highestEducation">
+                <el-select v-model="form.highestEducation" placeholder="请选择最高学历" style="width: 100%">
+                  <el-option
+                    v-for="dict in highestEducationOptions"
+                    :key="dict.dictValue"
+                    :label="dict.dictLabel"
+                    :value="dict.dictValue"
+                  ></el-option>
+                </el-select>
+              </el-form-item>
+            </el-col>
+            <el-col :span="6" :offset="2">
+              <el-form-item label="毕业院校" prop="graduateAcademy">
+                <el-input v-model="form.graduateAcademy" placeholder="请输入毕业院校" />
+              </el-form-item>
+            </el-col>
+            <el-col :span="6" :offset="2">
+              <el-form-item label="所学专业" prop="major">
+                <el-select v-model="form.major" placeholder="请选择所学专业" style="width: 100%">
+                  <el-option label="请选择字典生成" value="" />
+                </el-select>
+              </el-form-item>
+            </el-col>
+          </el-row>
+          <!--最高学位-->
+          <el-row>
+            <el-col :span="6">
+              <el-form-item label="最高学位" prop="highestDegree">
+                <el-select v-model="form.highestDegree" placeholder="请选择最高学位" style="width: 100%">
+                  <el-option
+                    v-for="dict in highestDegreeOptions"
+                    :key="dict.dictValue"
+                    :label="dict.dictLabel"
+                    :value="dict.dictValue"
+                  ></el-option>
+                </el-select>
+              </el-form-item>
+            </el-col>
+            <el-col :span="6" :offset="2">
+              <el-form-item label="授予院校" prop="awardAcademy">
+                <el-input v-model="form.awardAcademy" placeholder="请输入授予院校" />
+              </el-form-item>
+            </el-col>
+            <el-col :span="6" :offset="2">
+              <el-form-item label="所学专业" prop="majorAcademy">
+                <el-select v-model="form.majorAcademy" placeholder="请输入所学专业" style="width: 100%">
+                  <el-option label="请选择字典生成" value="" />
+                </el-select>
+              </el-form-item>
+            </el-col>
+          </el-row>
+          <!--是否博士生导师-->
+          <el-row>
+            <el-col :span="10">
+              <el-form-item label="是否博士生导师" prop="isDoctoralSupervisor" label-width="120px">
+                <el-select v-model="form.isDoctoralSupervisor" placeholder="请选择是否博士生导师" style="width: 100%">
+                  <el-option key="是" lable="是" value="是"></el-option>
+                  <el-option key="否" lable="否" value="否"></el-option>
+                </el-select>
+              </el-form-item>
+            </el-col>
+            <el-col :span="10" :offset="2">
+              <el-form-item label="是否两院院士" prop="isAcademician" label-width="120px">
+                <el-select v-model="form.isAcademician" placeholder="请选择是否两院院士" style=" width: 100%">
+                  <el-option key="是" lable="是" value="是"></el-option>
+                  <el-option key="否" lable="否" value="否"></el-option>
+                </el-select>
+              </el-form-item>
+            </el-col>
+          </el-row>
+          <!--熟悉外语语种-->
+          <el-row>
+            <el-col :span="10">
+              <el-form-item label="熟悉外语语种" prop="language" label-width="120px">
+                <el-input v-model="form.language" placeholder="可填写多个，填写多个用“/”隔开" />
+              </el-form-item>
+            </el-col>
+            <el-col :span="10" :offset="2">
+              <el-form-item label="熟悉程度" prop="degree" label-width="120px">
+                <el-input v-model="form.degree" placeholder="填写内容为“精通、熟悉、一般、了解”，多个用“/”分开，与外语对应" />
+              </el-form-item>
+            </el-col>
+          </el-row>
         </div>
         <!--入库标准-->
         <div id="div_two_5">
@@ -297,13 +424,13 @@
         <div id="div_two_5_2">
           <el-form-item label="入库标准" prop="standard" v-model="form.standard">
             <el-checkbox label="作为负责人承担过中央财政支持的科技计划（专项、基金）项目（课题）或国家科技奖励获得者"></el-checkbox>
-            <el-checkbox label="知识产权法、民商法等相关领域，具有副高级以上职称的专家或律师事务所合伙人"></el-checkbox>
-            <el-checkbox label="在科技型上市公司、国家高新技术企业、国家级高新区、科技园区和各类创业服务机构、行业协会学会担任高级管理职务或技术骨干"></el-checkbox>
-            <el-checkbox label="在高等学校和科研院所工作具有副高级及以上职称，在相关领域工作五年以上"></el-checkbox>
-            <el-checkbox label="在法律、财务、审计、金融等领域具有执业资格的专业人员"></el-checkbox>
-            <el-checkbox label="天使投资或创业投资机构的高级管理人员、创始合伙人，资本市场、银行信贷及保险等机构的高级管理人员"></el-checkbox>
-            <el-checkbox label="在主要国际学术组织中任中高级职务，或参与国际标准制修订"></el-checkbox>
-            <el-checkbox label="其他"></el-checkbox>
+            <br/><el-checkbox label="知识产权法、民商法等相关领域，具有副高级以上职称的专家或律师事务所合伙人"></el-checkbox>
+            <br/><el-checkbox label="在科技型上市公司、国家高新技术企业、国家级高新区、科技园区和各类创业服务机构、行业协会学会担任高级管理职务或技术骨干"></el-checkbox>
+            <br/><el-checkbox label="在高等学校和科研院所工作具有副高级及以上职称，在相关领域工作五年以上"></el-checkbox>
+            <br/><el-checkbox label="在法律、财务、审计、金融等领域具有执业资格的专业人员"></el-checkbox>
+            <br/><el-checkbox label="天使投资或创业投资机构的高级管理人员、创始合伙人，资本市场、银行信贷及保险等机构的高级管理人员"></el-checkbox>
+            <br/><el-checkbox label="在主要国际学术组织中任中高级职务，或参与国际标准制修订"></el-checkbox>
+            <br/><el-checkbox label="其他"></el-checkbox>
           </el-form-item>
         </div>
         <!--参与评审/公共服务经历-->
@@ -311,8 +438,8 @@
           <span>5.参与评审/公共服务经历</span>
         </div>
         <div id="div_two_6_2">
-          <el-form-item label="参与评审/公共服务经历">
-            <el-checkbox-group v-model="form.reviewExperience">
+          <el-form-item label="">
+            <el-checkbox-group v-model="queryParams.reviewExperience">
               <el-checkbox
                 v-for="dict in reviewExperienceOptions"
                 :key="dict.dictValue"
@@ -327,52 +454,85 @@
           <div id="div_two_10">
             <span>9.行业及工作领域</span>
           </div>
-          <el-form-item label="主要行业领域" prop="mainIndustry">
-            <el-select v-model="form.mainIndustry" placeholder="请选择主要行业领域">
-              <el-option
-                v-for="dict in mainIndustryOptions"
-                :key="dict.dictValue"
-                :label="dict.dictLabel"
-                :value="dict.dictValue"
-              ></el-option>
-            </el-select>
+          <!--主要行业领域-->
+          <el-row>
+            <el-col :span="11">
+              <el-form-item label="主要行业领域" prop="mainIndustry" label-width="140px">
+                <el-select v-model="form.mainIndustry" placeholder="请选择主要行业领域" style="width: 100%">
+                  <el-option
+                    v-for="dict in mainIndustryOptions"
+                    :key="dict.dictValue"
+                    :label="dict.dictLabel"
+                    :value="dict.dictValue"
+                  ></el-option>
+                </el-select>
+              </el-form-item>
+            </el-col>
+            <el-col :span="11" :offset="2">
+              <el-form-item label="其他行业领域" prop="elseIndustry" label-width="140px">
+                <el-select v-model="form.elseIndustry" placeholder="请选择其他行业领域" style="width: 100%">
+                  <el-option
+                    v-for="dict in elseIndustryOptions"
+                    :key="dict.dictValue"
+                    :label="dict.dictLabel"
+                    :value="dict.dictValue"
+                  ></el-option>
+                </el-select>
+              </el-form-item>
+            </el-col>
+          </el-row>
+          <!--基金学科-->
+          <el-row>
+            <el-col :span="11">
+              <el-form-item label="基金学科" prop="fundSubject" label-width="140px">
+                <el-select v-model="form.fundSubject" placeholder="请选择基金学科" style="width: 100%">
+                  <el-option label="请选择字典生成" value="" />
+                </el-select>
+              </el-form-item>
+            </el-col>
+            <el-col :span="11" :offset="2">
+              <el-form-item label="国际学科" prop="internationalDiscipline" label-width="140px">
+                <el-select v-model="form.internationalDiscipline" placeholder="请选择国际学科" style="width: 100%">
+                  <el-option label="请选择字典生成" value="" />
+                </el-select>
+              </el-form-item>
+            </el-col>
+          </el-row>
+          <!--教育学科-->
+          <el-row>
+            <el-col :span="11">
+              <el-form-item label="教育学科" prop="educationSubject" label-width="140px">
+                <el-select v-model="form.educationSubject" placeholder="请选择教育学科" style="width: 100%">
+                  <el-option label="请选择字典生成" value="" />
+                </el-select>
+              </el-form-item>
+            </el-col>
+            <el-col :span="11" :offset="2">
+              <el-form-item label="工业行业" prop="industries" label-width="140px">
+                <el-select v-model="form.industries" placeholder="请选择工业行业" style="width: 100%">
+                  <el-option label="请选择字典生成" value="" />
+                </el-select>
+              </el-form-item>
+            </el-col>
+          </el-row>
+          <!--研究方向或关键词-->
+          <el-row>
+            <el-col :span="24">
+              <el-form-item label="研究方向或关键词" prop="researchDirection" label-width="140px">
+                <el-input v-model="form.researchDirection" type="textarea" placeholder="请输入研究方向或关键词" autosize />
+              </el-form-item>
+            </el-col>
+          </el-row>
+          <el-form-item label="研究或工作内容" label-width="140px">
+            <el-input v-model="form.workContent" type="textarea" placeholder="请输入研究或工作内容" autosize />
           </el-form-item>
-          <el-form-item label="其他行业领域" prop="elseIndustry">
-            <el-input v-model="form.elseIndustry" type="textarea" placeholder="请输入内容" />
+          <el-form-item label="主要业绩及贡献" prop="mainContribution" label-width="140px">
+            <el-input v-model="form.mainContribution" type="textarea" placeholder="请输入主要业绩及贡献" autosize />
           </el-form-item>
-          <el-form-item label="基金学科" prop="fundSubject">
-            <el-select v-model="form.fundSubject" placeholder="请选择基金学科">
-              <el-option label="请选择字典生成" value="" />
-            </el-select>
+          <el-form-item label="奖惩情况" prop="rewardsPunishment" label-width="140px">
+            <el-input v-model="form.rewardsPunishment" type="textarea" placeholder="请输入奖惩情况" autosize />
           </el-form-item>
-          <el-form-item label="国际学科" prop="internationalDiscipline">
-            <el-select v-model="form.internationalDiscipline" placeholder="请选择国际学科">
-              <el-option label="请选择字典生成" value="" />
-            </el-select>
-          </el-form-item>
-          <el-form-item label="教育学科" prop="educationSubject">
-            <el-select v-model="form.educationSubject" placeholder="请选择教育学科">
-              <el-option label="请选择字典生成" value="" />
-            </el-select>
-          </el-form-item>
-          <el-form-item label="工业行业" prop="industries">
-            <el-select v-model="form.industries" placeholder="请选择工业行业">
-              <el-option label="请选择字典生成" value="" />
-            </el-select>
-          </el-form-item>
-          <el-form-item label="研究方向或关键词" prop="researchDirection">
-            <el-input v-model="form.researchDirection" type="textarea" placeholder="请输入内容" />
-          </el-form-item>
-          <el-form-item label="研究或工作内容">
-            <el-input v-model="form.workContent" type="textarea" placeholder="请输入内容"/>
-          </el-form-item>
-          <el-form-item label="主要业绩及贡献" prop="mainContribution">
-            <el-input v-model="form.mainContribution" type="textarea" placeholder="请输入内容" />
-          </el-form-item>
-          <el-form-item label="奖惩情况" prop="rewardsPunishment">
-            <el-input v-model="form.rewardsPunishment" placeholder="请输入奖惩情况" />
-          </el-form-item>
-          <el-form-item label="参与评审需回避单位" prop="avoidCompany">
+          <el-form-item label="参与评审需回避单位" prop="avoidCompany" label-width="140px">
             <el-input v-model="form.avoidCompany" placeholder="请输入单位名称，输入多个则用“；”号进行隔开" />
           </el-form-item>
         </div>
@@ -515,7 +675,7 @@ export default {
         language: null,
         degree: null,
         standard: [],
-        reviewExperience: null,
+        reviewExperience: [],
         mainIndustry: null,
         elseIndustry: null,
         fundSubject: null,
