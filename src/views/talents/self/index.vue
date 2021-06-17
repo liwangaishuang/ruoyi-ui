@@ -541,16 +541,26 @@
           <div id="div_two_11">
           <span>10.成果专利&荣誉头衔</span>
         </div>
-          <el-form-item label="成果或专利" prop="resultsOrPatents">
-            <el-input v-model="form.resultsOrPatents" placeholder="请输入成果或专利" />
+          <el-form-item label="成果或专利" prop="resultsOrPatents" label-width="100px">
+            <el-input v-model="form.resultsOrPatents" placeholder="请输入成果或专利" type="textarea" autosize/>
           </el-form-item>
-          <el-form-item label="荣誉或头衔" prop="honorsOrTitles">
-            <el-input v-model="form.honorsOrTitles" placeholder="请输入荣誉或头衔" />
+          <el-form-item label="荣誉或头衔" prop="honorsOrTitles" label-width="100px">
+            <el-input v-model="form.honorsOrTitles" placeholder="请输入荣誉或头衔" type="textarea" autosize />
           </el-form-item>
         </div>
         <!--附件-->
-        <div id="div_two_12">
+        <div>
+          <div id="div_two_12">
           <span>11.附件</span>
+        </div>
+          <div>
+            <el-form-item label="成果或专利" prop="resultsOrPatents" label-width="100px">
+              <el-input v-model="form.resultsOrPatents" placeholder="请输入成果或专利" type="textarea" autosize/>
+            </el-form-item>
+            <el-form-item label="荣誉或头衔" prop="honorsOrTitles" label-width="100px">
+              <el-input v-model="form.honorsOrTitles" placeholder="请输入荣誉或头衔" type="textarea" autosize />
+            </el-form-item>
+          </div>
         </div>
         <div class="dialog-footer">
           <el-button type="primary" @click="submitForm">确 定</el-button>
@@ -562,7 +572,7 @@
 </template>
 
 <script>
-import { listUser, getUser, delUser, addUser, updateUser, exportUser } from "@/api/talents/self";
+import { listUser, getUser, delUser, addUser, updateUser, exportUser } from "@/api/declare/user";
 import ImageUpload from '@/components/ImageUpload';
 import Editor from '@/components/Editor';
 import '../../css/专家申报/styles.css';
