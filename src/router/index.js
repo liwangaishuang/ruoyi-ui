@@ -64,6 +64,11 @@ export const constantRoutes = [
     hidden: true
   },
   {
+    path: '/information',
+    component: (resolve) => require(['@/views/information'], resolve),
+    hidden: true
+  },
+  {
     path: '/404',
     component: (resolve) => require(['@/views/error/404'], resolve),
     hidden: true

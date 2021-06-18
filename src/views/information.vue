@@ -1,56 +1,6 @@
 <template>
   <div class="app-container">
-    <!--第一页 inline none-->
-    <div id="div_one" style="display: none">
-      <div id="div_1">
-        <p id="text_1"><span>您好，您暂未进行专家申报</span></p>
-        <img id="img_2" src="../../../assets/images/专家申报/test1.png" alt="">
-        <p id="text_3"><span>申报指南</span></p>
-        <img id="img_4" src="../../../assets/images/专家申报/u187.svg" alt="">
-      </div>
-      <div id="div_5">
-        <p><span>您好！欢迎您使用深圳市人才评审专家库信息管理平台。深圳市人才评审专家库信息管理平台用于深圳市工业和信息化局登记收录相关领域专家人才，以便进行人才专家登记和后续项目评审专家储备所用。您可根据自愿原则自行登记申报，我们将对您的信息进行严格保密。感谢您对深圳市工业和信息化局人才专家收录工作的支持，希望您对深圳市工业和信息化局人才专家收录工作多提宝贵意见！</span></p><p><span >   为便于您了解和使用本平台，完成专家申报工作，请仔细阅读申报指南：</span></p>
-        <p><span style="font-weight: bold">一、推荐专家条件</span></p>
-        <p><span>1.政治站位高，客观公正、廉洁自律，具有良好的职业道德和理论素养。</span></p>
-        <p><span>2.在新一代信息技术、生物技术、新能源、新材料、高端装备、新能源汽车、绿色环保、航空航天、海洋装备以及互联网、大数据、人工智能等领域具有丰富的研究或管理经验，在业界具有较高的知名度，一般应具备正高级专业技术职务，或在本行业领域从事相关工作10年以上。</span></p>
-        <p><span>3.主要来自高校、科研院所、知名企业的技术部门或人力资源部门。</span></p>
-        <p><span>4.身体健康，年龄不超过65岁，具备完成评审工作任务的身体条件。</span></p>
-        <p><span>5.以往参加评审评估、咨询论证等活动中无不良信用记录。没有违纪违法等不良记录。</span></p>
-        <p><span style="font-weight: bold"> 二、申报流程</span></p>
-        <p><span>1.选择专家申报</span></p>
-        <p><span>选择专家申报，阅读申报指南，点击接受后，即可进行专家申报。</span></p>
-        <p><span>2.填写申报信息</span></p>
-        <p><span>进入填报信息页面后，按页面要求完成信息填报，点击提交后，即完成申报信息提交。</span></p>
-        <p><span>3.等待审核</span></p>
-        <p><span>申报提交后，即等待工作人员审核。</span></p>
-        <p><span>4.审核结果查看</span></p>
-        <p><span>工作人员审核后，可在“申报进度查看”页面查看审核结果及相关反馈信息。</span></p>
-        <p><span>5.信息更新</span></p>
-        <p><span>如您的信息有更新，可在“专家申报”页面进行更新。其流程与初次申报一致：阅读申报指南-信息更新-提交申报-等待审核-审核结果查看。</span></p>
-        <p><span>6.特别提示</span></p><p><span>当您的专家申报通过后，如后续不符合推荐专家条件，工作人员将会把您从人才专家库移除，届时您可从本平台查看到相关通知和信息。同时，您可咨询深圳市工业和信息化局，并可再进行专家申报。</span></p>
-        <p><span style="font-weight: bold"> 三、特别声明</span></p>
-        <p><span>1.本平台主要为收录人才专家所用，不代表进入人才专家库后就一定可参与后续深圳市工业和信息化局相关项目的专家评审工作。</span></p>
-        <p><span>2.申报人需保证所申报信息的真实性。如恶意进行虚假申报，造成严重后果的，深圳市工业和信息化局将保留追究申报人的权利，包括且不限于责任追究、黑名单处理、民事诉讼等。</span></p>
-        <p><span>3.如您对专家申报有疑问，请联系相关业务人员和技术人员：</span></p>
-        <p><span>深圳市工业和信息化局联系人 张三 XXXXXXXXX</span></p>
-        <p><span>深圳市人才评审专家库信息管理平台技术支持 李四 XXXXXXXX</span></p>
-      </div>
-      <div id="div_6">
-        <el-radio-group v-model="radio" v-on:change="changeHandler">
-          <el-radio label="1">接受</el-radio>
-          <el-radio label="2">不接受</el-radio>
-        </el-radio-group>
-      </div>
-      <div id="div_7">
-        <br/>
-        <el-button  type="primary" v-on:click="dianji" :disabled="isDisabled">下一步</el-button>
-      </div>
-    </div>
-    <!--第二页-->
-    <div id="div_two" style="display: inline">
-      <div id="div_two_1">
-        <img src="../../../assets/images/专家申报/test2.png" alt="" style="width: 100%">
-      </div>
+    <div id="div_two">
       <el-form ref="form" :model="form" :rules="rules" label-width="80px">
         <!--基本信息-->
         <div>
@@ -570,22 +520,6 @@
         </div>
       </el-form>
     </div>
-    <!--第三页-->
-    <div id="div_three" style="display: none">
-      <div id="div_three_1">
-        <img src="../../../assets/images/专家申报/test3.png" alt=""  style="width: 100%">
-      </div>
-      <div id="div_three_2">
-        <img src="../../../assets/images/专家申报/u478.svg" alt="" style="width: 11%;height: 11%">
-        <p style="font-size: 30px;font-weight: bold">您的申报信息已成功提交！</p>
-        <div>
-          <p>我们正在抓紧进行审核，审核结果将短信通知您，</p>
-          <p>同时您也可以至“申报进度查看”页面查看审核结果及相关信息。</p>
-          <p>在此之前，您不可以再次申报。</p>
-          <el-link type="primary" href="../information">查看申报信息>></el-link>
-        </div>
-      </div>
-    </div>
   </div>
 </template>
 
@@ -593,7 +527,7 @@
 import { listUser, getUser, delUser, addUser, updateUser, exportUser } from "@/api/declare/user";
 import ImageUpload from '@/components/ImageUpload';
 import Editor from '@/components/Editor';
-import '../../css/专家申报/styles.css';
+import './css/专家申报/styles.css';
 import ElButton from "element-ui/packages/button/src/button";
 
 export default {

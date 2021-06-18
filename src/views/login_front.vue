@@ -157,6 +157,8 @@ export default {
 
 <style rel="stylesheet/scss" lang="scss">
 .login {
+  margin:auto;
+  width: 100%;
   border: 1px black solid;
   display: flex;
   justify-content: center;

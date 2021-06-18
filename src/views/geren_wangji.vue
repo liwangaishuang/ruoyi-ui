@@ -1,6 +1,6 @@
 <template>
   <div id="base" class="base">
-  <el-form>
+    <el-form>
     <el-form>
       <div id="div_d1">
         <span id="text_t1">深圳市人才评审专家库信息管理平台</span>
@@ -610,7 +610,7 @@
       </el-form>
     </el-form>
   </el-form>
-</div>
+  </div>
 </template>
 
 <script>
@@ -707,9 +707,10 @@
 
 <style>
   #base{
+    margin:auto;
+    width: 100%;
     position: center;
     align-items: center;
-    margin:0 auto;
     height: 100%;
   }
   #div_d1{
