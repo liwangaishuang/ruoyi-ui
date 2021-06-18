@@ -65,7 +65,7 @@ export const constantRoutes = [
   },
   {
     path: '/information',
-    component: (resolve) => require(['@/views/information'], resolve),
+    component: (resolve) => require(['@/views/talents/self/information'], resolve),
     hidden: true
   },
   {

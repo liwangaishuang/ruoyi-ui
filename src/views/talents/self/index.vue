@@ -1,12 +1,12 @@
 <template>
   <div class="app-container">
     <!--第一页 inline none-->
-    <div id="div_one" style="display: none">
+    <div id="div_one" style="display: inline">
       <div id="div_1">
         <p id="text_1"><span>您好，您暂未进行专家申报</span></p>
-        <img id="img_2" src="../../../assets/images/专家申报/test1.png" alt="">
+        <img id="img_2" src="../../../assets/images/专家申报/test1.png" alt="" style="width: 100%">
         <p id="text_3"><span>申报指南</span></p>
-        <img id="img_4" src="../../../assets/images/专家申报/u187.svg" alt="">
+        <img id="img_4" src="../../../assets/images/专家申报/u187.svg" alt="" style="width: 100%">
       </div>
       <div id="div_5">
         <p><span>您好！欢迎您使用深圳市人才评审专家库信息管理平台。深圳市人才评审专家库信息管理平台用于深圳市工业和信息化局登记收录相关领域专家人才，以便进行人才专家登记和后续项目评审专家储备所用。您可根据自愿原则自行登记申报，我们将对您的信息进行严格保密。感谢您对深圳市工业和信息化局人才专家收录工作的支持，希望您对深圳市工业和信息化局人才专家收录工作多提宝贵意见！</span></p><p><span >   为便于您了解和使用本平台，完成专家申报工作，请仔细阅读申报指南：</span></p>
@@ -47,7 +47,7 @@
       </div>
     </div>
     <!--第二页-->
-    <div id="div_two" style="display: inline">
+    <div id="div_two" style="display: none">
       <div id="div_two_1">
         <img src="../../../assets/images/专家申报/test2.png" alt="" style="width: 100%">
       </div>
@@ -582,7 +582,8 @@
           <p>我们正在抓紧进行审核，审核结果将短信通知您，</p>
           <p>同时您也可以至“申报进度查看”页面查看审核结果及相关信息。</p>
           <p>在此之前，您不可以再次申报。</p>
-          <el-link type="primary" href="../information">查看申报信息>></el-link>
+          <!--<el-link type="primary" href="../information">查看申报信息>></el-link>-->
+          <router-link :to="{path:'../information', query:{id:1,name:'vue'}}" target="_blank" style="color: #1c84c6">查看申报信息>></router-link>
         </div>
       </div>
     </div>
@@ -974,13 +975,7 @@ export default {
     },
     /** 提交按钮 */
     submitForm() {
-      let divTwo = document.getElementById("div_two");
-      let divThree = document.getElementById("div_three");
-      /**1、隐藏第二个模块页面*/
-      divTwo.style.display="none";
-      /**2、显示第三个模块页面*/
-      divThree.style.display="inline";
-      /*this.$refs["form"].validate(valid => {
+      this.$refs["form"].validate(valid => {
         if (valid) {
           if (this.form.id != null) {
             updateUser(this.form).then(response => {
@@ -996,7 +991,13 @@ export default {
             });
           }
         }
-      });*/
+      });
+      let divTwo = document.getElementById("div_two");
+      let divThree = document.getElementById("div_three");
+      /**1、隐藏第二个模块页面*/
+      divTwo.style.display="none";
+      /**2、显示第三个模块页面*/
+      divThree.style.display="inline";
     },
     /** 删除按钮操作 */
     handleDelete(row) {

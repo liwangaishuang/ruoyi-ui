@@ -1,7 +1,7 @@
 <template>
   <div class="app-container">
     <div id="div_two">
-      <el-form ref="form" :model="form" :rules="rules" label-width="80px">
+      <el-form ref="form" :data="userList" :model="form" :rules="rules" label-width="80px">
         <!--基本信息-->
         <div>
           <div id="div_two_2">
@@ -13,7 +13,6 @@
               <el-row>
                 <el-col :span="10">
                   <el-form-item label="专家姓名" prop="userName">
-                    <el-input v-model="form.userName" placeholder="请输专家姓名" />
                   </el-form-item>
                 </el-col>
                 <el-col :span="6" :offset="2">
@@ -527,7 +526,7 @@
 import { listUser, getUser, delUser, addUser, updateUser, exportUser } from "@/api/declare/user";
 import ImageUpload from '@/components/ImageUpload';
 import Editor from '@/components/Editor';
-import './css/专家申报/styles.css';
+import '../../css/专家申报/styles.css';
 import ElButton from "element-ui/packages/button/src/button";
 
 export default {
