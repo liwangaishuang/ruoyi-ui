@@ -563,8 +563,8 @@
         </div>
         <!--提交-->
         <div class="dialog-footer" style="text-align: center">
-          <el-button type="info">上一步</el-button>
-          <el-button type="primary">暂 存</el-button>
+          <el-button type="info" @click="leave">上一步</el-button>
+          <el-button type="primary" @click="submitForm2">暂 存</el-button>
           <el-button type="primary" @click="submitForm">提 交</el-button>
           <!--<el-button @click="cancel">取 消</el-button>-->
         </div>
@@ -975,17 +975,55 @@ export default {
     },
     /** 提交按钮 */
     submitForm() {
+      this.$confirm('您确定提交申报吗？提交后不可撤回', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
+        this.$refs["form"].validate(valid => {
+          if (valid) {
+            if (this.form.id != null) {
+              updateUser(this.form).then(response => {
+                this.msgSuccess("修改成功");
+                this.open = false;
+                this.getList();
+              });
+            } else {
+              this.form.status="1";
+              addUser(this.form).then(response => {
+                this.msgSuccess("新增成功");
+                this.open = false;
+                this.getList();
+              });
+            }
+          }
+
+        });
+        let divTwo = document.getElementById("div_two");
+        let divThree = document.getElementById("div_three");
+        /**1、隐藏第二个模块页面*/
+        divTwo.style.display="none";
+        /**2、显示第三个模块页面*/
+        divThree.style.display="inline";
+      }).catch(() => {
+        this.$message({
+          type: 'info',
+          message: '已取消提交'
+        });
+      });
+    },
+    /** 暂存按钮 */
+    submitForm2() {
       this.$refs["form"].validate(valid => {
         if (valid) {
           if (this.form.id != null) {
             updateUser(this.form).then(response => {
-              this.msgSuccess("修改成功");
               this.open = false;
               this.getList();
             });
           } else {
+            this.form.status="0";
             addUser(this.form).then(response => {
-              this.msgSuccess("新增成功");
               this.open = false;
               this.getList();
             });
@@ -998,6 +1036,27 @@ export default {
       divTwo.style.display="none";
       /**2、显示第三个模块页面*/
       divThree.style.display="inline";
+    },
+    /*离开*/
+    leave() {
+      this.$confirm('您的信息未保存，确定直接离开此页面吗？', '温馨提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
+        //执行暂存
+        this.submitForm2()
+        this.radio='2';
+        let divOne = document.getElementById("div_one");
+        let divTwo = document.getElementById("div_two");
+        let divThree = document.getElementById("div_three");
+        /**1、隐藏第二、三个模块页面*/
+        divTwo.style.display="none";
+        divThree.style.display="none";
+        /**2、显示第一个模块页面*/
+        divOne.style.display="inline";
+      }).catch(() => {
+      });
     },
     /** 删除按钮操作 */
     handleDelete(row) {
