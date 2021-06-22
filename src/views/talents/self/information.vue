@@ -1,9 +1,13 @@
 <template>
-  <div class="app-container">
+  <div class="app-container" style="width: 80%;margin:0 auto">
     <div>
       <p style="text-align: center;font-weight: bold; font-size: 25px">专家申报信息</p>
+      <div align="right">
+        <img src="../../../assets/images/填报端申报/u532.svg" alt="" style="width: 30px;height: 30px"><span style="font-weight: bold">打印</span>
+        <img src="../../../assets/images/填报端申报/u534.svg" alt="" style="width: 30px;height: 30px"><span style="font-weight: bold">导出</span>
+      </div>
     </div>
-    <div id="div_two" style="border: 1px solid black;width: 80%;margin:0 auto">
+    <div id="div_two" style="border: 1px solid black;width: 100%;margin:0 auto">
       <el-form ref="form" :data="userList" :model="form" :rules="rules" label-width="80px">
         <!--基本信息-->
         <div>
@@ -145,61 +149,47 @@
           <!--单位名称-->
           <el-row>
             <el-col :span="10">
-              <el-form-item label="单位名称" prop="companyName">
-                <el-input v-model="form.companyName" placeholder="请输入单位名称" />
+              <el-form-item label="单位名称:" prop="companyName">
+                {{queryParams.companyName}}
               </el-form-item>
             </el-col>
             <el-col :span="10" :offset="2">
-              <el-form-item label="单位类型" prop="companyType">
-                <el-select v-model="form.companyType" placeholder="请选择单位类型" style="width: 100%">
-                  <el-option
-                    v-for="dict in companyTypeOptions"
-                    :key="dict.dictValue"
-                    :label="dict.dictLabel"
-                    :value="dict.dictValue"
-                  ></el-option>
-                </el-select>
+              <el-form-item label="单位类型:" prop="companyType">
+                {{queryParams.companyType}}
               </el-form-item>
             </el-col>
           </el-row>
           <!--单位地区-->
           <el-row>
             <el-col :span="10">
-              <el-form-item label="单位地区" prop="companyRegion">
-                <el-select v-model="form.companyRegion" placeholder="请选择单位地区" style="width: 100%">
-                  <el-option
-                    v-for="dict in companyRegionOptions"
-                    :key="dict.dictValue"
-                    :label="dict.dictLabel"
-                    :value="dict.dictValue"
-                  ></el-option>
-                </el-select>
+              <el-form-item label="单位地区:" prop="companyRegion">
+                {{queryParams.companyRegion}}
               </el-form-item>
             </el-col>
             <el-col :span="11" :offset="1">
-              <el-form-item label="统一社会信用代码" prop="creditCode" label-width="25%">
-                <el-input v-model="form.creditCode" placeholder="请输入统一社会信用代码" />
+              <el-form-item label="统一社会信用代码:" prop="creditCode" label-width="25%">
+                {{queryParams.creditCode}}
               </el-form-item>
             </el-col>
           </el-row>
           <!--二级部门-->
           <el-row>
             <el-col :span="10">
-              <el-form-item label="二级部门" prop="secondLevelDepartment">
-                <el-input v-model="form.secondLevelDepartment" placeholder="请输入二级部门" />
+              <el-form-item label="二级部门:" prop="secondLevelDepartment">
+                {{queryParams.secondLevelDepartment}}
               </el-form-item>
             </el-col>
             <el-col :span="10" :offset="2">
-              <el-form-item label="职务" prop="position">
-                <el-input v-model="form.position" placeholder="请输入职务" />
+              <el-form-item label="职务:" prop="position">
+                {{queryParams.position}}
               </el-form-item>
             </el-col>
           </el-row>
           <!--单位地址-->
           <el-row>
             <el-col :span="22">
-              <el-form-item label="单位地址" prop="companySite">
-                <el-input v-model="form.companySite" placeholder="请输入单位地址" />
+              <el-form-item label="单位地址:" prop="companySite">
+                {{queryParams.companySite}}
               </el-form-item>
             </el-col>
           </el-row>
@@ -214,86 +204,62 @@
           <!--最高学历-->
           <el-row>
             <el-col :span="6">
-              <el-form-item label="最高学历" prop="highestEducation">
-                <el-select v-model="form.highestEducation" placeholder="请选择最高学历" style="width: 100%">
-                  <el-option
-                    v-for="dict in highestEducationOptions"
-                    :key="dict.dictValue"
-                    :label="dict.dictLabel"
-                    :value="dict.dictValue"
-                  ></el-option>
-                </el-select>
+              <el-form-item label="最高学历:" prop="highestEducation">
+                {{queryParams.highestEducation}}
               </el-form-item>
             </el-col>
             <el-col :span="6" :offset="2">
-              <el-form-item label="毕业院校" prop="graduateAcademy">
-                <el-input v-model="form.graduateAcademy" placeholder="请输入毕业院校" />
+              <el-form-item label="毕业院校:" prop="graduateAcademy">
+                {{queryParams.graduateAcademy}}
               </el-form-item>
             </el-col>
             <el-col :span="6" :offset="2">
-              <el-form-item label="所学专业" prop="major">
-                <el-select v-model="form.major" placeholder="请选择所学专业" style="width: 100%">
-                  <el-option label="请选择字典生成" value="" />
-                </el-select>
+              <el-form-item label="所学专业:" prop="major">
+                {{queryParams.major}}
               </el-form-item>
             </el-col>
           </el-row>
           <!--最高学位-->
           <el-row>
             <el-col :span="6">
-              <el-form-item label="最高学位" prop="highestDegree">
-                <el-select v-model="form.highestDegree" placeholder="请选择最高学位" style="width: 100%">
-                  <el-option
-                    v-for="dict in highestDegreeOptions"
-                    :key="dict.dictValue"
-                    :label="dict.dictLabel"
-                    :value="dict.dictValue"
-                  ></el-option>
-                </el-select>
+              <el-form-item label="最高学位:" prop="highestDegree">
+                {{queryParams.highestDegree}}
               </el-form-item>
             </el-col>
             <el-col :span="6" :offset="2">
-              <el-form-item label="授予院校" prop="awardAcademy">
-                <el-input v-model="form.awardAcademy" placeholder="请输入授予院校" />
+              <el-form-item label="授予院校:" prop="awardAcademy">
+                {{queryParams.awardAcademy}}
               </el-form-item>
             </el-col>
             <el-col :span="6" :offset="2">
-              <el-form-item label="所学专业" prop="majorAcademy">
-                <el-select v-model="form.majorAcademy" placeholder="请输入所学专业" style="width: 100%">
-                  <el-option label="请选择字典生成" value="" />
-                </el-select>
+              <el-form-item label="所学专业:" prop="majorAcademy">
+                {{queryParams.majorAcademy}}
               </el-form-item>
             </el-col>
           </el-row>
           <!--是否博士生导师-->
           <el-row>
             <el-col :span="10">
-              <el-form-item label="是否博士生导师" prop="isDoctoralSupervisor" label-width="120px">
-                <el-select v-model="form.isDoctoralSupervisor" placeholder="请选择是否博士生导师" style="width: 100%">
-                  <el-option key="是" lable="是" value="是"></el-option>
-                  <el-option key="否" lable="否" value="否"></el-option>
-                </el-select>
+              <el-form-item label="是否博士生导师:" prop="isDoctoralSupervisor" label-width="120px">
+                {{queryParams.isDoctoralSupervisor}}
               </el-form-item>
             </el-col>
             <el-col :span="10" :offset="2">
-              <el-form-item label="是否两院院士" prop="isAcademician" label-width="120px">
-                <el-select v-model="form.isAcademician" placeholder="请选择是否两院院士" style=" width: 100%">
-                  <el-option key="是" lable="是" value="是"></el-option>
-                  <el-option key="否" lable="否" value="否"></el-option>
-                </el-select>
+              <el-form-item label="是否两院院士:" prop="isAcademician" label-width="120px">
+                {{queryParams.isAcademician}}
               </el-form-item>
             </el-col>
           </el-row>
           <!--熟悉外语语种-->
           <el-row>
             <el-col :span="10">
-              <el-form-item label="熟悉外语语种" prop="language" label-width="120px">
-                <el-input v-model="form.language" placeholder="可填写多个，填写多个用“/”隔开" />
+              <el-form-item label="熟悉外语语种:" prop="language" label-width="120px">
+                {{queryParams.language}}
               </el-form-item>
             </el-col>
             <el-col :span="10" :offset="2">
-              <el-form-item label="熟悉程度" prop="degree" label-width="120px">
-                <el-input v-model="form.degree" placeholder="填写内容为“精通、熟悉、一般、了解”，多个用“/”分开，与外语对应" />
+              <el-form-item label="熟悉程度:" prop="degree" label-width="120px">
+                {{queryParams.degree}}
               </el-form-item>
             </el-col>
           </el-row>
@@ -304,14 +270,7 @@
         </div>
         <div id="div_two_5_2">
           <el-form-item label="入库标准" prop="standard" v-model="form.standard">
-            <el-checkbox label="作为负责人承担过中央财政支持的科技计划（专项、基金）项目（课题）或国家科技奖励获得者"></el-checkbox>
-            <br/><el-checkbox label="知识产权法、民商法等相关领域，具有副高级以上职称的专家或律师事务所合伙人"></el-checkbox>
-            <br/><el-checkbox label="在科技型上市公司、国家高新技术企业、国家级高新区、科技园区和各类创业服务机构、行业协会学会担任高级管理职务或技术骨干"></el-checkbox>
-            <br/><el-checkbox label="在高等学校和科研院所工作具有副高级及以上职称，在相关领域工作五年以上"></el-checkbox>
-            <br/><el-checkbox label="在法律、财务、审计、金融等领域具有执业资格的专业人员"></el-checkbox>
-            <br/><el-checkbox label="天使投资或创业投资机构的高级管理人员、创始合伙人，资本市场、银行信贷及保险等机构的高级管理人员"></el-checkbox>
-            <br/><el-checkbox label="在主要国际学术组织中任中高级职务，或参与国际标准制修订"></el-checkbox>
-            <br/><el-checkbox label="其他"></el-checkbox>
+            {{queryParams.standard}}
           </el-form-item>
         </div>
         <!--参与评审/公共服务经历-->
@@ -321,12 +280,7 @@
         <div id="div_two_6_2">
           <el-form-item label="">
             <el-checkbox-group v-model="queryParams.reviewExperience">
-              <el-checkbox
-                v-for="dict in reviewExperienceOptions"
-                :key="dict.dictValue"
-                :label="dict.dictValue">
-                {{dict.dictLabel}}
-              </el-checkbox>
+              {{queryParams.reviewExperience}}
             </el-checkbox-group>
           </el-form-item>
         </div>
@@ -338,83 +292,61 @@
           <!--主要行业领域-->
           <el-row>
             <el-col :span="11">
-              <el-form-item label="主要行业领域" prop="mainIndustry" label-width="140px">
-                <el-select v-model="form.mainIndustry" placeholder="请选择主要行业领域" style="width: 100%">
-                  <el-option
-                    v-for="dict in mainIndustryOptions"
-                    :key="dict.dictValue"
-                    :label="dict.dictLabel"
-                    :value="dict.dictValue"
-                  ></el-option>
-                </el-select>
+              <el-form-item label="主要行业领域:" prop="mainIndustry" label-width="140px">
+                {{queryParams.mainIndustry}}
               </el-form-item>
             </el-col>
             <el-col :span="11" :offset="2">
-              <el-form-item label="其他行业领域" prop="elseIndustry" label-width="140px">
-                <el-select v-model="form.elseIndustry" placeholder="请选择其他行业领域" style="width: 100%">
-                  <el-option
-                    v-for="dict in elseIndustryOptions"
-                    :key="dict.dictValue"
-                    :label="dict.dictLabel"
-                    :value="dict.dictValue"
-                  ></el-option>
-                </el-select>
+              <el-form-item label="其他行业领域:" prop="elseIndustry" label-width="140px">
+                {{queryParams.elseIndustry}}
               </el-form-item>
             </el-col>
           </el-row>
           <!--基金学科-->
           <el-row>
             <el-col :span="11">
-              <el-form-item label="基金学科" prop="fundSubject" label-width="140px">
-                <el-select v-model="form.fundSubject" placeholder="请选择基金学科" style="width: 100%">
-                  <el-option label="请选择字典生成" value="" />
-                </el-select>
+              <el-form-item label="基金学科:" prop="fundSubject" label-width="140px">
+                {{queryParams.fundSubject}}
               </el-form-item>
             </el-col>
             <el-col :span="11" :offset="2">
-              <el-form-item label="国际学科" prop="internationalDiscipline" label-width="140px">
-                <el-select v-model="form.internationalDiscipline" placeholder="请选择国际学科" style="width: 100%">
-                  <el-option label="请选择字典生成" value="" />
-                </el-select>
+              <el-form-item label="国际学科:" prop="internationalDiscipline" label-width="140px">
+                {{queryParams.internationalDiscipline}}
               </el-form-item>
             </el-col>
           </el-row>
           <!--教育学科-->
           <el-row>
             <el-col :span="11">
-              <el-form-item label="教育学科" prop="educationSubject" label-width="140px">
-                <el-select v-model="form.educationSubject" placeholder="请选择教育学科" style="width: 100%">
-                  <el-option label="请选择字典生成" value="" />
-                </el-select>
+              <el-form-item label="教育学科:" prop="educationSubject" label-width="140px">
+                {{queryParams.educationSubject}}
               </el-form-item>
             </el-col>
             <el-col :span="11" :offset="2">
-              <el-form-item label="工业行业" prop="industries" label-width="140px">
-                <el-select v-model="form.industries" placeholder="请选择工业行业" style="width: 100%">
-                  <el-option label="请选择字典生成" value="" />
-                </el-select>
+              <el-form-item label="工业行业:" prop="industries" label-width="140px">
+                {{queryParams.industries}}
               </el-form-item>
             </el-col>
           </el-row>
           <!--研究方向或关键词-->
           <el-row>
             <el-col :span="24">
-              <el-form-item label="研究方向或关键词" prop="researchDirection" label-width="140px">
-                <el-input v-model="form.researchDirection" type="textarea" placeholder="请输入研究方向或关键词" autosize />
+              <el-form-item label="研究方向或关键词:" prop="researchDirection" label-width="140px">
+                {{queryParams.researchDirection}}
               </el-form-item>
             </el-col>
           </el-row>
-          <el-form-item label="研究或工作内容" label-width="140px">
-            <el-input v-model="form.workContent" type="textarea" placeholder="请输入研究或工作内容" autosize />
+          <el-form-item label="研究或工作内容:" label-width="140px">
+            {{queryParams.workContent}}
           </el-form-item>
-          <el-form-item label="主要业绩及贡献" prop="mainContribution" label-width="140px">
-            <el-input v-model="form.mainContribution" type="textarea" placeholder="请输入主要业绩及贡献" autosize />
+          <el-form-item label="主要业绩及贡献:" prop="mainContribution" label-width="140px">
+            {{queryParams.mainContribution}}
           </el-form-item>
-          <el-form-item label="奖惩情况" prop="rewardsPunishment" label-width="140px">
-            <el-input v-model="form.rewardsPunishment" type="textarea" placeholder="请输入奖惩情况" autosize />
+          <el-form-item label="奖惩情况:" prop="rewardsPunishment" label-width="140px">
+            {{queryParams.rewardsPunishment}}
           </el-form-item>
-          <el-form-item label="参与评审需回避单位" prop="avoidCompany" label-width="140px">
-            <el-input v-model="form.avoidCompany" placeholder="请输入单位名称，输入多个则用“；”号进行隔开" />
+          <el-form-item label="参与评审需回避单位:" prop="avoidCompany" label-width="140px">
+            {{queryParams.avoidCompany}}
           </el-form-item>
         </div>
         <!--成果专利&荣誉头衔-->
@@ -422,11 +354,11 @@
           <div id="div_two_11">
           <span>10.成果专利&荣誉头衔</span>
         </div>
-          <el-form-item label="成果或专利" prop="resultsOrPatents" label-width="100px">
-            <el-input v-model="form.resultsOrPatents" placeholder="请输入成果或专利" type="textarea" autosize/>
+          <el-form-item label="成果或专利:" prop="resultsOrPatents" label-width="100px">
+            {{queryParams.resultsOrPatents}}
           </el-form-item>
-          <el-form-item label="荣誉或头衔" prop="honorsOrTitles" label-width="100px">
-            <el-input v-model="form.honorsOrTitles" placeholder="请输入荣誉或头衔" type="textarea" autosize />
+          <el-form-item label="荣誉或头衔:" prop="honorsOrTitles" label-width="100px">
+            {{queryParams.honorsOrTitles}}
           </el-form-item>
         </div>
         <!--附件-->
@@ -435,20 +367,11 @@
           <span>11.附件</span>
         </div>
           <div>
-            <el-form-item label="成果或专利" prop="resultsOrPatents" label-width="100px">
-              <el-input v-model="form.resultsOrPatents" placeholder="请输入成果或专利" type="textarea" autosize/>
+            <el-form-item label="个人简历:" prop="resultsOrPatents" label-width="100px">
             </el-form-item>
-            <el-form-item label="荣誉或头衔" prop="honorsOrTitles" label-width="100px">
-              <el-input v-model="form.honorsOrTitles" placeholder="请输入荣誉或头衔" type="textarea" autosize />
+            <el-form-item label="专家登记表:" prop="honorsOrTitles" label-width="100px">
             </el-form-item>
           </div>
-        </div>
-        <!--提交-->
-        <div class="dialog-footer" style="text-align: center">
-          <el-button type="info">上一步</el-button>
-          <el-button type="primary">暂 存</el-button>
-          <el-button type="primary" @click="submitForm">提 交</el-button>
-          <!--<el-button @click="cancel">取 消</el-button>-->
         </div>
       </el-form>
     </div>
