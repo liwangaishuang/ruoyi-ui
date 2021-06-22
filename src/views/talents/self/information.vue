@@ -1,6 +1,9 @@
 <template>
   <div class="app-container">
-    <div id="div_two">
+    <div>
+      <p style="text-align: center;font-weight: bold; font-size: 25px">专家申报信息</p>
+    </div>
+    <div id="div_two" style="border: 1px solid black;width: 80%;margin:0 auto">
       <el-form ref="form" :data="userList" :model="form" :rules="rules" label-width="80px">
         <!--基本信息-->
         <div>
@@ -12,195 +15,125 @@
               <!--专家姓名-->
               <el-row>
                 <el-col :span="10">
-                  <el-form-item label="专家姓名" prop="userName">
+                  <el-form-item label="专家姓名:" prop="userName">
+                    {{this.queryParams.userName}}
                   </el-form-item>
                 </el-col>
-                <el-col :span="6" :offset="2">
-                  <el-form-item label="证件类型" prop="idNumberType">
-                    <el-select v-model="form.idNumberType" placeholder="请选择证件类型">
-                      <el-option
-                        v-for="dict in idNumberTypeOptions"
-                        :key="dict.dictValue"
-                        :label="dict.dictLabel"
-                        :value="dict.dictValue"
-                      ></el-option>
-                    </el-select>
+                <el-col :span="10" :offset="2">
+                  <el-form-item label="身份证号:" prop="userIdNumber">
+                    {{this.queryParams.userIdNumber}}
                   </el-form-item>
-                </el-col>
-                <el-col :span="4">
-                  <el-input v-model="form.userIdNumber" placeholder="请输入身份证号" />
                 </el-col>
               </el-row>
               <!--出生日期-->
               <el-row>
                 <el-col :span="10">
-                  <el-form-item label="出生日期" prop="birthDate">
-                    <el-date-picker clearable size="medium"
-                                    v-model="form.birthDate"
-                                    type="date"
-                                    value-format="yyyy-MM-dd"
-                                    placeholder="选择出生日期" style="width:100%">
-                    </el-date-picker>
+                  <el-form-item label="出生日期:" prop="birthDate">
+                    {{queryParams.birthDate}}
                   </el-form-item>
                 </el-col>
                 <el-col :span="10" :offset="2">
-                  <el-form-item label="年龄" prop="age">
-                    <el-input v-model="form.age" placeholder="请输入年龄" />
+                  <el-form-item label="年龄:" prop="age">
+                    {{queryParams.age}}
                   </el-form-item>
                 </el-col>
               </el-row>
               <!--手机号码-->
               <el-row>
                 <el-col :span="10">
-                  <el-form-item label="手机号码" prop="phoneNumber">
-                    <el-input v-model="form.phoneNumber" placeholder="请输入手机号码" />
+                  <el-form-item label="手机号码:" prop="phoneNumber">
+                    {{queryParams.phoneNumber}}
                   </el-form-item>
                 </el-col>
                 <el-col :span="10" :offset="2">
-                  <el-form-item label="邮箱地址" prop="email">
-                    <el-input v-model="form.email" placeholder="请输入邮箱地址" />
+                  <el-form-item label="邮箱地址:" prop="email">
+                    {{queryParams.email}}
                   </el-form-item>
                 </el-col>
               </el-row>
               <!--办公电话-->
               <el-row>
                 <el-col :span="10">
-                  <el-form-item label="办公电话" prop="officePhone">
-                    <el-input v-model="form.officePhone" placeholder="请输入办公电话" />
+                  <el-form-item label="办公电话:" prop="officePhone">
+                    {{queryParams.officePhone}}
                   </el-form-item>
                 </el-col>
                 <el-col :span="10" :offset="2">
-                  <el-form-item label="家庭电话" prop="homeTelephone">
-                    <el-input v-model="form.homeTelephone" placeholder="请输入家庭电话" />
+                  <el-form-item label="家庭电话:" prop="homeTelephone">
+                    {{queryParams.homeTelephone}}
                   </el-form-item>
                 </el-col>
               </el-row>
               <!--性别-->
               <el-row>
                 <el-col :span="10">
-                  <el-form-item label="性别" prop="userSex">
-                    <el-select v-model="form.userSex" placeholder="请选择性别" style="width:100%">
-                      <el-option
-                        v-for="dict in userSexOptions"
-                        :key="dict.dictValue"
-                        :label="dict.dictLabel"
-                        :value="dict.dictValue"
-                      ></el-option>
-                    </el-select>
+                  <el-form-item label="性别:" prop="userSex">
+                    {{queryParams.userSex}}
                   </el-form-item>
                 </el-col>
                 <el-col :span="10" :offset="2">
-                  <el-form-item label="国籍" prop="nationality">
-                    <el-select v-model="form.nationality" placeholder="请选择国籍" style="width:100%">
-                      <el-option
-                        v-for="dict in nationalityOptions"
-                        :key="dict.dictValue"
-                        :label="dict.dictLabel"
-                        :value="dict.dictValue"
-                      ></el-option>
-                    </el-select>
+                  <el-form-item label="国籍:" prop="nationality">
+                    {{queryParams.nationality}}
                   </el-form-item>
                 </el-col>
               </el-row>
               <!--民族-->
               <el-row>
                 <el-col :span="10">
-                  <el-form-item label="民族" prop="nation">
-                    <el-select v-model="form.nation" placeholder="请选择民族" style="width:100%">
-                      <el-option
-                        v-for="dict in nationOptions"
-                        :key="dict.dictValue"
-                        :label="dict.dictLabel"
-                        :value="dict.dictValue"
-                      ></el-option>
-                    </el-select>
+                  <el-form-item label="民族:" prop="nation">
+                    {{queryParams.nation}}
                   </el-form-item>
                 </el-col>
                 <el-col :span="10" :offset="2">
-                  <el-form-item label="邮政编码" prop="postalCode">
-                    <el-input v-model="form.postalCode" placeholder="请输入邮政编码" />
+                  <el-form-item label="邮政编码:" prop="postalCode">
+                    {{queryParams.postalCode}}
                   </el-form-item>
                 </el-col>
               </el-row>
               <!--政治面貌-->
               <el-row>
                 <el-col :span="10">
-                  <el-form-item label="政治面貌" prop="politicsStatus">
-                    <el-select v-model="form.politicsStatus" placeholder="请选择政治面貌" style="width: 100%">
-                      <el-option
-                        v-for="dict in politicsStatusOptions"
-                        :key="dict.dictValue"
-                        :label="dict.dictLabel"
-                        :value="dict.dictValue"
-                      ></el-option>
-                    </el-select>
+                  <el-form-item label="政治面貌:" prop="politicsStatus">
+                    {{queryParams.politicsStatus}}
                   </el-form-item>
                 </el-col>
                 <el-col :span="10" :offset="2">
-                  <el-form-item label="职称" prop="professional">
-                    <el-select v-model="form.professional" placeholder="请选择职称" style="width: 100%">
-                      <el-option
-                        v-for="dict in professionalOptions"
-                        :key="dict.dictValue"
-                        :label="dict.dictLabel"
-                        :value="dict.dictValue"
-                      ></el-option>
-                    </el-select>
+                  <el-form-item label="职称:" prop="professional">
+                    {{queryParams.professional}}
                   </el-form-item>
                 </el-col>
               </el-row>
               <!--居住地区-->
               <el-row>
                 <el-col :span="10">
-                  <el-form-item label="居住地区" prop="dwellRegion">
-                    <el-select v-model="form.dwellRegion" placeholder="请选择居住地区" style="width: 100%">
-                      <el-option
-                        v-for="dict in dwellRegionOptions"
-                        :key="dict.dictValue"
-                        :label="dict.dictLabel"
-                        :value="dict.dictValue"
-                      ></el-option>
-                    </el-select>
+                  <el-form-item label="居住地区:" prop="dwellRegion">
+                    {{queryParams.dwellRegion}}
                   </el-form-item>
                 </el-col>
                 <el-col :span="10" :offset="2">
-                  <el-form-item label="居住地址" prop="dwellSite">
-                    <el-input v-model="form.dwellSite" placeholder="请输入居住地址" />
+                  <el-form-item label="居住地址:" prop="dwellSite">
+                    {{queryParams.dwellSite}}
                   </el-form-item>
                 </el-col>
               </el-row>
               <!--专业类别-->
               <el-row>
                 <el-col :span="10">
-                  <el-form-item label="专业类别" prop="specialtyType">
-                    <el-select v-model="form.specialtyType" placeholder="请选择专业类别" style="width: 100%">
-                      <el-option
-                        v-for="dict in specialtyTypeOptions"
-                        :key="dict.dictValue"
-                        :label="dict.dictLabel"
-                        :value="dict.dictValue"
-                      ></el-option>
-                    </el-select>
+                  <el-form-item label="专业类别:" prop="specialtyType">
+                    {{queryParams.specialtyType}}
                   </el-form-item>
                 </el-col>
                 <el-col :span="10" :offset="2">
-                  <el-form-item label="工作性质" prop="jobNature">
-                    <el-select v-model="form.jobNature" placeholder="请选择工作性质" style="width: 100%">
-                      <el-option
-                        v-for="dict in jobNatureOptions"
-                        :key="dict.dictValue"
-                        :label="dict.dictLabel"
-                        :value="dict.dictValue"
-                      ></el-option>
-                    </el-select>
+                  <el-form-item label="工作性质:" prop="jobNature">
+                    {{queryParams.jobNature}}
                   </el-form-item>
                 </el-col>
               </el-row>
             </el-main>
             <!--头像-->
-            <div style="width: 20%">
-              <p style="text-align: left"><span>头像上传</span></p>
-              <imageUpload v-model="form.portrait"/>
+            <div style="width: 20%; padding-top: 100px;">
+              <el-avatar :src="queryParams.portrait" shape="square" :size="200" :fit="scale-down"></el-avatar>
+              <!--<imageUpload v-model="form.portrait"/>-->
             </div>
           </el-container>
         </div>
@@ -523,10 +456,10 @@
 </template>
 
 <script>
-import { listUser, getUser, delUser, addUser, updateUser, exportUser } from "@/api/declare/user";
+import { getNowInfo,listUser } from "@/api/declare/user";
 import ImageUpload from '@/components/ImageUpload';
 import Editor from '@/components/Editor';
-import '../../css/专家申报/styles.css';
+import '../../css/专家申报/styles_information.css';
 import ElButton from "element-ui/packages/button/src/button";
 
 export default {
@@ -661,6 +594,7 @@ export default {
     };
   },
   created() {
+    this.getNow();
     this.getList();
     this.getDicts("id_number_type").then(response => {
       this.idNumberTypeOptions = response.data;
@@ -712,24 +646,6 @@ export default {
     });
   },
   methods: {
-    dianji(){
-      if (this.radio==='1'){
-        let divOne = document.getElementById("div_one");
-        let divTwo = document.getElementById("div_two");
-        /**1、隐藏第一个模块页面*/
-        divOne.style.display="none";
-        /**2、显示第二个模块页面*/
-        divTwo.style.display="inline";
-      }
-    },
-    changeHandler() {
-      if (this.radio==='1'){
-        this.isDisabled=false;
-      }else if(this.radio==='2'){
-        this.isDisabled=true;
-      }
-    },
-
     /** 查询用户列表 */
     getList() {
       this.loading = true;
@@ -737,6 +653,13 @@ export default {
         this.userList = response.rows;
         this.total = response.total;
         this.loading = false;
+      });
+    },
+    /**接收传递的参数，赋值给queryParams*/
+    getNow() {
+      this.loading = true;
+        getNowInfo().then(response => {
+          this.queryParams=response.data;
       });
     },
     // 证件类型字典翻译
@@ -904,32 +827,6 @@ export default {
         this.open = true;
         this.title = "修改用户";
       });
-    },
-    /** 提交按钮 */
-    submitForm() {
-      let divTwo = document.getElementById("div_two");
-      let divThree = document.getElementById("div_three");
-      /**1、隐藏第二个模块页面*/
-      divTwo.style.display="none";
-      /**2、显示第三个模块页面*/
-      divThree.style.display="inline";
-      /*this.$refs["form"].validate(valid => {
-        if (valid) {
-          if (this.form.id != null) {
-            updateUser(this.form).then(response => {
-              this.msgSuccess("修改成功");
-              this.open = false;
-              this.getList();
-            });
-          } else {
-            addUser(this.form).then(response => {
-              this.msgSuccess("新增成功");
-              this.open = false;
-              this.getList();
-            });
-          }
-        }
-      });*/
     },
     /** 删除按钮操作 */
     handleDelete(row) {

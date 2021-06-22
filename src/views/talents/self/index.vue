@@ -583,7 +583,7 @@
           <p>同时您也可以至“申报进度查看”页面查看审核结果及相关信息。</p>
           <p>在此之前，您不可以再次申报。</p>
           <!--<el-link type="primary" href="../information">查看申报信息>></el-link>-->
-          <router-link :to="{path:'../information', query:{id:1,name:'vue'}}" target="_blank" style="color: #1c84c6">查看申报信息>></router-link>
+          <router-link :to="{path:'../information'}" target="_blank" style="color: #1c84c6">查看申报信息>></router-link>
         </div>
       </div>
     </div>

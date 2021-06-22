@@ -17,6 +17,14 @@ export function getUser(id) {
   })
 }
 
+// 根据当前userId查询用户详细
+export function getNowInfo() {
+  return request({
+    url: '/declare/specialist/now',
+    method: 'get'
+  })
+}
+
 // 新增用户
 export function addUser(data) {
   return request({
