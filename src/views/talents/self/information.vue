@@ -578,7 +578,7 @@ export default {
         this.loading = false;
       });
     },
-    /**接收传递的参数，赋值给queryParams*/
+    /**接收该用户的信息，赋值给queryParams*/
     getNow() {
       this.loading = true;
         getNowInfo().then(response => {
