@@ -167,8 +167,15 @@
       </el-table-column>
       <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
         <template slot-scope="scope">
+          <router-link :to="{path:'../information', query: {id:scope.row.id}}" target="_blank" style="color: #1c84c6">查看</router-link>
+          <!--<el-button
+            size="mini"
+            type="text"
+            icon="el-icon-share"
+            @click="skipNewItem(scope.row)"
+          ></el-button>-->
           <!--修改、删除-->
-          <el-button
+          <!--<el-button
             size="mini"
             type="text"
             icon="el-icon-edit"
@@ -181,7 +188,7 @@
             icon="el-icon-delete"
             @click="handleDelete(scope.row)"
             v-hasPermi="['system:user:remove']"
-          >删除</el-button>
+          >删除</el-button>-->
         </template>
       </el-table-column>
     </el-table>
@@ -548,7 +555,11 @@
           console.log(this.queryParams.age);
         }
       },
-
+      /** 跳转新页面 */
+      skipNewItem(row) {
+        console.log(row.userId);
+        this.$router.push({path: "../../talents/self/information", query: {id: row.id}});
+      },
       /** 查询用户列表 */
       getList() {
         this.loading = true;

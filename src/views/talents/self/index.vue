@@ -586,7 +586,7 @@
           <p>同时您也可以至“申报进度查看”页面查看审核结果及相关信息。</p>
           <p>在此之前，您不可以再次申报。</p>
           <!--<el-link type="primary" href="../information">查看申报信息>></el-link>-->
-          <router-link :to="{path:'../information', query: {id:this.$store.state.userId}}" target="_blank" style="color: #1c84c6">查看申报信息>></router-link>
+          <router-link :to="{path:'../information', query: {id:this.queryParams.id}}" target="_blank" style="color: #1c84c6">查看申报信息>></router-link>
         </div>
       </div>
     </div>
@@ -667,6 +667,7 @@ export default {
       queryParams: {
         pageNum: 1,
         pageSize: 10,
+        id:null,
         userId: null,
         userName: null,
         portrait: null,
@@ -733,7 +734,6 @@ export default {
   },
   created() {
     //this.getNow();
-    console.log(this.queryParams);
     this.judgeType();
     this.getList();
     this.getDicts("id_number_type").then(response => {
@@ -1021,6 +1021,7 @@ export default {
               this.form.status="1";
               addUser(this.form).then(response => {
                 this.msgSuccess("新增成功");
+                this.queryParams.id=response;
                 this.open = false;
                 this.getList();
               });
