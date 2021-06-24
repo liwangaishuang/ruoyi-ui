@@ -59,3 +59,12 @@ export function exportUser(query) {
     params: query
   })
 }
+
+// 导出word
+export function exportWord(query) {
+  return request({
+    url: '/declare/specialist/exportWord',
+    method: 'get',
+    params: query
+  })
+}

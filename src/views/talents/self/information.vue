@@ -4,7 +4,7 @@
       <p style="text-align: center;font-weight: bold; font-size: 25px">专家申报信息</p>
       <div align="right">
         <img src="../../../assets/images/填报端申报/u532.svg" alt="" style="width: 30px;height: 30px"><span style="font-weight: bold">打印</span>
-        <img src="../../../assets/images/填报端申报/u534.svg" alt="" style="width: 30px;height: 30px"><span style="font-weight: bold">导出</span>
+        <img src="../../../assets/images/填报端申报/u534.svg" alt="" style="width: 30px;height: 30px"><span style="font-weight: bold"  @click="handleExport">11导出</span>
       </div>
     </div>
     <div id="div_two" style="border: 1px solid black;width: 100%;margin:0 auto">
@@ -379,7 +379,7 @@
 </template>
 
 <script>
-import { getNowInfo,listUser } from "@/api/declare/user";
+import { getNowInfo,listUser,exportWord } from "@/api/declare/user";
 import ImageUpload from '@/components/ImageUpload';
 import Editor from '@/components/Editor';
 import '../../css/专家申报/styles_information.css';
@@ -768,18 +768,19 @@ export default {
     /** 导出按钮操作 */
     handleExport() {
       const queryParams = this.queryParams;
-      this.$confirm('是否确认导出所有用户数据项?', "警告", {
+      this.$confirm('是否导出该专家数据项?', "警告", {
           confirmButtonText: "确定",
           cancelButtonText: "取消",
           type: "warning"
         }).then(() => {
           this.exportLoading = true;
-          return exportUser(queryParams);
+          return exportWord(queryParams);
         }).then(response => {
           this.download(response.msg);
           this.exportLoading = false;
         })
     }
+
   }
 };
 </script>
