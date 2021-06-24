@@ -191,8 +191,8 @@
           style="width:30%"
         />
       </el-form-item>
-      <el-form-item label="专业类别" prop="companyType">
-        <el-select v-model="form.specialtyType" placeholder="请选择专业类别" style="width: 100%">
+      <el-form-item label="专业类别" prop="specialtyType">
+        <el-select v-model="queryParams.specialtyType" placeholder="请选择专业类别" size="small">
           <el-option
             v-for="dict in specialtyTypeOptions"
             :key="dict.dictValue"
@@ -300,17 +300,13 @@
       <el-table-column label="人员姓名" align="center" prop="userName" />
       <el-table-column label="年龄" align="center" prop="age" />
       <el-table-column label="单位名称" align="center" prop="companyName" />
-      <el-table-column label="单位地区" align="center" prop="companyRegion" />
-      <el-table-column label="单位类型" align="center" prop="companyType" />
-      <el-table-column label="专业类别" align="center" prop="companyType" />
-      <el-table-column label="担任评审专家最近年度" align="center" prop="companyType" />
-      <el-table-column label="主要行业领域" align="center" prop="mainIndustry" />
-      <el-table-column label="初次申报时间" align="center" prop="createTime"/>
-      <el-table-column label="更新时间" align="center" prop="updateTime" width="180">
-        <template slot-scope="scope">
-          <span>{{ parseTime(scope.row.updateTime, '{y}-{m}-{d}') }}</span>
-        </template>
-      </el-table-column>
+      <el-table-column label="单位地区" :formatter="companyRegionFormat" align="center" prop="companyRegion" />
+      <el-table-column label="单位类型" :formatter="companyTypeFormat" align="center" prop="companyType" />
+      <el-table-column label="专业类别" :formatter="specialtyTypeFormat" align="center" prop="companyType" />
+      <el-table-column label="担任评审专家最近年度" align="center"/>
+      <el-table-column label="移除时间" align="center" prop="updateTime"/>
+      <el-table-column label="移除结束时间" align="center" prop="updateTime"/>
+      <el-table-column label="移除原因" align="center"/>
       <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
         <template slot-scope="scope">
           <!--修改、删除-->
@@ -341,7 +337,7 @@
     />
 
     <!-- 添加或修改用户对话框 -->
-    <el-dialog :title="title" :visible.sync="open" width="500px" append-to-body>
+    <!--<el-dialog :title="title" :visible.sync="open" width="500px" append-to-body>
       <el-form ref="form" :model="form" :rules="rules" label-width="80px">
         <el-form-item label="用户姓名" prop="userName">
           <el-input v-model="form.userName" placeholder="请输入用户姓名" />
@@ -523,7 +519,7 @@
         <el-button type="primary" @click="submitForm">确 定</el-button>
         <el-button @click="cancel">取 消</el-button>
       </div>
-    </el-dialog>
+    </el-dialog>-->
   </div>
 </template>
 
