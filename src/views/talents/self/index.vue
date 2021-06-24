@@ -420,16 +420,19 @@
         <div id="div_two_5">
           <span>4.入库标准</span>
         </div>
+        <!--style="font-weight: normal; padding-top: 10px"-->
         <div id="div_two_5_2">
-          <el-form-item label="入库标准" prop="standard" v-model="form.standard">
-            <el-checkbox label="作为负责人承担过中央财政支持的科技计划（专项、基金）项目（课题）或国家科技奖励获得者"></el-checkbox>
-            <br/><el-checkbox label="知识产权法、民商法等相关领域，具有副高级以上职称的专家或律师事务所合伙人"></el-checkbox>
-            <br/><el-checkbox label="在科技型上市公司、国家高新技术企业、国家级高新区、科技园区和各类创业服务机构、行业协会学会担任高级管理职务或技术骨干"></el-checkbox>
-            <br/><el-checkbox label="在高等学校和科研院所工作具有副高级及以上职称，在相关领域工作五年以上"></el-checkbox>
-            <br/><el-checkbox label="在法律、财务、审计、金融等领域具有执业资格的专业人员"></el-checkbox>
-            <br/><el-checkbox label="天使投资或创业投资机构的高级管理人员、创始合伙人，资本市场、银行信贷及保险等机构的高级管理人员"></el-checkbox>
-            <br/><el-checkbox label="在主要国际学术组织中任中高级职务，或参与国际标准制修订"></el-checkbox>
-            <br/><el-checkbox label="其他"></el-checkbox>
+          <el-form-item label="">
+            <el-checkbox-group v-model="queryParams.standard">
+              <el-checkbox label="作为负责人承担过中央财政支持的科技计划（专项、基金）项目（课题）或国家科技奖励获得者"></el-checkbox>
+              <br/><el-checkbox label="知识产权法、民商法等相关领域，具有副高级以上职称的专家或律师事务所合伙人"></el-checkbox>
+              <br/><el-checkbox label="在科技型上市公司、国家高新技术企业、国家级高新区、科技园区和各类创业服务机构、行业协会学会担任高级管理职务或技术骨干"></el-checkbox>
+              <br/><el-checkbox label="在高等学校和科研院所工作具有副高级及以上职称，在相关领域工作五年以上"></el-checkbox>
+              <br/><el-checkbox label="在法律、财务、审计、金融等领域具有执业资格的专业人员"></el-checkbox>
+              <br/><el-checkbox label="天使投资或创业投资机构的高级管理人员、创始合伙人，资本市场、银行信贷及保险等机构的高级管理人员"></el-checkbox>
+              <br/><el-checkbox label="在主要国际学术组织中任中高级职务，或参与国际标准制修订"></el-checkbox>
+              <br/><el-checkbox label="其他" style="font-weight: normal"></el-checkbox>
+            </el-checkbox-group>
           </el-form-item>
         </div>
         <!--参与评审/公共服务经历-->
@@ -583,7 +586,7 @@
           <p>同时您也可以至“申报进度查看”页面查看审核结果及相关信息。</p>
           <p>在此之前，您不可以再次申报。</p>
           <!--<el-link type="primary" href="../information">查看申报信息>></el-link>-->
-          <router-link :to="{path:'../information'}" target="_blank" style="color: #1c84c6">查看申报信息>></router-link>
+          <router-link :to="{path:'../information', query: {id:this.queryParams.id}}" target="_blank" style="color: #1c84c6">查看申报信息>></router-link>
         </div>
       </div>
     </div>
@@ -591,7 +594,7 @@
 </template>
 
 <script>
-import { listUser, getUser, delUser, addUser, updateUser, exportUser } from "@/api/declare/user";
+import { listUser, getUser, delUser, addUser, updateUser, exportUser,getNowInfo } from "@/api/declare/user";
 import ImageUpload from '@/components/ImageUpload';
 import Editor from '@/components/Editor';
 import '../../css/专家申报/styles.css';
@@ -664,6 +667,7 @@ export default {
       queryParams: {
         pageNum: 1,
         pageSize: 10,
+        id:null,
         userId: null,
         userName: null,
         portrait: null,
@@ -729,6 +733,8 @@ export default {
     };
   },
   created() {
+    //this.getNow();
+    this.judgeType();
     this.getList();
     this.getDicts("id_number_type").then(response => {
       this.idNumberTypeOptions = response.data;
@@ -780,6 +786,20 @@ export default {
     });
   },
   methods: {
+    judgeType(){
+      let divOne = document.getElementById("div_one");
+      let divTwo = document.getElementById("div_two");
+      let divThree = document.getElementById("div_three");
+
+      /**未审核*/
+      if(this.queryParams.status==='1'){
+        /**1、隐藏第一、二个模块页面*/
+        divOne.style.display="none";
+        divTwo.style.display="none";
+        /**2、显示第三个模块页面*/
+        divThree.style.display="inline";
+      }
+    },
     dianji(){
       if (this.radio==='1'){
         let divOne = document.getElementById("div_one");
@@ -805,6 +825,13 @@ export default {
         this.userList = response.rows;
         this.total = response.total;
         this.loading = false;
+      });
+    },
+    /**接收该用户的信息，赋值给queryParams*/
+    getNow() {
+      this.loading = true;
+      getNowInfo().then(response => {
+        this.queryParams=response.data;
       });
     },
     // 证件类型字典翻译
@@ -978,8 +1005,10 @@ export default {
       this.$confirm('您确定提交申报吗？提交后不可撤回', '提示', {
         confirmButtonText: '确定',
         cancelButtonText: '取消',
-        type: 'warning'
+        type: 'warning',
+        center: true
       }).then(() => {
+        type: 'success',
         this.$refs["form"].validate(valid => {
           if (valid) {
             if (this.form.id != null) {
@@ -992,6 +1021,7 @@ export default {
               this.form.status="1";
               addUser(this.form).then(response => {
                 this.msgSuccess("新增成功");
+                this.queryParams.id=response;
                 this.open = false;
                 this.getList();
               });

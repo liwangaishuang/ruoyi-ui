@@ -1,6 +1,6 @@
 <template>
   <div class="app-container">
-    <el-form :model="queryParams" ref="queryForm" :inline="true" v-show="showSearch" label-width="70px">
+    <el-form :model="queryParams" ref="queryForm" :inline="true" v-show="showSearch" label-width="68px">
       <el-form-item label="用户姓名" prop="userName">
         <el-input
           v-model="queryParams.userName"
@@ -12,11 +12,22 @@
       </el-form-item>
       <el-form-item label="年龄" prop="age">
         <el-input
-          v-model="queryParams.age"
+          v-model="queryParams.minAge"
           placeholder="请输入年龄"
           clearable
           size="small"
           @keyup.enter.native="handleQuery"
+          @keyup.native="minNumber"
+          style="width:45%"
+        /> --
+        <el-input
+          v-model="queryParams.maxAge"
+          placeholder="请输入年龄"
+          clearable
+          size="small"
+          @keyup.enter.native="handleQuery"
+          @keyup.native="maxNumber"
+          style="width:45%"
         />
       </el-form-item>
       <el-form-item label="单位名称" prop="companyName">
@@ -28,65 +39,17 @@
           @keyup.enter.native="handleQuery"
         />
       </el-form-item>
-      <div>
-        <el-form-item label="单位地区" prop="companyRegion">
-          <el-select v-model="queryParams.companyRegion" placeholder="请选择单位地区" clearable size="small">
-            <el-option
-              v-for="dict in companyRegionOptions"
-              :key="dict.dictValue"
-              :label="dict.dictLabel"
-              :value="dict.dictValue"
-            ></el-option>
-          </el-select>
-        </el-form-item>
-        <el-form-item label="单位类型" prop="companyType">
-          <el-select v-model="queryParams.companyType" placeholder="请选择单位类型" clearable size="small">
-            <el-option
-              v-for="dict in companyTypeOptions"
-              :key="dict.dictValue"
-              :label="dict.dictLabel"
-              :value="dict.dictValue"
-            ></el-option>
-          </el-select>
-        </el-form-item>
-        <!--原名：主要行业领域-->
-        <el-form-item label="专业领域" prop="mainIndustry">
-          <el-select v-model="queryParams.mainIndustry" placeholder="专业领域" clearable size="small">
-            <el-option label="请选择字典生成" value="" />
-          </el-select>
-        </el-form-item>
-      </div>
-      <div>
-        <el-form-item label="专业类别" prop="specialtyType">
-          <el-select v-model="queryParams.specialtyType" placeholder="请选择专业类别" size="small">
-            <el-option
-              v-for="dict in specialtyTypeOptions"
-              :key="dict.dictValue"
-              :label="dict.dictLabel"
-              :value="dict.dictValue"
-            ></el-option>
-          </el-select>
-        </el-form-item>
-        <el-form-item label="更新时间">
-          <el-date-picker
-            v-model="updateTime"
-            type="daterange"
-            range-separator="至"
-            start-placeholder="开始日期"
-            end-placeholder="结束日期">
-          </el-date-picker>
-        </el-form-item>
-        <el-form-item>
+      <el-table-column label="审核状态" :formatter="companyRegionFormat" align="center" prop="companyRegion" />
+      <el-form-item>
           <el-button type="primary" icon="el-icon-search" size="mini" @click="handleQuery">搜索</el-button>
           <el-button icon="el-icon-refresh" size="mini" @click="resetQuery">重置</el-button>
         </el-form-item>
-      </div>
     </el-form>
 
     <el-row :gutter="10" class="mb8">
       <el-col :span="1.5">
         <el-button
-          type="primary"
+          type="info"
           plain
           icon="el-icon-message"
           size="mini"
@@ -97,12 +60,14 @@
       </el-col>
       <el-col :span="1.5">
         <el-button
-          type="info"
+          type="primary"
           plain
+          icon="el-icon-star-off"
           size="mini"
           :loading="exportLoading"
           @click="handleExport"
-        >置为评审专家</el-button>
+          v-hasPermi="['system:user:export']"
+        >发送短信</el-button>
       </el-col>
       <el-col :span="1.5">
         <el-button
@@ -153,27 +118,19 @@
 
     <el-table v-loading="loading" :data="userList" @selection-change="handleSelectionChange">
       <el-table-column type="selection" width="55" align="center" />
-      <el-table-column label="用户姓名" align="center" prop="userName" />
+      <el-table-column label="人员姓名" align="center" prop="userName" />
       <el-table-column label="年龄" align="center" prop="age" />
       <el-table-column label="单位名称" align="center" prop="companyName" />
       <el-table-column label="单位地区" :formatter="companyRegionFormat" align="center" prop="companyRegion" />
       <el-table-column label="单位类型" :formatter="companyTypeFormat" align="center" prop="companyType" />
-      <el-table-column label="专业类别" :formatter="specialtyTypeFormat" align="center" prop="specialtyType" />
-      <el-table-column label="主要行业领域" align="center" prop="mainIndustry" />
-      <el-table-column label="更新时间" align="center" prop="updateTime" width="180">
-        <template slot-scope="scope">
-          <span>{{ parseTime(scope.row.updateTime, '{y}-{m}-{d}') }}</span>
-        </template>
-      </el-table-column>
+      <el-table-column label="专业类别" :formatter="specialtyTypeFormat" align="center" prop="companyType" />
+      <el-table-column label="担任评审专家最近年度" align="center"/>
+      <el-table-column label="移除时间" align="center" prop="updateTime"/>
+      <el-table-column label="移除结束时间" align="center" prop="updateTime"/>
+      <el-table-column label="移除原因" align="center"/>
       <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
         <template slot-scope="scope">
-            <router-link :to="{path:'../information', query: {id:scope.row.id}}" target="_blank" style="color: #1c84c6">查看</router-link>
-          <!--<el-button
-            size="mini"
-            type="text"
-            icon="el-icon-share"
-            @click="skipNewItem(scope.row)"
-          ></el-button>-->
+          <router-link :to="{path:'../information', query: {id:scope.row.id}}" target="_blank" style="color: #1c84c6">查看</router-link>
           <!--修改、删除-->
           <!--<el-button
             size="mini"
@@ -300,12 +257,7 @@
         </el-form-item>
         <el-form-item label="单位地区" prop="companyRegion">
           <el-select v-model="form.companyRegion" placeholder="请选择单位地区">
-            <el-option
-              v-for="dict in companyRegionOptions"
-              :key="dict.dictValue"
-              :label="dict.dictLabel"
-              :value="dict.dictValue"
-            ></el-option>
+            <el-option label="请选择字典生成" value="" />
           </el-select>
         </el-form-item>
         <el-form-item label="单位地址" prop="companySite">
@@ -446,6 +398,8 @@
           userSex: null,
           birthDate: null,
           age: null,
+          minAge: null,
+          maxAge: null,
           phoneNumber: null,
           email: null,
           officePhone: null,
@@ -538,28 +492,6 @@
       });
     },
     methods: {
-      /**计算年龄*/
-      getAge(){
-        if(this.queryParams.birthDate!=null){
-          let birthdays = new Date(this.queryParams.birthDate.replace(/-/g, "/"));
-          let d = new Date();
-          let age =
-            d.getFullYear() -
-            birthdays.getFullYear() -
-            (d.getMonth() < birthdays.getMonth() ||
-            (d.getMonth() == birthdays.getMonth() &&
-              d.getDate() < birthdays.getDate())
-              ? 1
-              : 0);
-          this.queryParams.age = age;
-          console.log(this.queryParams.age);
-        }
-      },
-      /** 跳转新页面 */
-      skipNewItem(row) {
-        console.log(row.userId);
-        this.$router.push({path: "../../talents/self/information", query: {id: row.id}});
-      },
       /** 查询用户列表 */
       getList() {
         this.loading = true;
@@ -647,6 +579,13 @@
       handleQuery() {
         this.queryParams.pageNum = 1;
         this.getList();
+      },
+      /**只能输入正整数*/
+      minNumber() {
+        this.queryParams.minAge=this.queryParams.minAge.replace(/[^\d]/g,'');
+      },
+      maxNumber() {
+        this.queryParams.maxAge=this.queryParams.maxAge.replace(/[^\d]/g,'');
       },
       /** 重置按钮操作 */
       resetQuery() {

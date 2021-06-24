@@ -1,0 +1,29 @@
+
+#div_1{
+  margin: 0 auto;
+  text-align: center;
+  border: 1px solid black;
+  width: 80%;
+}
+
+#p_2{
+  font-size: 30px;
+  color: blue;
+  font-weight: bold;
+}
+
+#img_3{
+  margin: 0 auto;
+  width: 80%;
+  height: 80%;
+}
+
+#p_4{
+  text-align: left;
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.tableHead{
+  font-size: 30px;
+}

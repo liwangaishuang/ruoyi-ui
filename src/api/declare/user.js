@@ -18,9 +18,9 @@ export function getUser(id) {
 }
 
 // 根据当前userId查询用户详细
-export function getNowInfo() {
+export function getNowInfo(id) {
   return request({
-    url: '/declare/specialist/now',
+    url: '/declare/specialist/now/' + id,
     method: 'get'
   })
 }

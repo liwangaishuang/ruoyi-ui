@@ -517,7 +517,7 @@ export default {
     };
   },
   created() {
-    this.getNow();
+    this.getNow(this.$route.query.id);
     this.getList();
     this.getDicts("id_number_type").then(response => {
       this.idNumberTypeOptions = response.data;
@@ -578,10 +578,10 @@ export default {
         this.loading = false;
       });
     },
-    /**接收传递的参数，赋值给queryParams*/
-    getNow() {
+    /**接收该用户的信息，赋值给queryParams*/
+    getNow(id) {
       this.loading = true;
-        getNowInfo().then(response => {
+        getNowInfo(id).then(response => {
           this.queryParams=response.data;
       });
     },

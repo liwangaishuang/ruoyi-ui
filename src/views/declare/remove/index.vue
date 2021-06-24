@@ -151,25 +151,24 @@
           @keyup.enter.native="handleQuery"
         />
       </el-form-item>
-      <el-form-item label="单位地区" prop="companyRegion">
-        <el-select v-model="queryParams.companyRegion" placeholder="请选择单位地区" clearable size="small">
-          <el-option label="请选择字典生成" value="" />
-        </el-select>
-      </el-form-item>
       <el-form-item label="单位类型" prop="companyType">
         <el-select v-model="queryParams.companyType" placeholder="请选择单位类型" clearable size="small" >
-          <el-option label="请选择字典生成" value="" />
+          <el-option
+            v-for="dict in companyTypeOptions"
+            :key="dict.dictValue"
+            :label="dict.dictLabel"
+            :value="dict.dictValue"
+          ></el-option>
         </el-select>
       </el-form-item>
-      <el-form-item label="专业领域" prop="mainIndustry">
-        <el-select v-model="queryParams.mainIndustry" placeholder="专业领域" clearable size="small">
-          <el-option label="请选择字典生成" value="" />
-        </el-select>
-      </el-form-item>
-
-      <el-form-item label="专业类别" prop="companyType">
-        <el-select v-model="queryParams.companyType" placeholder="全部" clearable size="small" >
-          <el-option label="请选择字典生成" value="" />
+      <el-form-item label="单位地区" prop="companyRegion">
+        <el-select v-model="queryParams.companyRegion" placeholder="请选择单位地区" clearable size="small">
+          <el-option
+            v-for="dict in companyRegionOptions"
+            :key="dict.dictValue"
+            :label="dict.dictLabel"
+            :value="dict.dictValue"
+          ></el-option>
         </el-select>
       </el-form-item>
       <el-form-item label="担任评审专家最近年度" label-width="200px" prop="age" style="width:680px;">
@@ -192,7 +191,17 @@
           style="width:30%"
         />
       </el-form-item>
-      <el-form-item label="最近更新时间" label-width="100px" prop="age" style="width:480px;">
+      <el-form-item label="专业类别" prop="specialtyType">
+        <el-select v-model="queryParams.specialtyType" placeholder="请选择专业类别" size="small">
+          <el-option
+            v-for="dict in specialtyTypeOptions"
+            :key="dict.dictValue"
+            :label="dict.dictLabel"
+            :value="dict.dictValue"
+          ></el-option>
+        </el-select>
+      </el-form-item>
+      <el-form-item label="移除时间" label-width="100px" prop="age" style="width:480px;">
         <el-date-picker
           v-model="updateTime"
           type="daterange"
@@ -201,7 +210,15 @@
           end-placeholder="结束日期">
         </el-date-picker>
       </el-form-item>
-
+      <el-form-item label="移除结束时间" label-width="100px" prop="age" style="width:480px;">
+        <el-date-picker
+          v-model="updateTime"
+          type="daterange"
+          range-separator="至"
+          start-placeholder="开始日期"
+          end-placeholder="结束日期">
+        </el-date-picker>
+      </el-form-item>
       <el-form-item>
           <el-button type="primary" icon="el-icon-search" size="mini" @click="handleQuery">搜索</el-button>
           <el-button icon="el-icon-refresh" size="mini" @click="resetQuery">重置</el-button>
@@ -283,21 +300,18 @@
       <el-table-column label="人员姓名" align="center" prop="userName" />
       <el-table-column label="年龄" align="center" prop="age" />
       <el-table-column label="单位名称" align="center" prop="companyName" />
-      <el-table-column label="单位地区" align="center" prop="companyRegion" />
-      <el-table-column label="单位类型" align="center" prop="companyType" />
-      <el-table-column label="专业类别" align="center" prop="companyType" />
-      <el-table-column label="担任评审专家最近年度" align="center" prop="companyType" />
-      <el-table-column label="主要行业领域" align="center" prop="mainIndustry" />
-      <el-table-column label="初次申报时间" align="center" prop="createTime"/>
-      <el-table-column label="更新时间" align="center" prop="updateTime" width="180">
-        <template slot-scope="scope">
-          <span>{{ parseTime(scope.row.updateTime, '{y}-{m}-{d}') }}</span>
-        </template>
-      </el-table-column>
+      <el-table-column label="单位地区" :formatter="companyRegionFormat" align="center" prop="companyRegion" />
+      <el-table-column label="单位类型" :formatter="companyTypeFormat" align="center" prop="companyType" />
+      <el-table-column label="专业类别" :formatter="specialtyTypeFormat" align="center" prop="companyType" />
+      <el-table-column label="担任评审专家最近年度" align="center"/>
+      <el-table-column label="移除时间" align="center" prop="updateTime"/>
+      <el-table-column label="移除结束时间" align="center" prop="updateTime"/>
+      <el-table-column label="移除原因" align="center"/>
       <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
         <template slot-scope="scope">
+          <router-link :to="{path:'../information', query: {id:scope.row.id}}" target="_blank" style="color: #1c84c6">查看</router-link>
           <!--修改、删除-->
-          <el-button
+          <!--<el-button
             size="mini"
             type="text"
             icon="el-icon-edit"
@@ -310,7 +324,7 @@
             icon="el-icon-delete"
             @click="handleDelete(scope.row)"
             v-hasPermi="['system:user:remove']"
-          >删除</el-button>
+          >删除</el-button>-->
         </template>
       </el-table-column>
     </el-table>
@@ -324,7 +338,7 @@
     />
 
     <!-- 添加或修改用户对话框 -->
-    <el-dialog :title="title" :visible.sync="open" width="500px" append-to-body>
+    <!--<el-dialog :title="title" :visible.sync="open" width="500px" append-to-body>
       <el-form ref="form" :model="form" :rules="rules" label-width="80px">
         <el-form-item label="用户姓名" prop="userName">
           <el-input v-model="form.userName" placeholder="请输入用户姓名" />
@@ -506,7 +520,7 @@
         <el-button type="primary" @click="submitForm">确 定</el-button>
         <el-button @click="cancel">取 消</el-button>
       </div>
-    </el-dialog>
+    </el-dialog>-->
   </div>
 </template>
 
@@ -547,6 +561,12 @@
         open: false,
         // 性别(1:男2:女)字典
         userSexOptions: [],
+        // 单位类型字典
+        companyTypeOptions: [],
+        // 单位地区字典
+        companyRegionOptions: [],
+        // 专业类别字典
+        specialtyTypeOptions: [],
         // 查询参数
         queryParams: {
           pageNum: 1,
@@ -640,6 +660,15 @@
       this.getDicts("sys_user_sex").then(response => {
         this.userSexOptions = response.data;
       });
+      this.getDicts("company_region").then(response => {
+        this.companyRegionOptions = response.data;
+      });
+      this.getDicts("company_type").then(response => {
+        this.companyTypeOptions = response.data;
+      });
+      this.getDicts("specialty_type").then(response => {
+        this.specialtyTypeOptions = response.data;
+      });
     },
     methods: {
       /** 查询用户列表 */
@@ -654,6 +683,18 @@
       // 性别(1:男2:女)字典翻译
       userSexFormat(row, column) {
         return this.selectDictLabel(this.userSexOptions, row.userSex);
+      },
+      // 单位类型字典翻译
+      companyTypeFormat(row, column) {
+        return this.selectDictLabel(this.companyTypeOptions, row.companyType);
+      },
+      // 单位地区字典翻译
+      companyRegionFormat(row, column) {
+        return this.selectDictLabel(this.companyRegionOptions, row.companyRegion);
+      },
+      // 专业类别字典翻译
+      specialtyTypeFormat(row, column) {
+        return this.selectDictLabel(this.specialtyTypeOptions, row.specialtyType);
       },
       // 取消按钮
       cancel() {
