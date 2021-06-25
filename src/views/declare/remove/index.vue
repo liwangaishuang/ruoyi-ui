@@ -299,7 +299,7 @@
       <el-table-column type="selection" width="55" align="center" />
       <el-table-column label="人员姓名" align="center" prop="userName" />
       <el-table-column label="年龄" align="center" prop="age" />
-      <el-table-column label="单位名称" align="center" prop="companyName" />
+      <el-table-column label="单位" align="center" prop="companyName" />
       <el-table-column label="单位地区" :formatter="companyRegionFormat" align="center" prop="companyRegion" />
       <el-table-column label="单位类型" :formatter="companyTypeFormat" align="center" prop="companyType" />
       <el-table-column label="专业类别" :formatter="specialtyTypeFormat" align="center" prop="companyType" />

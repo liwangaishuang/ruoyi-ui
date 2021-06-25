@@ -155,7 +155,7 @@
       <el-table-column type="selection" width="55" align="center" />
       <el-table-column label="用户姓名" align="center" prop="userName" />
       <el-table-column label="年龄" align="center" prop="age" />
-      <el-table-column label="单位名称" align="center" prop="companyName" />
+      <el-table-column label="单位" align="center" prop="companyName" />
       <el-table-column label="单位地区" :formatter="companyRegionFormat" align="center" prop="companyRegion" />
       <el-table-column label="单位类型" :formatter="companyTypeFormat" align="center" prop="companyType" />
       <el-table-column label="专业类别" :formatter="specialtyTypeFormat" align="center" prop="specialtyType" />
@@ -168,27 +168,6 @@
       <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
         <template slot-scope="scope">
             <router-link :to="{path:'../information', query: {id:scope.row.id}}" target="_blank" style="color: #1c84c6">查看</router-link>
-          <!--<el-button
-            size="mini"
-            type="text"
-            icon="el-icon-share"
-            @click="skipNewItem(scope.row)"
-          ></el-button>-->
-          <!--修改、删除-->
-          <!--<el-button
-            size="mini"
-            type="text"
-            icon="el-icon-edit"
-            @click="handleUpdate(scope.row)"
-            v-hasPermi="['system:user:edit']"
-          >修改</el-button>
-          <el-button
-            size="mini"
-            type="text"
-            icon="el-icon-delete"
-            @click="handleDelete(scope.row)"
-            v-hasPermi="['system:user:remove']"
-          >删除</el-button>-->
         </template>
       </el-table-column>
     </el-table>
