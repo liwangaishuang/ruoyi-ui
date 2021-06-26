@@ -1,7 +1,7 @@
 <template>
   <div class="app-container">
     <el-form :model="queryParams" ref="queryForm" :inline="true" v-show="showSearch" label-width="68px">
-      <el-form-item label="用户姓名" prop="userName">
+      <el-form-item label="申报人" prop="userName">
         <el-input
           v-model="queryParams.userName"
           placeholder="请输入用户姓名"
@@ -30,7 +30,7 @@
           style="width:45%"
         />
       </el-form-item>
-      <el-form-item label="单位名称" prop="companyName">
+      <el-form-item label="单位" prop="companyName">
         <el-input
           v-model="queryParams.companyName"
           placeholder="请输入单位名称"
@@ -87,79 +87,25 @@
         <el-button
           type="info"
           plain
-          icon="el-icon-message"
           size="mini"
           :loading="exportLoading"
           @click="handleExport"
           v-hasPermi="['system:user:export']"
-        >发送短信</el-button>
-      </el-col>
-      <el-col :span="1.5">
-        <el-button
-          type="primary"
-          plain
-          icon="el-icon-star-off"
-          size="mini"
-          :loading="exportLoading"
-          @click="handleExport"
-          v-hasPermi="['system:user:export']"
-        >发送短信</el-button>
-      </el-col>
-      <el-col :span="1.5">
-        <el-button
-          type="danger"
-          plain
-          icon="el-icon-delete"
-          size="mini"
-          :disabled="multiple"
-          @click="handleDelete"
-          v-hasPermi="['system:user:remove']"
-        >移除人才库</el-button>
-      </el-col>
-      <el-col :span="1.5">
-        <el-button
-          type="primary"
-          plain
-          icon="el-icon-download"
-          size="mini"
-          :loading="exportLoading"
-          @click="handleExport"
-          v-hasPermi="['system:user:export']"
-        >下载简历</el-button>
-      </el-col>
-      <el-col :span="1.5">
-        <el-button
-          type="primary"
-          plain
-          icon="el-icon-download"
-          size="mini"
-          :loading="exportLoading"
-          @click="handleExport"
-          v-hasPermi="['system:user:export']"
-        >下载登记表</el-button>
-      </el-col>
-      <el-col :span="1.5">
-        <el-button
-          type="warning"
-          plain
-          icon="el-icon-download"
-          size="mini"
-          :loading="exportLoading"
-          @click="handleExport"
-          v-hasPermi="['system:user:export']"
-        >导出</el-button>
+        >审批<i class="el-icon-s-check el-icon--right"></i></el-button>
       </el-col>
       <right-toolbar :showSearch.sync="showSearch" @queryTable="getList"></right-toolbar>
     </el-row>
 
     <el-table v-loading="loading" :data="userList" @selection-change="handleSelectionChange">
       <el-table-column type="selection" width="55" align="center" />
-      <el-table-column label="人员姓名" align="center" prop="userName" />
+      <el-table-column label="申报人" align="center" prop="userName" />
       <el-table-column label="年龄" align="center" prop="age" />
       <el-table-column label="单位" align="center" prop="companyName" />
-      <el-table-column label="移除时间" align="center" prop="updateTime"/>
-      <el-table-column label="移除结束时间" align="center" prop="updateTime"/>
-      <el-table-column label="移除原因" align="center"/>
+      <el-table-column label="申报时间" align="center" prop="updateTime"/>
+      <el-table-column label="审批状态" align="center"/>
+      <el-table-column label="审批结果" align="center"/>
+      <el-table-column label="审批时间" align="center"/>
+      <el-table-column label="审批说明" align="center"/>
       <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
         <template slot-scope="scope">
           <router-link :to="{path:'../information', query: {id:scope.row.id}}" target="_blank" style="color: #1c84c6">查看</router-link>

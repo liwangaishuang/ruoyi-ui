@@ -239,17 +239,6 @@
       </el-col>
       <el-col :span="1.5">
         <el-button
-          type="primary"
-          plain
-          icon="el-icon-star-off"
-          size="mini"
-          :loading="exportLoading"
-          @click="handleExport"
-          v-hasPermi="['system:user:export']"
-        >发送短信</el-button>
-      </el-col>
-      <el-col :span="1.5">
-        <el-button
           type="danger"
           plain
           icon="el-icon-delete"
@@ -257,7 +246,7 @@
           :disabled="multiple"
           @click="handleDelete"
           v-hasPermi="['system:user:remove']"
-        >移除人才库</el-button>
+        >移回人才库</el-button>
       </el-col>
       <el-col :span="1.5">
         <el-button
@@ -285,12 +274,11 @@
         <el-button
           type="warning"
           plain
-          icon="el-icon-download"
           size="mini"
           :loading="exportLoading"
           @click="handleExport"
           v-hasPermi="['system:user:export']"
-        >导出</el-button>
+        >导出<i class="el-icon-upload el-icon--right"></i></el-button>
       </el-col>
       <right-toolbar :showSearch.sync="showSearch" @queryTable="getList"></right-toolbar>
     </el-row>
