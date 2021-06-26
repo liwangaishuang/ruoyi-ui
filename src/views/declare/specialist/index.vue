@@ -1,10 +1,10 @@
 <template>
   <div class="app-container">
     <el-form :model="queryParams" ref="queryForm" :inline="true" v-show="showSearch" label-width="70px">
-      <el-form-item label="用户姓名" prop="userName">
+      <el-form-item label="人员姓名" prop="userName">
         <el-input
           v-model="queryParams.userName"
-          placeholder="请输入用户姓名"
+          placeholder="请输入人员姓名"
           clearable
           size="small"
           @keyup.enter.native="handleQuery"
@@ -12,14 +12,25 @@
       </el-form-item>
       <el-form-item label="年龄" prop="age">
         <el-input
-          v-model="queryParams.age"
+          v-model="queryParams.minAge"
           placeholder="请输入年龄"
           clearable
           size="small"
           @keyup.enter.native="handleQuery"
+          @keyup.native="minNumber"
+          style="width:45%"
+        /> --
+        <el-input
+          v-model="queryParams.maxAge"
+          placeholder="请输入年龄"
+          clearable
+          size="small"
+          @keyup.enter.native="handleQuery"
+          @keyup.native="maxNumber"
+          style="width:45%"
         />
       </el-form-item>
-      <el-form-item label="单位名称" prop="companyName">
+      <el-form-item label="单位" prop="companyName">
         <el-input
           v-model="queryParams.companyName"
           placeholder="请输入单位名称"
@@ -66,6 +77,26 @@
               :value="dict.dictValue"
             ></el-option>
           </el-select>
+        </el-form-item>
+        <el-form-item label="担任评审专家最近年度：">
+          <el-input
+            v-model="queryParams.maxAge"
+            placeholder=""
+            clearable
+            size="small"
+            @keyup.enter.native="handleQuery"
+            @keyup.native="minNumber"
+            style="width:45%"
+          /> --
+          <el-input
+            v-model="queryParams.maxAge"
+            placeholder=""
+            clearable
+            size="small"
+            @keyup.enter.native="handleQuery"
+            @keyup.native="maxNumber"
+            style="width:45%"
+          />
         </el-form-item>
         <el-form-item label="更新时间">
           <el-date-picker
@@ -153,14 +184,20 @@
 
     <el-table v-loading="loading" :data="userList" @selection-change="handleSelectionChange">
       <el-table-column type="selection" width="55" align="center" />
-      <el-table-column label="用户姓名" align="center" prop="userName" />
+      <el-table-column label="人员姓名" align="center" prop="userName" />
       <el-table-column label="年龄" align="center" prop="age" />
       <el-table-column label="单位" align="center" prop="companyName" />
       <el-table-column label="单位地区" :formatter="companyRegionFormat" align="center" prop="companyRegion" />
       <el-table-column label="单位类型" :formatter="companyTypeFormat" align="center" prop="companyType" />
       <el-table-column label="专业类别" :formatter="specialtyTypeFormat" align="center" prop="specialtyType" />
+      <el-table-column label="担任评审专家最近年度" align="center" />
       <el-table-column label="主要行业领域" align="center" prop="mainIndustry" />
-      <el-table-column label="更新时间" align="center" prop="updateTime" width="180">
+      <el-table-column label="初次申报时间" align="center" prop="updateTime" width="180">
+        <template slot-scope="scope">
+          <span>{{ parseTime(scope.row.createTime, '{y}-{m}-{d}') }}</span>
+        </template>
+      </el-table-column>
+      <el-table-column label="最近更新时间" align="center" prop="updateTime" width="180">
         <template slot-scope="scope">
           <span>{{ parseTime(scope.row.updateTime, '{y}-{m}-{d}') }}</span>
         </template>
