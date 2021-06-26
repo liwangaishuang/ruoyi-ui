@@ -594,7 +594,7 @@
 </template>
 
 <script>
-import { listUser, getUser, delUser, addUser, updateUser, exportUser,getNowInfo } from "@/api/declare/user";
+import { listUser, getUser, delUser, addUser, updateUser, exportUser} from "@/api/declare/user";
 import ImageUpload from '@/components/ImageUpload';
 import Editor from '@/components/Editor';
 import '../../css/专家申报/styles.css';
@@ -830,7 +830,7 @@ export default {
     /**接收该用户的信息，赋值给queryParams*/
     getNow() {
       this.loading = true;
-      getNowInfo().then(response => {
+      getUser().then(response => {
         this.queryParams=response.data;
       });
     },

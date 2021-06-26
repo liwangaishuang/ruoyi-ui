@@ -269,7 +269,7 @@
       components: {
         ElButton,
         ElForm},
-      name: "geren_zhuce",
+      name: "personage_register",
       data() {
         return {
           form: {

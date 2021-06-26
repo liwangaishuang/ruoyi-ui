@@ -43,7 +43,7 @@
             <span v-else>登 录 中...</span>
           </el-button>
           <div>
-            <el-link type="primary" style="float:right" href="guanli_wangji">忘记密码/账号</el-link>
+            <el-link type="primary" style="float:right" href="admin_forget.vue">忘记密码/账号</el-link>
           </div>
         </el-form-item>
 

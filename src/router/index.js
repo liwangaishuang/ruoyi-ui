@@ -49,18 +49,18 @@ export const constantRoutes = [
     hidden: true
   },
   {
-    path: '/geren_zhuce',
-    component: (resolve) => require(['@/views/geren_zhuce'], resolve),
+    path: '/personage_register',
+    component: (resolve) => require(['@/views/personage_register'], resolve),
     hidden: true
   },
   {
-    path: '/guanli_wangji',
-    component: (resolve) => require(['@/views/guanli_wangji'], resolve),
+    path: '/admin_forget.vue',
+    component: (resolve) => require(['@/views/admin_forget.vue'], resolve),
     hidden: true
   },
   {
-    path: '/geren_wangji',
-    component: (resolve) => require(['@/views/geren_wangji'], resolve),
+    path: '/personal_forget',
+    component: (resolve) => require(['@/views/personal_forget'], resolve),
     hidden: true
   },
   {

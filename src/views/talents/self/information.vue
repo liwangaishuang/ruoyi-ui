@@ -379,7 +379,7 @@
 </template>
 
 <script>
-import { getNowInfo,listUser,exportWord } from "@/api/declare/user";
+import { getUser,listUser,exportWord } from "@/api/declare/user";
 import ImageUpload from '@/components/ImageUpload';
 import Editor from '@/components/Editor';
 import '../../css/专家申报/styles_information.css';
@@ -581,7 +581,7 @@ export default {
     /**接收该用户的信息，赋值给queryParams*/
     getNow(id) {
       this.loading = true;
-        getNowInfo(id).then(response => {
+      getUser(id).then(response => {
           this.queryParams=response.data;
       });
     },
