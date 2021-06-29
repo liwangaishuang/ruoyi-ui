@@ -1,9 +1,9 @@
 import request from '@/utils/request'
 
 // 查询用户列表
-export function listUser(query) {
+export function examineListUser(query) {
   return request({
-    url: '/declare/specialist/list',
+    url: '/declare/specialist/examine/list',
     method: 'get',
     params: query
   })

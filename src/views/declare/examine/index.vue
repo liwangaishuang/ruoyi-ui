@@ -39,13 +39,13 @@
           @keyup.enter.native="handleQuery"
         />
       </el-form-item>
-      <el-form-item label="审批状态" prop="companyRegion">
+      <el-form-item label="审批状态" prop="status">
         <el-select v-model="queryParams.status" placeholder="请选择审批状态" clearable size="small">
           <el-option
-            v-for="item in options"
-            :key="item.value"
-            :label="item.label"
-            :value="item.value"
+            v-for="dict in statusOptions"
+            :key="dict.dictValue"
+            :label="dict.dictLabel"
+            :value="dict.dictValue"
           ></el-option>
         </el-select>
       </el-form-item>
@@ -66,13 +66,13 @@
           end-placeholder="结束日期">
         </el-date-picker>
       </el-form-item>
-      <el-form-item label="审批结果" prop="companyRegion">
-        <el-select v-model="queryParams.status" placeholder="请选择审批结果" clearable size="small">
+      <el-form-item label="审批结果" prop="examineStatus">
+        <el-select v-model="queryParams.examineStatus" placeholder="请选择审批结果" clearable size="small">
           <el-option
-            v-for="item in options"
-            :key="item.value"
-            :label="item.label"
-            :value="item.value"
+            v-for="dict in approvalResultOptions"
+            :key="dict.dictValue"
+            :label="dict.dictLabel"
+            :value="dict.dictValue"
           ></el-option>
         </el-select>
       </el-form-item>
@@ -101,11 +101,11 @@
       <el-table-column label="申报人" align="center" prop="userName" />
       <el-table-column label="年龄" align="center" prop="age" />
       <el-table-column label="单位" align="center" prop="companyName" />
-      <el-table-column label="申报时间" align="center" prop="updateTime"/>
-      <el-table-column label="审批状态" align="center"/>
-      <el-table-column label="审批结果" align="center"/>
-      <el-table-column label="审批时间" align="center"/>
-      <el-table-column label="审批说明" align="center"/>
+      <el-table-column label="申报时间" align="center" prop="createTime"/>
+      <el-table-column label="审批状态" :formatter="statusFormat" prop="status" align="center"/>
+      <el-table-column label="审批结果" :formatter="examineStatusFormat" prop="examineStatus" align="center"/>
+      <el-table-column label="审批时间" prop="auditTime" align="center"/>
+      <el-table-column label="审批说明" prop="auditExplain" align="center"/>
       <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
         <template slot-scope="scope">
           <router-link :to="{path:'../information', query: {id:scope.row.id}}" target="_blank" style="color: #1c84c6">查看</router-link>
@@ -124,7 +124,7 @@
 </template>
 
 <script>
-  import { listUser, getUser, delUser, addUser, updateUser, exportUser } from "@/api/declare/user";
+  import { examineListUser, getUser, delUser, addUser, updateUser, exportUser } from "@/api/declare/user";
   import Editor from '@/components/Editor';
   import ElFormItem from "element-ui/packages/form/src/form-item";
 
@@ -161,16 +161,20 @@
         companyTypeOptions: [],
         // 单位地区字典
         companyRegionOptions: [],
+        //审批状态
+        statusOptions: [],
         // 专业类别字典
         specialtyTypeOptions: [],
+        // 审批结果
+        approvalResultOptions: [],
         //审批状态
-        options: [{
+        /*options: [{
           value: '选项1',
           label: '未审批'
         }, {
           value: '选项2',
           label: '已审批'
-        }],
+        }],*/
         // 查询参数
         queryParams: {
           pageNum: 1,
@@ -223,7 +227,10 @@
           resumeSite: null,
           createTime:null,
           updateTime:null,
-          status:null
+          status:null,
+          examineStatus :null,
+          auditTime :null,
+          auditExplain :null,
     },
       // 表单参数
       form: {},
@@ -268,18 +275,24 @@
       this.getDicts("company_region").then(response => {
         this.companyRegionOptions = response.data;
       });
+      this.getDicts("approval_status").then(response => {
+        this.statusOptions = response.data;
+      });
       this.getDicts("company_type").then(response => {
         this.companyTypeOptions = response.data;
       });
       this.getDicts("specialty_type").then(response => {
         this.specialtyTypeOptions = response.data;
       });
+      this.getDicts("approval_result").then(response => {
+        this.approvalResultOptions = response.data;
+      });
     },
     methods: {
       /** 查询用户列表 */
       getList() {
         this.loading = true;
-        listUser(this.queryParams).then(response => {
+        examineListUser(this.queryParams).then(response => {
           this.userList = response.rows;
           this.total = response.total;
           this.loading = false;
@@ -296,6 +309,14 @@
       // 单位地区字典翻译
       companyRegionFormat(row, column) {
         return this.selectDictLabel(this.companyRegionOptions, row.companyRegion);
+      },
+      // 审批状态字典翻译
+      statusFormat(row, column) {
+        return this.selectDictLabel(this.statusOptions, row.status);
+      },
+      // 审批结果字典翻译
+      examineStatusFormat(row, column) {
+        return this.selectDictLabel(this.approvalResultOptions, row.examineStatus);
       },
       // 专业类别字典翻译
       specialtyTypeFormat(row, column) {
