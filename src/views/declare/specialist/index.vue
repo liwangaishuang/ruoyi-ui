@@ -190,9 +190,9 @@
       <el-table-column label="单位地区" :formatter="companyRegionFormat" align="center" prop="companyRegion" />
       <el-table-column label="单位类型" :formatter="companyTypeFormat" align="center" prop="companyType" />
       <el-table-column label="专业类别" :formatter="specialtyTypeFormat" align="center" prop="specialtyType" />
-      <el-table-column label="担任评审专家最近年度" align="center" />
+      <el-table-column label="担任评审专家最近年度" prop="actYear" align="center" />
       <el-table-column label="主要行业领域" align="center" prop="mainIndustry" />
-      <el-table-column label="初次申报时间" align="center" prop="updateTime" width="180">
+      <el-table-column label="初次申报时间" align="center" prop="createTime" width="180">
         <template slot-scope="scope">
           <span>{{ parseTime(scope.row.createTime, '{y}-{m}-{d}') }}</span>
         </template>
@@ -410,7 +410,7 @@
 </template>
 
 <script>
-  import { listUser, getUser, delUser, addUser, updateUser, exportUser } from "@/api/declare/user";
+  import { specialistListUser, getUser, delUser, addUser, updateUser, exportUser } from "@/api/declare/user";
   import Editor from '@/components/Editor';
   import ElFormItem from "element-ui/packages/form/src/form-item";
 
@@ -421,9 +421,6 @@
     },
     data() {
       return {
-        //时间区间两端数据
-        createTime: '',
-        updateTime: '',
         // 遮罩层
         loading: true,
         // 导出遮罩层
@@ -501,7 +498,8 @@
           honorsOrTitles: null,
           resumeSite: null,
           createTime:null,
-          updateTime:null
+          updateTime:null,
+          actYear:null,
     },
       // 表单参数
       form: {},
@@ -579,7 +577,7 @@
       /** 查询用户列表 */
       getList() {
         this.loading = true;
-        listUser(this.queryParams).then(response => {
+        specialistListUser(this.queryParams).then(response => {
           this.userList = response.rows;
           this.total = response.total;
           this.loading = false;

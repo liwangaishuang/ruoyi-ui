@@ -1,118 +1,6 @@
 <template>
   <div class="app-container">
     <el-form :model="queryParams" ref="queryForm" :inline="true" v-show="showSearch" label-width="68px">
-      <!--<el-row>
-        <el-col :span="6" :xs="24">
-          <el-form-item label="用户姓名" prop="userName" style="width:150%">
-            <el-input
-              v-model="queryParams.userName"
-              placeholder="请输入用户姓名"
-              clearable
-              size="small"
-              @keyup.enter.native="handleQuery"
-            />
-          </el-form-item>
-        </el-col>
-        <el-col :span="8" :xs="24">
-          <el-form-item label="年龄" prop="age" style="width:150%">
-            <el-input
-              v-model="queryParams.minAge"
-              placeholder="请输入年龄"
-              clearable
-              size="small"
-              @keyup.enter.native="handleQuery"
-              @keyup.native="minNumber"
-              style="width:28%"
-            /> -
-            <el-input
-              v-model="queryParams.maxAge"
-              placeholder="请输入年龄"
-              clearable
-              size="small"
-              @keyup.enter.native="handleQuery"
-              @keyup.native="maxNumber"
-              style="width:28%"
-            />
-          </el-form-item>
-        </el-col>
-        <el-col :span="7" :xs="24">
-          <el-form-item label="单位名称" prop="companyName">
-            <el-input
-              v-model="queryParams.companyName"
-              placeholder="请输入单位名称"
-              clearable
-              size="small"
-              @keyup.enter.native="handleQuery"
-            />
-          </el-form-item>
-        </el-col>
-      </el-row>
-      <el-row>
-        <el-col :span="7" :xs="24">
-          <el-form-item label="单位地区" prop="companyRegion" style="width:150%">
-            <el-select v-model="queryParams.companyRegion" placeholder="请选择单位地区" clearable size="small">
-              <el-option label="请选择字典生成" value="" />
-            </el-select>
-          </el-form-item>
-        </el-col>
-        <el-col :span="7" :xs="24" >
-          <el-form-item label="单位类型" prop="companyType" style="width:150%">
-            <el-select v-model="queryParams.companyType" placeholder="请选择单位类型" clearable size="small" >
-              <el-option label="请选择字典生成" value="" />
-            </el-select>
-          </el-form-item>
-        </el-col>
-        <el-col :span="7" :xs="24">
-          &lt;!&ndash;原名：主要行业领域&ndash;&gt;
-          <el-form-item label="专业领域" prop="mainIndustry" style="width:150%">
-            <el-select v-model="queryParams.mainIndustry" placeholder="专业领域" clearable size="small">
-              <el-option label="请选择字典生成" value="" />
-            </el-select>
-          </el-form-item>
-        </el-col>
-      </el-row>
-      <el-row>
-        <el-col :span="6" :xs="24" >
-          <el-form-item label="专业类别" prop="companyType" style="display: inline-block;width:150%">
-            <el-select v-model="queryParams.companyType" placeholder="全部" clearable size="small" >
-              <el-option label="请选择字典生成" value="" />
-            </el-select>
-          </el-form-item>
-        </el-col>
-        <el-col :span="8" :xs="24">
-          <el-form-item label="评审年度" style="width:200%">
-            <el-input
-              v-model="queryParams.minAge"
-              placeholder=""
-              clearable
-              size="small"
-              @keyup.enter.native="handleQuery"
-              @keyup.native="minNumber"
-              style="width:18%"
-            /> -
-            <el-input
-              v-model="queryParams.maxAge"
-              placeholder=""
-              clearable
-              size="small"
-              @keyup.enter.native="handleQuery"
-              @keyup.native="maxNumber"
-              style="width:18%"
-            />
-          </el-form-item>
-        </el-col>
-        <el-col :span="8" :xs="24">
-          <el-form-item label="最近更新时间">
-            <el-date-picker
-              v-model="updateTime"
-              type="daterange"
-              range-separator="至"
-              start-placeholder="开始日期"
-              end-placeholder="结束日期">
-            </el-date-picker>
-          </el-form-item>
-        </el-col>
-      </el-row>-->
       <el-form-item label="人员姓名" prop="userName">
         <el-input
           v-model="queryParams.userName"
@@ -290,11 +178,11 @@
       <el-table-column label="单位" align="center" prop="companyName" />
       <el-table-column label="单位地区" :formatter="companyRegionFormat" align="center" prop="companyRegion" />
       <el-table-column label="单位类型" :formatter="companyTypeFormat" align="center" prop="companyType" />
-      <el-table-column label="专业类别" :formatter="specialtyTypeFormat" align="center" prop="companyType" />
-      <el-table-column label="担任评审专家最近年度" align="center"/>
-      <el-table-column label="移除时间" align="center" prop="updateTime"/>
-      <el-table-column label="移除结束时间" align="center" prop="updateTime"/>
-      <el-table-column label="移除原因" align="center"/>
+      <el-table-column label="专业类别" :formatter="specialtyTypeFormat" align="center" prop="specialtyType" />
+      <el-table-column label="担任评审专家最近年度" align="center" prop="actYear"/>
+      <el-table-column label="移除时间" align="center" prop="removeTime"/>
+      <el-table-column label="移除结束时间" align="center" prop="removeOverTime"/>
+      <el-table-column label="移除原因" align="center" prop="removeCause"/>
       <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
         <template slot-scope="scope">
           <router-link :to="{path:'../information', query: {id:scope.row.id}}" target="_blank" style="color: #1c84c6">查看</router-link>
@@ -313,7 +201,7 @@
 </template>
 
 <script>
-  import { listUser, getUser, delUser, addUser, updateUser, exportUser } from "@/api/declare/user";
+  import { selectRemoveList, getUser, delUser, addUser, updateUser, exportUser } from "@/api/declare/user";
   import Editor from '@/components/Editor';
   import ElFormItem from "element-ui/packages/form/src/form-item";
 
@@ -406,7 +294,10 @@
           honorsOrTitles: null,
           resumeSite: null,
           createTime:null,
-          updateTime:null
+          updateTime:null,
+          removeTime:null,
+          removeOverTime:null,
+          removeCause:null
     },
       // 表单参数
       form: {},
@@ -462,7 +353,7 @@
       /** 查询用户列表 */
       getList() {
         this.loading = true;
-        listUser(this.queryParams).then(response => {
+        selectRemoveList(this.queryParams).then(response => {
           this.userList = response.rows;
           this.total = response.total;
           this.loading = false;

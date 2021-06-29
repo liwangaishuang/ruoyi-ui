@@ -1,9 +1,36 @@
 import request from '@/utils/request'
 
-// 查询用户列表
+// 查询人才专家库列表
+export function specialistListUser(query) {
+  return request({
+    url: '/declare/specialist/specialist/list',
+    method: 'get',
+    params: query
+  })
+}
+
+// 查询人才移除管理列表
+export function selectRemoveList(query) {
+  return request({
+    url: '/declare/specialist/remove/list',
+    method: 'get',
+    params: query
+  })
+}
+
+// 查询人才申报审批列表
 export function examineListUser(query) {
   return request({
     url: '/declare/specialist/examine/list',
+    method: 'get',
+    params: query
+  })
+}
+
+// 查询用户列表
+export function listUser(query) {
+  return request({
+    url: '/declare/specialist/list',
     method: 'get',
     params: query
   })
