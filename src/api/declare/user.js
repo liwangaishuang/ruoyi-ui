@@ -27,6 +27,15 @@ export function examineListUser(query) {
   })
 }
 
+// 查询人才申报审批列表
+export function registeredList(query) {
+  return request({
+    url: '/declare/specialist/registered/list',
+    method: 'get',
+    params: query
+  })
+}
+
 // 查询用户列表
 export function listUser(query) {
   return request({
