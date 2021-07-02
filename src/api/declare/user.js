@@ -27,12 +27,25 @@ export function examineListUser(query) {
   })
 }
 
-// 查询人才申报审批列表
+// 查询注册用户列表
 export function registeredList(query) {
   return request({
     url: '/declare/specialist/registered/list',
     method: 'get',
     params: query
+  })
+}
+
+// 用户状态修改
+export function changeUserStatus(userId, status) {
+  const data = {
+    userId,
+    status
+  }
+  return request({
+    url: '/system/user/changeStatus',
+    method: 'put',
+    data: data
   })
 }
 

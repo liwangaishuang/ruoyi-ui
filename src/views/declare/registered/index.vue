@@ -42,7 +42,7 @@
           </el-select>
         </el-form-item>
         <el-form-item label="单位类型" prop="companyType">
-          <el-select v-model="queryParams.companyType" placeholder="请选择单位类型" clearable size="small" >
+          <el-select v-model="queryParams.companyType" placeholder="请选择单位类型" clearable size="small">
             <el-option
               v-for="dict in companyTypeOptions"
               :key="dict.dictValue"
@@ -52,7 +52,7 @@
           </el-select>
         </el-form-item>
         <el-form-item label="帐号状态" prop="status">
-          <el-select v-model="queryParams.status" placeholder="请选择单位类型" clearable size="small" >
+          <el-select v-model="queryParams.status" placeholder="请选择单位类型" clearable size="small">
             <el-option
               v-for="dict in statusOptions"
               :key="dict.dictValue"
@@ -75,10 +75,9 @@
           type="info"
           plain
           size="mini"
-          :loading="exportLoading"
-          @click="handleExport"
-          v-hasPermi="['system:user:export']"
-        >锁定<i class="el-icon-s-check el-icon--right"></i></el-button>
+          @click="handleStatusChangeForbid"
+        >锁定<i class="el-icon-lock el-icon--right"></i>
+        </el-button>
       </el-col>
       <el-col :span="1.5">
         <el-button
@@ -86,9 +85,9 @@
           plain
           size="mini"
           :loading="exportLoading"
-          @click="handleExport"
+          @click="handleStatusChangeStart"
           v-hasPermi="['system:user:export']"
-        >解锁<i class="el-icon-s-check el-icon--right"></i></el-button>
+        >解锁<i class="el-icon-unlock el-icon--right"></i></el-button>
       </el-col>
       <right-toolbar :showSearch.sync="showSearch" @queryTable="getList"></right-toolbar>
     </el-row>
@@ -104,7 +103,8 @@
       <el-table-column label="帐号状态" :formatter="statusFormat" align="center" prop="status" />
       <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
         <template slot-scope="scope">
-          <router-link :to="{path:'../information', query: {id:scope.row.id}}" target="_blank" style="color: #1c84c6">查看</router-link>
+          <el-button type="text" @click="handleUpdate(scope.row)"><i class="el-icon-document"></i></el-button>
+          <el-button type="text" @click="handleUpdate(scope.row)"><i class="el-icon-key"></i></el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -120,7 +120,7 @@
 </template>
 
 <script>
-  import { registeredList, getUser, delUser, addUser, updateUser, exportUser } from "@/api/declare/user";
+  import { registeredList, getUser, delUser, addUser, updateUser, exportUser,changeUserStatus } from "@/api/declare/user";
   import Editor from '@/components/Editor';
   import ElFormItem from "element-ui/packages/form/src/form-item";
 
@@ -216,6 +216,8 @@
           }
         }]
       },
+      // 多选
+      multiselection: []
     };
     },
     created() {
@@ -318,9 +320,10 @@
           resultsOrPatents: null,
           honorsOrTitles: null,
           resumeSite: null,
-          createTime:null,
-          updateTime:null
-      };
+          createTime: null,
+          updateTime: null,
+          status: null
+        };
         this.resetForm("form");
       },
       /** 搜索按钮操作 */
@@ -342,6 +345,7 @@
       },
       // 多选框选中数据
       handleSelectionChange(selection) {
+        this.multiselection = selection;
         this.ids = selection.map(item => item.id)
         this.single = selection.length!==1
         this.multiple = !selection.length
@@ -396,6 +400,43 @@
           this.msgSuccess("删除成功");
         })
       },
+
+      /**用户状态修改为禁用*/
+      handleStatusChangeForbid() {
+        let mm=this.multiselection;
+        this.$confirm('该操作将导致您所选择的用户会被锁定，不能正常登录系统，您确定要继续吗?', "警告", {
+          confirmButtonText: "确定",
+          cancelButtonText: "取消",
+          type: "warning"
+        }).then(function() {
+          for (let i=0;i<mm.length;i++){
+            let row=mm[i];
+            changeUserStatus(row.userId, 1);
+          }
+        }).then(() => {
+          this.handleQuery();
+          this.msgSuccess("操作成功");
+        });
+      },
+
+      /**用户状态修改为启用*/
+      handleStatusChangeStart() {
+        let mm=this.multiselection;
+        this.$confirm('该操作将解锁您所选择的用户，解锁后的用户可正常登录系统，您确定要继续吗？', "警告", {
+          confirmButtonText: "确定",
+          cancelButtonText: "取消",
+          type: "warning"
+        }).then(function() {
+          for (let i=0;i<mm.length;i++){
+            let row=mm[i];
+            changeUserStatus(row.userId, 0);
+          }
+        }).then(() => {
+          this.handleQuery();
+          this.msgSuccess("操作成功");
+        });
+      },
+
       /** 导出按钮操作 */
       handleExport() {
         const queryParams = this.queryParams;
