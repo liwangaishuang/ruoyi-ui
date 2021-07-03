@@ -9,7 +9,7 @@ import resize from './mixins/resize'
 
 export default {
   mixins: [resize],
-  name:LineChart,
+  name: 'LineChart',
   props: {
     className: {
       type: String,

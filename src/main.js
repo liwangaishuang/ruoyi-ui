@@ -13,6 +13,7 @@ import router from './router'
 import permission from './directive/permission'
 
 import './assets/icons' // icon
+import './assets/iconfont/iconfont.css' // iconfont
 import './permission' // permission registered
 import { getDicts } from "@/api/system/dict/data";
 import { getConfigKey } from "@/api/system/config";
