@@ -84,6 +84,19 @@ export function updateUser(data) {
   })
 }
 
+// 修改用户
+export function updatePassword(userId, password) {
+  const data = {
+    userId,
+    password
+  }
+  return request({
+    url: '/declare/specialist/edit',
+    method: 'put',
+    data: data
+  })
+}
+
 // 删除用户
 export function delUser(id) {
   return request({

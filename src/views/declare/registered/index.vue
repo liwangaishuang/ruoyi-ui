@@ -103,8 +103,8 @@
       <el-table-column label="帐号状态" :formatter="statusFormat" align="center" prop="status" />
       <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
         <template slot-scope="scope">
-          <el-button type="text" @click="handleUpdate"><i class="el-icon-document"></i></el-button>
-          <el-button type="text" @click="updatePassword"><i class="el-icon-key"></i></el-button>
+          <el-button type="text" @click="handleUpdate(scope.row)"><i class="el-icon-document"></i></el-button>
+          <el-button type="text" @click="updatePassword(scope.row)"><i class="el-icon-key"></i></el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -120,7 +120,7 @@
 </template>
 
 <script>
-  import { registeredList, getUser, delUser, addUser, updateUser, exportUser,changeUserStatus } from "@/api/declare/user";
+  import { registeredList, getUser, delUser, addUser, updateUser, exportUser,changeUserStatus, updatePassword } from "@/api/declare/user";
   import Editor from '@/components/Editor';
   import ElFormItem from "element-ui/packages/form/src/form-item";
 
@@ -163,18 +163,11 @@
         specialtyTypeOptions: [],
         // 审批结果
         approvalResultOptions: [],
-        //审批状态
-        /*options: [{
-          value: '选项1',
-          label: '未审批'
-        }, {
-          value: '选项2',
-          label: '已审批'
-        }],*/
         // 查询参数
         queryParams: {
           pageNum: 1,
           pageSize: 10,
+          userId: null,
           userName: null,
           nickName: null,
           companyName: null,
@@ -366,17 +359,17 @@
           this.title = "修改用户";
         });
       },
-      /** 修改按钮操作 */
-      updatePassword() {
-        this.$prompt('请输入邮箱', '提示', {
+      /** 修改密码按钮操作 */
+      updatePassword(row) {
+        let userId=row.userId;
+        this.$prompt('请输入新密码', '修改密码', {
           confirmButtonText: '确定',
           cancelButtonText: '取消',
-          inputPattern: /[\w!#$%&'*+/=?^_`{|}~-]+(?:\.[\w!#$%&'*+/=?^_`{|}~-]+)*@(?:[\w](?:[\w-]*[\w])?\.)+[\w](?:[\w-]*[\w])?/,
-          inputErrorMessage: '邮箱格式不正确'
         }).then(({ value }) => {
+          updatePassword(userId,value);
           this.$message({
             type: 'success',
-            message: '你的邮箱是: ' + value
+            message: '你的新密码是: ' + value
           });
         }).catch(() => {
           this.$message({
