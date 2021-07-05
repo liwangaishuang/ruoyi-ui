@@ -1,0 +1,51 @@
+{
+  "id": "2648956",
+  "name": "talents",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "工信部人才管理系统",
+  "glyphs": [
+    {
+      "icon_id": "1138433",
+      "name": "用户",
+      "font_class": "icon1",
+      "unicode": "e605",
+      "unicode_decimal": 58885
+    },
+    {
+      "icon_id": "1249003",
+      "name": "博士帽",
+      "font_class": "boshimao",
+      "unicode": "e601",
+      "unicode_decimal": 58881
+    },
+    {
+      "icon_id": "13638724",
+      "name": "建筑",
+      "font_class": "jianzhu",
+      "unicode": "e65b",
+      "unicode_decimal": 58971
+    },
+    {
+      "icon_id": "1239935",
+      "name": "对号2",
+      "font_class": "duihao2",
+      "unicode": "e69e",
+      "unicode_decimal": 59038
+    },
+    {
+      "icon_id": "19689705",
+      "name": "圆圈",
+      "font_class": "round",
+      "unicode": "eb74",
+      "unicode_decimal": 60276
+    },
+    {
+      "icon_id": "8428204",
+      "name": "refresh",
+      "font_class": "refresh",
+      "unicode": "e61a",
+      "unicode_decimal": 58906
+    }
+  ]
+}

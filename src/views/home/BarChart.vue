@@ -11,7 +11,7 @@ const animationDuration = 6000
 
 export default {
   mixins: [resize],
-  name:BarChart,
+  name: 'BarChart',
   props: {
     className: {
       type: String,

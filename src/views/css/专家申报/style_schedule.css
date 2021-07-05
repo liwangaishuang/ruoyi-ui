@@ -1,29 +1,31 @@
-
-#div_1{
+#div_1 {
   margin: 0 auto;
   text-align: center;
-  border: 1px solid black;
-  width: 80%;
+  padding: 0px 100px;
+  /*border: 1px solid black;
+  width: 80%;*/
 }
 
-#p_2{
-  font-size: 30px;
+#p_2 {
+  padding-top: 20px;
+  font-size: 36px;
   color: blue;
   font-weight: bold;
 }
 
-#img_3{
+#img_3 {
   margin: 0 auto;
   width: 80%;
   height: 80%;
 }
 
-#p_4{
+#p_4 {
+  padding-top: 30px;
   text-align: left;
   font-size: 25px;
   font-weight: bold;
 }
 
-.tableHead{
+.tableHead {
   font-size: 30px;
 }
