@@ -103,8 +103,8 @@
       <el-table-column label="帐号状态" :formatter="statusFormat" align="center" prop="status" />
       <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
         <template slot-scope="scope">
-          <el-button type="text" @click="handleUpdate(scope.row)"><i class="el-icon-document"></i></el-button>
-          <el-button type="text" @click="handleUpdate(scope.row)"><i class="el-icon-key"></i></el-button>
+          <el-button type="text" @click="handleUpdate"><i class="el-icon-document"></i></el-button>
+          <el-button type="text" @click="updatePassword"><i class="el-icon-key"></i></el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -364,6 +364,25 @@
           this.form = response.data;
           this.open = true;
           this.title = "修改用户";
+        });
+      },
+      /** 修改按钮操作 */
+      updatePassword() {
+        this.$prompt('请输入邮箱', '提示', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          inputPattern: /[\w!#$%&'*+/=?^_`{|}~-]+(?:\.[\w!#$%&'*+/=?^_`{|}~-]+)*@(?:[\w](?:[\w-]*[\w])?\.)+[\w](?:[\w-]*[\w])?/,
+          inputErrorMessage: '邮箱格式不正确'
+        }).then(({ value }) => {
+          this.$message({
+            type: 'success',
+            message: '你的邮箱是: ' + value
+          });
+        }).catch(() => {
+          this.$message({
+            type: 'info',
+            message: '取消输入'
+          });
         });
       },
       /** 提交按钮 */
