@@ -109,6 +109,66 @@
       </el-table-column>
     </el-table>
 
+    <!-- 添加或修改参数配置对话框 -->
+    <el-dialog :title="title" :visible.sync="enrollOpen" width="600px" append-to-body>
+      <el-form ref="form" :model="form" :rules="rules" label-width="100px">
+        <el-row>
+          <el-col :span="12">
+            <el-form-item label="用户账号：" prop="userName">
+              {{queryParams2.userName}}
+            </el-form-item>
+          </el-col>
+          <el-col :span="12">
+            <el-form-item label="用户姓名：" prop="nickName">
+              {{queryParams2.nickName}}
+            </el-form-item>
+          </el-col>
+        </el-row>
+        <el-row>
+          <el-col :span="12">
+            <el-form-item label="身份证号码：" prop="userIdNumber">
+              {{queryParams2.userIdNumber}}
+            </el-form-item>
+          </el-col>
+          <el-col :span="12">
+            <el-form-item label="手机号：" prop="phoneNumber">
+              {{queryParams2.phoneNumber}}
+            </el-form-item>
+          </el-col>
+        </el-row>
+        <el-row>
+          <el-col :span="24">
+            <el-form-item label="单位名称：" prop="companyName">
+              {{queryParams2.companyName}}
+            </el-form-item>
+          </el-col>
+        </el-row>
+        <el-row>
+          <el-col :span="12">
+            <el-form-item label="单位地区：" prop="companyRegion">
+              {{queryParams2.companyRegion}}
+            </el-form-item>
+          </el-col>
+          <el-col :span="12">
+            <el-form-item label="单位类型：" prop="companyType">
+              {{queryParams2.companyType}}
+            </el-form-item>
+          </el-col>
+        </el-row>
+        <el-row>
+          <el-col :span="24">
+            <el-form-item label="单位地址：" prop="companySite">
+              {{queryParams2.companySite}}
+            </el-form-item>
+          </el-col>
+        </el-row>
+      </el-form>
+      <div slot="footer" class="dialog-footer">
+        <el-button type="primary" @click="submitForm">确 定</el-button>
+        <el-button @click="cancel">取 消</el-button>
+      </div>
+    </el-dialog>
+
     <pagination
       v-show="total>0"
       :total="total"
@@ -151,6 +211,7 @@
         title: "",
         // 是否显示弹出层
         open: false,
+        enrollOpen: false,
         // 单位类型字典
         companyTypeOptions: [],
         //帐号状态
@@ -174,8 +235,23 @@
           companyType: null,
           companyRegion: null,
           phoneNumber: null,
-          status:null
-    },
+          status:null,
+          idNumber:null,
+          companySite:null,
+        },
+        queryParams2: {
+          userId: null,
+          userName: null,
+          nickName: null,
+          companyName: null,
+          companyType: null,
+          companyRegion: null,
+          phoneNumber: null,
+          status:null,
+          userIdNumber:null,
+          companySite:null,
+        },
+
       // 表单参数
       form: {},
       // 表单校验
@@ -351,13 +427,9 @@
       },
       /** 修改按钮操作 */
       handleUpdate(row) {
-        this.reset();
-        const id = row.id || this.ids
-        getUser(id).then(response => {
-          this.form = response.data;
-          this.open = true;
-          this.title = "修改用户";
-        });
+        this.queryParams2 = row
+        this.enrollOpen=true;
+        this.title = "注册用户";
       },
       /** 修改密码按钮操作 */
       updatePassword(row) {
