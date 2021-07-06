@@ -89,12 +89,17 @@
           plain
           size="mini"
           :loading="exportLoading"
-          @click="handleExport"
+          @click="dialogFormVisible  = true"
           v-hasPermi="['system:user:export']"
         >审批<i class="el-icon-s-check el-icon--right"></i></el-button>
       </el-col>
       <right-toolbar :showSearch.sync="showSearch" @queryTable="getList"></right-toolbar>
     </el-row>
+
+    <el-dialog title="收货地址" :visible.sync="dialogFormVisible">
+      <el-radio v-model="this.queryParams.radio" label="0">通过</el-radio>
+      <el-radio v-model="this.queryParams.radio" label="1">不通过</el-radio>
+    </el-dialog>
 
     <el-table v-loading="loading" :data="userList" @selection-change="handleSelectionChange">
       <el-table-column type="selection" width="55" align="center" />
@@ -127,10 +132,12 @@
   import { examineListUser, getUser, delUser, addUser, updateUser, exportUser } from "@/api/declare/user";
   import Editor from '@/components/Editor';
   import ElFormItem from "element-ui/packages/form/src/form-item";
+  import ElRadio from "element-ui/packages/radio/src/radio";
 
   export default {
     name: "User",
     components: {
+      ElRadio,
       Editor,
     },
     data() {
@@ -167,14 +174,7 @@
         specialtyTypeOptions: [],
         // 审批结果
         approvalResultOptions: [],
-        //审批状态
-        /*options: [{
-          value: '选项1',
-          label: '未审批'
-        }, {
-          value: '选项2',
-          label: '已审批'
-        }],*/
+        radio:1,
         // 查询参数
         queryParams: {
           pageNum: 1,
@@ -467,7 +467,14 @@
           this.download(response.msg);
           this.exportLoading = false;
         })
-      }
+      },
+      /** 审批按钮操作 */
+      /*examineData() {
+        this.$alert('<input type="radio"'+'v-model="radio"'+'name="radio" label="1"/>通过 ' +
+          '<input type="radio"'+'v-model="radio"'+' name="radio" label="2"/>不通过', '审批申报', {
+          dangerouslyUseHTMLString: true
+        });
+      }*/
     }
   };
 </script>
