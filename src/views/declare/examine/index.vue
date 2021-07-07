@@ -89,16 +89,27 @@
           plain
           size="mini"
           :loading="exportLoading"
-          @click="dialogFormVisible  = true"
+          :disabled="multiple"
+          @click="examineButton"
           v-hasPermi="['system:user:export']"
         >审批<i class="el-icon-s-check el-icon--right"></i></el-button>
       </el-col>
       <right-toolbar :showSearch.sync="showSearch" @queryTable="getList"></right-toolbar>
     </el-row>
 
-    <el-dialog title="收货地址" :visible.sync="dialogFormVisible">
-      <el-radio v-model="this.queryParams.radio" label="0">通过</el-radio>
-      <el-radio v-model="this.queryParams.radio" label="1">不通过</el-radio>
+    <el-dialog title="申报审批" :visible.sync="examineOpen" width="600px">
+      <el-form :model="form" label-width="70px">
+        <el-radio v-model="form.examineStatus" label="0">通过</el-radio>
+        <el-radio v-model="form.examineStatus" label="1">不通过</el-radio>
+        <el-form-item></el-form-item>
+        <el-form-item label="审批说明">
+          <el-input type="textarea" placeholder="请输入内容" v-model="form.auditExplain"></el-input>
+        </el-form-item>
+      </el-form>
+      <div slot="footer" class="dialog-footer">
+        <el-button type="primary" @click="submitForm">确 定</el-button>
+        <el-button @click="cancel">取 消</el-button>
+      </div>
     </el-dialog>
 
     <el-table v-loading="loading" :data="userList" @selection-change="handleSelectionChange">
@@ -129,7 +140,7 @@
 </template>
 
 <script>
-  import { examineListUser, getUser, delUser, addUser, updateUser, exportUser } from "@/api/declare/user";
+  import { examineListUser, getUser, delUser, addUser, updateUser, exportUser, examineUser } from "@/api/declare/user";
   import Editor from '@/components/Editor';
   import ElFormItem from "element-ui/packages/form/src/form-item";
   import ElRadio from "element-ui/packages/radio/src/radio";
@@ -137,6 +148,7 @@
   export default {
     name: "User",
     components: {
+      ElFormItem,
       ElRadio,
       Editor,
     },
@@ -162,6 +174,7 @@
         title: "",
         // 是否显示弹出层
         open: false,
+        examineOpen: false,
         // 性别(1:男2:女)字典
         userSexOptions: [],
         // 单位类型字典
@@ -231,7 +244,12 @@
           examineStatus :null,
           auditTime :null,
           auditExplain :null,
-    },
+        },
+        queryParams2:{
+          id:null,
+          examineStatus : '0',
+          auditExplain:null,
+        },
       // 表单参数
       form: {},
       // 表单校验
@@ -324,7 +342,7 @@
       },
       // 取消按钮
       cancel() {
-        this.open = false;
+        this.examineOpen = false;
         this.reset();
       },
       // 表单重置
@@ -409,34 +427,20 @@
         this.open = true;
         this.title = "添加用户";
       },
-      /** 修改按钮操作 */
-      handleUpdate(row) {
+      /** 审批按钮操作 */
+      examineButton() {
         this.reset();
-        const id = row.id || this.ids
-        getUser(id).then(response => {
-          this.form = response.data;
-          this.open = true;
-          this.title = "修改用户";
-        });
+        this.examineOpen = true;
+        this.title = "审批申报";
+
       },
       /** 提交按钮 */
       submitForm() {
-        this.$refs["form"].validate(valid => {
-          if (valid) {
-            if (this.form.id != null) {
-              updateUser(this.form).then(response => {
-                this.msgSuccess("修改成功");
-                this.open = false;
-                this.getList();
-              });
-            } else {
-              addUser(this.form).then(response => {
-                this.msgSuccess("新增成功");
-                this.open = false;
-                this.getList();
-              });
-            }
-          }
+        this.form.id=this.ids;
+        console.log(this.form.id);
+        examineUser(this.form).then(response => {
+          this.msgSuccess("修改成功");
+          this.open = false;
         });
       },
       /** 删除按钮操作 */
@@ -468,13 +472,6 @@
           this.exportLoading = false;
         })
       },
-      /** 审批按钮操作 */
-      /*examineData() {
-        this.$alert('<input type="radio"'+'v-model="radio"'+'name="radio" label="1"/>通过 ' +
-          '<input type="radio"'+'v-model="radio"'+' name="radio" label="2"/>不通过', '审批申报', {
-          dangerouslyUseHTMLString: true
-        });
-      }*/
     }
   };
 </script>

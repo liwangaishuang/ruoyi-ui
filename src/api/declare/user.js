@@ -84,6 +84,15 @@ export function updateUser(data) {
   })
 }
 
+// 注册用户审批
+export function examineUser(data) {
+  return request({
+    url: '/declare/specialist/examine',
+    method: 'put',
+    data: data
+  })
+}
+
 // 修改用户
 export function updatePassword(userId, password) {
   const data = {
@@ -102,6 +111,22 @@ export function delUser(id) {
   return request({
     url: '/declare/specialist/' + id,
     method: 'delete'
+  })
+}
+
+// 移除专家库用户
+export function removeUser(id) {
+  return request({
+    url: '/declare/specialist/remove/' + id,
+    method: 'put'
+  })
+}
+
+// 移回专家库用户
+export function retractUser(id) {
+  return request({
+    url: '/declare/specialist/retract/' + id,
+    method: 'put'
   })
 }
 

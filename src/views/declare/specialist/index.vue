@@ -142,7 +142,7 @@
           icon="el-icon-delete"
           size="mini"
           :disabled="multiple"
-          @click="handleDelete"
+          @click="handleRemove"
           v-hasPermi="['system:user:remove']"
         >移除人才库</el-button>
       </el-col>
@@ -410,7 +410,7 @@
 </template>
 
 <script>
-  import { specialistListUser, getUser, delUser, addUser, updateUser, exportUser } from "@/api/declare/user";
+  import { specialistListUser, getUser, delUser, addUser, updateUser, exportUser, removeUser } from "@/api/declare/user";
   import Editor from '@/components/Editor';
   import ElFormItem from "element-ui/packages/form/src/form-item";
 
@@ -709,18 +709,18 @@
           }
         });
       },
-      /** 删除按钮操作 */
-      handleDelete(row) {
+      /** 移除按钮操作 */
+      handleRemove(row) {
         const ids = row.id || this.ids;
-        this.$confirm('是否确认删除用户编号为"' + ids + '"的数据项?', "警告", {
+        this.$confirm('是否确认移除用户编号为"' + ids + '"的数据项?', "警告", {
           confirmButtonText: "确定",
           cancelButtonText: "取消",
           type: "warning"
         }).then(function() {
-          return delUser(ids);
+          return removeUser(ids);
         }).then(() => {
           this.getList();
-          this.msgSuccess("删除成功");
+          this.msgSuccess("移除成功");
         })
       },
       /** 导出按钮操作 */
