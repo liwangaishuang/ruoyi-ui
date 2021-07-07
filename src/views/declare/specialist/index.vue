@@ -100,7 +100,7 @@
         </el-form-item>
         <el-form-item label="更新时间">
           <el-date-picker
-            v-model="updateTime"
+            v-model="queryParams.updateTime"
             type="daterange"
             range-separator="至"
             start-placeholder="开始日期"
@@ -181,6 +181,32 @@
       </el-col>
       <right-toolbar :showSearch.sync="showSearch" @queryTable="getList"></right-toolbar>
     </el-row>
+
+    <el-dialog title="温馨提示" :visible.sync="examineOpen" width="600px">
+      <el-row :gutter="20">
+        <el-col :span="2"><el-image :src="require('@/assets/images/人才专家库/u518.svg')" style="width:40px; height: 40px;"></el-image></el-col>
+        <el-col :span="19">您确定要将所选中的人员移除出人才专家库吗？</el-col>
+      </el-row>
+      <el-form :model="form" label-width="70px">
+        <el-form-item>
+          <el-radio v-model="form.removeType" label="0">永久移除</el-radio>
+          <br/>
+          <el-radio v-model="form.removeType" label="1">自定义移除</el-radio>
+          <el-date-picker
+            v-model="form.removeOverTime"
+            type="date"
+            placeholder="选择日期">
+          </el-date-picker>
+        </el-form-item>
+        <el-form-item label="移除原因">
+          <el-input type="textarea" placeholder="请输入内容" v-model="form.removeCause"></el-input>
+        </el-form-item>
+      </el-form>
+      <div slot="footer" class="dialog-footer">
+        <el-button type="primary" @click="submitForm">确 定</el-button>
+        <el-button @click="cancel">取 消</el-button>
+      </div>
+    </el-dialog>
 
     <el-table v-loading="loading" :data="userList" @selection-change="handleSelectionChange">
       <el-table-column type="selection" width="55" align="center" />
@@ -413,10 +439,12 @@
   import { specialistListUser, getUser, delUser, addUser, updateUser, exportUser, removeUser } from "@/api/declare/user";
   import Editor from '@/components/Editor';
   import ElFormItem from "element-ui/packages/form/src/form-item";
+  import ElImage from "element-ui/packages/image/src/main";
 
   export default {
     name: "User",
     components: {
+      ElImage,
       Editor,
     },
     data() {
@@ -441,6 +469,7 @@
         title: "",
         // 是否显示弹出层
         open: false,
+        examineOpen: false,
         // 性别(1:男2:女)字典
         userSexOptions: [],
         // 单位类型字典
@@ -500,6 +529,10 @@
           createTime:null,
           updateTime:null,
           actYear:null,
+          removeOverTime:null,
+          /**移除类型(0:永久移除 1:时间移除)*/
+          removeType:null,
+          removeCause:null,
     },
       // 表单参数
       form: {},
@@ -601,7 +634,7 @@
       },
       // 取消按钮
       cancel() {
-        this.open = false;
+        this.examineOpen = false;
         this.reset();
       },
       // 表单重置
@@ -691,37 +724,16 @@
       },
       /** 提交按钮 */
       submitForm() {
-        this.$refs["form"].validate(valid => {
-          if (valid) {
-            if (this.form.id != null) {
-              updateUser(this.form).then(response => {
-                this.msgSuccess("修改成功");
-                this.open = false;
-                this.getList();
-              });
-            } else {
-              addUser(this.form).then(response => {
-                this.msgSuccess("新增成功");
-                this.open = false;
-                this.getList();
-              });
-            }
-          }
+        this.form.id=this.ids;
+        //console.log(this.form.id);
+        removeUser(this.form).then(response => {
+          this.msgSuccess("修改成功");
+          this.examineOpen = false;
         });
       },
       /** 移除按钮操作 */
-      handleRemove(row) {
-        const ids = row.id || this.ids;
-        this.$confirm('是否确认移除用户编号为"' + ids + '"的数据项?', "警告", {
-          confirmButtonText: "确定",
-          cancelButtonText: "取消",
-          type: "warning"
-        }).then(function() {
-          return removeUser(ids);
-        }).then(() => {
-          this.getList();
-          this.msgSuccess("移除成功");
-        })
+      handleRemove() {
+        this.examineOpen = true;
       },
       /** 导出按钮操作 */
       handleExport() {

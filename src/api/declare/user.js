@@ -114,15 +114,16 @@ export function delUser(id) {
   })
 }
 
-// 移除专家库用户
-export function removeUser(id) {
+// 移除人才库
+export function removeUser(data) {
   return request({
-    url: '/declare/specialist/remove/' + id,
-    method: 'put'
+    url: '/declare/specialist/remove',
+    method: 'put',
+    data: data
   })
 }
 
-// 移回专家库用户
+// 移回人才库
 export function retractUser(id) {
   return request({
     url: '/declare/specialist/retract/' + id,
