@@ -245,11 +245,6 @@
           auditTime :null,
           auditExplain :null,
         },
-        queryParams2:{
-          id:null,
-          examineStatus : '0',
-          auditExplain:null,
-        },
       // 表单参数
       form: {},
       // 表单校验
@@ -440,7 +435,7 @@
         console.log(this.form.id);
         examineUser(this.form).then(response => {
           this.msgSuccess("修改成功");
-          this.open = false;
+          this.examineOpen = false;
         });
       },
       /** 删除按钮操作 */
