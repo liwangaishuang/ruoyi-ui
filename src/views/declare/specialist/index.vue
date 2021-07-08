@@ -17,7 +17,6 @@
           clearable
           size="small"
           @keyup.enter.native="handleQuery"
-          @keyup.native="minNumber"
           style="width:45%"
         /> --
         <el-input
@@ -26,7 +25,6 @@
           clearable
           size="small"
           @keyup.enter.native="handleQuery"
-          @keyup.native="maxNumber"
           style="width:45%"
         />
       </el-form-item>
@@ -80,7 +78,7 @@
         </el-form-item>
         <el-form-item label="担任评审专家最近年度：">
           <el-input
-            v-model="queryParams.maxAge"
+            v-model="queryParams"
             placeholder=""
             clearable
             size="small"
@@ -89,7 +87,7 @@
             style="width:45%"
           /> --
           <el-input
-            v-model="queryParams.maxAge"
+            v-model="queryParams"
             placeholder=""
             clearable
             size="small"
@@ -488,6 +486,8 @@
           userSex: null,
           birthDate: null,
           age: null,
+          minAge:null,
+          maxAge:null,
           phoneNumber: null,
           email: null,
           officePhone: null,
@@ -533,7 +533,7 @@
           /**移除类型(0:永久移除 1:时间移除)*/
           removeType:null,
           removeCause:null,
-    },
+        },
       // 表单参数
       form: {},
       // 表单校验
