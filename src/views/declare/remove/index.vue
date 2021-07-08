@@ -61,21 +61,21 @@
       </el-form-item>
       <el-form-item label="担任评审专家最近年度" label-width="200px" prop="age" style="width:680px;">
         <el-input
-          v-model="queryParams.minAge"
+          v-model="queryParams.minActYear"
           placeholder=""
           clearable
           size="small"
           @keyup.enter.native="handleQuery"
-          @keyup.native="minNumber"
+          @keyup.native="minActYear"
           style="width:30%"
         /> -
         <el-input
-          v-model="queryParams.maxAge"
+          v-model="queryParams.maxActYear"
           placeholder=""
           clearable
           size="small"
           @keyup.enter.native="handleQuery"
-          @keyup.native="maxNumber"
+          @keyup.native="maxActYear"
           style="width:30%"
         />
       </el-form-item>
@@ -294,6 +294,9 @@
           resumeSite: null,
           createTime:null,
           updateTime:null,
+          actYear:null,
+          minActYear:null,
+          maxActYear:null,
           removeTime:null,
           removeOverTime:null,
           removeCause:null
@@ -443,6 +446,12 @@
       },
       maxNumber() {
         this.queryParams.maxAge=this.queryParams.maxAge.replace(/[^\d]/g,'');
+      },
+      minActYear() {
+        this.queryParams.minActYear=this.queryParams.minActYear.replace(/[^\d]/g,'');
+      },
+      maxActYear() {
+        this.queryParams.maxActYear=this.queryParams.maxActYear.replace(/[^\d]/g,'');
       },
       /** 重置按钮操作 */
       resetQuery() {

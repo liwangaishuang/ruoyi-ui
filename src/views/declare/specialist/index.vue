@@ -17,6 +17,7 @@
           clearable
           size="small"
           @keyup.enter.native="handleQuery"
+          @keyup.native="minNumber"
           style="width:45%"
         /> --
         <el-input
@@ -25,6 +26,7 @@
           clearable
           size="small"
           @keyup.enter.native="handleQuery"
+          @keyup.native="maxNumber"
           style="width:45%"
         />
       </el-form-item>
@@ -78,21 +80,21 @@
         </el-form-item>
         <el-form-item label="担任评审专家最近年度：">
           <el-input
-            v-model="queryParams"
+            v-model="queryParams.minActYear"
             placeholder=""
             clearable
             size="small"
             @keyup.enter.native="handleQuery"
-            @keyup.native="minNumber"
+            @keyup.native="minActYear"
             style="width:45%"
           /> --
           <el-input
-            v-model="queryParams"
+            v-model="queryParams.maxActYear"
             placeholder=""
             clearable
             size="small"
             @keyup.enter.native="handleQuery"
-            @keyup.native="maxNumber"
+            @keyup.native="maxActYear"
             style="width:45%"
           />
         </el-form-item>
@@ -527,8 +529,12 @@
           honorsOrTitles: null,
           resumeSite: null,
           createTime:null,
-          updateTime:null,
+          updateTime:'',
+          minUpdateTime:null,
+          maxUpdateTime:null,
           actYear:null,
+          minActYear:null,
+          maxActYear:null,
           removeOverTime:null,
           /**移除类型(0:永久移除 1:时间移除)*/
           removeType:null,
@@ -695,6 +701,20 @@
         this.queryParams.pageNum = 1;
         this.getList();
       },
+      /**只能输入正整数*/
+      minNumber() {
+        this.queryParams.minAge=this.queryParams.minAge.replace(/[^\d]/g,'');
+      },
+      maxNumber() {
+        this.queryParams.maxAge=this.queryParams.maxAge.replace(/[^\d]/g,'');
+      },
+      minActYear() {
+        this.queryParams.minActYear=this.queryParams.minActYear.replace(/[^\d]/g,'');
+      },
+      maxActYear() {
+        this.queryParams.maxActYear=this.queryParams.maxActYear.replace(/[^\d]/g,'');
+      },
+
       /** 重置按钮操作 */
       resetQuery() {
         this.resetForm("queryForm");
