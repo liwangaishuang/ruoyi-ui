@@ -3,7 +3,7 @@ import request from '@/utils/request'
 // 查询用户列表
 export function listUser(query) {
   return request({
-    url: '/talents/self/list',
+    url: '/specialist/self/list',
     method: 'get',
     params: query
   })
@@ -12,7 +12,7 @@ export function listUser(query) {
 // 查询用户详细
 export function getUser(id) {
   return request({
-    url: '/talents/self/' + id,
+    url: '/specialist/self/' + id,
     method: 'get'
   })
 }
@@ -20,7 +20,7 @@ export function getUser(id) {
 // 新增用户
 export function addUser(data) {
   return request({
-    url: '/talents/self',
+    url: '/specialist/self',
     method: 'post',
     data: data
   })
@@ -29,7 +29,7 @@ export function addUser(data) {
 // 修改用户
 export function updateUser(data) {
   return request({
-    url: '/talents/self',
+    url: '/specialist/self',
     method: 'put',
     data: data
   })
@@ -38,7 +38,7 @@ export function updateUser(data) {
 // 删除用户
 export function delUser(id) {
   return request({
-    url: '/talents/self/' + id,
+    url: '/specialist/self/' + id,
     method: 'delete'
   })
 }
@@ -46,7 +46,7 @@ export function delUser(id) {
 // 导出用户
 export function exportUser(query) {
   return request({
-    url: '/talents/self/export',
+    url: '/specialist/self/export',
     method: 'get',
     params: query
   })

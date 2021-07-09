@@ -611,7 +611,7 @@
       /** 跳转新页面 */
       skipNewItem(row) {
         console.log(row.userId);
-        this.$router.push({path: "../../talents/self/information", query: {id: row.id}});
+        this.$router.push({path: "../../specialist/self/information", query: {id: row.id}});
       },
       /** 查询用户列表 */
       getList() {
