@@ -59,6 +59,17 @@
   .el-step__head.is-finish {
     color: #67c23a;
     border-color: #67c23a;
+    .el-step__line {
+      background-color: #67c23a;
+    }
+  }
+  .el-step__line-inner {
+    width: 0 !important;
+  }
+  .el-step__head {
+    .el-step__line {
+      height: 6px;
+    }
   }
 
   .el-step__title {
