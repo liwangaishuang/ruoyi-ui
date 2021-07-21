@@ -67,9 +67,9 @@ export function getUser(id) {
 }
 
 // 得到用户申报信息
-export function getUserDeclare(id) {
+export function getUserDeclare() {
   return request({
-    url: '/declare/specialist/getUserDeclare/' + id,
+    url: '/declare/specialist/schedule',
     method: 'get'
   })
 }

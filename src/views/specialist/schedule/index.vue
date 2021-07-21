@@ -1,7 +1,10 @@
 <template>
   <div id="div_1">
-    <p id="p_2">您的申报正在审核中，请耐心等待</p>
+    <p id="p_2"  style="display: none">您的申报正在审核中，请耐心等待</p>
+    <p id="p_2_2"  style="display: none">您的审核已通过</p>
+    <p id="p_2_3" style="display: none" >您的审核已通过</p>
     <!-- <img id="img_3" src="../../../assets/images/申报进度查看/test4.png" alt=""> -->
+
 
     <div style="padding: 10px 0px">
       <el-steps :active="1" align-center>
@@ -53,16 +56,76 @@
     export default {
       name: "index",
       created(){
-        this.getNow(this.$route.query.id);
+        this.getNow();
       },
+      data() {
+        return {
+          // 遮罩层
+          loading: true,
+          // 导出遮罩层
+          exportLoading: false,
+          // 选中数组
+          ids: [],
+          // 非单个禁用
+          single: true,
+          // 非多个禁用
+          multiple: true,
+          // 显示搜索条件
+          showSearch: true,
+          // 总条数
+          total: 0,
+          // 申报信息表格数据
+          informationList: [],
+          // 弹出层标题
+          title: "",
+          // 是否显示弹出层
+          open: false,
+          // 查询参数
+          queryParams: {
+            pageNum: 1,
+            pageSize: 10,
+            userId: null,
+            declarationId: null,
+            operator: null,
+            operationalContext: null,
+            applicationStatus: null,
+            remark: null,
+            isPass:null,
+            createTime:null,
+          },
+          // 表单参数
+          form: {},
+          // 表单校验
+          rules: {
+          }
+        };
+      },
+
       methods: {
         /**获取该用户的申报状态信息*/
-        getNow(id) {
+        getNow() {
           this.loading = true;
-          getUserDeclare(id).then(response => {
+          getUserDeclare().then(response => {
             this.queryParams=response.data;
+            console.log(this.queryParams);
+            this.judgePass();
           });
         },
+        /**判断用户申报是否通过*/
+        judgePass(){
+          let pass = this.queryParams.isPass;
+          let status = this.queryParams.applicationStatus;
+          if (pass==null && status==null){
+            console.log(pass);
+            document.getElementById("p_2_3").style.display='inline';
+          }else if(pass==='0' && status==='1'){
+            console.log(pass);
+            document.getElementById("p_2_2").style.display='inline';
+          }else if(pass==='1' && status==='1'){
+            console.log(pass);
+            document.getElementById("p_2").style.display='inline';
+          }
+        }
       }
     }
 </script>
