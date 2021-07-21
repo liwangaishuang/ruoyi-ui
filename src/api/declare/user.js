@@ -66,6 +66,14 @@ export function getUser(id) {
   })
 }
 
+// 得到用户申报信息
+export function getUserDeclare(id) {
+  return request({
+    url: '/declare/specialist/getUserDeclare/' + id,
+    method: 'get'
+  })
+}
+
 // 新增用户
 export function addUser(data) {
   return request({

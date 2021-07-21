@@ -49,8 +49,21 @@
 
 <script>
   import '../../css/专家申报/style_schedule.css';
+  import {getUserDeclare} from "@/api/declare/user";
     export default {
-        name: "index"
+      name: "index",
+      created(){
+        this.getNow(this.$route.query.id);
+      },
+      methods: {
+        /**获取该用户的申报状态信息*/
+        getNow(id) {
+          this.loading = true;
+          getUserDeclare(id).then(response => {
+            this.queryParams=response.data;
+          });
+        },
+      }
     }
 </script>
 
