@@ -1118,6 +1118,7 @@
             prop="avoidCompany"
             label-width="140px"
           >
+
             <el-input
               v-model="form.avoidCompany"
               placeholder="请输入单位名称，输入多个则用“；”号进行隔开"
