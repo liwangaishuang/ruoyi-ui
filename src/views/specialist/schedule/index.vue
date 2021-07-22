@@ -2,7 +2,7 @@
   <div id="div_1">
     <p id="p_2"  style="display: none">您的申报正在审核中，请耐心等待</p>
     <p id="p_2_2"  style="display: none">您的审核已通过</p>
-    <p id="p_2_3" style="display: none" >您的审核已通过</p>
+    <p id="p_2_3" style="display: none" >您好，您暂未进行专家申报</p>
     <!-- <img id="img_3" src="../../../assets/images/申报进度查看/test4.png" alt=""> -->
 
 
@@ -106,7 +106,9 @@
         getNow() {
           this.loading = true;
           getUserDeclare().then(response => {
-            this.queryParams=response.data;
+            if(response.data!=null){
+              this.queryParams=response.data;
+            }
             console.log(this.queryParams);
             this.judgePass();
           });
