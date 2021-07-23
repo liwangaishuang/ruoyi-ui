@@ -38,3 +38,11 @@ export function getCodeImg() {
     method: 'get'
   })
 }
+
+// 判断登录用户是什么角色
+export function judgeRole(username) {
+  return request({
+    url: '/judgeRole?username=' + username,
+    method: 'get'
+  })
+}

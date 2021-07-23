@@ -59,7 +59,7 @@
 </template>
 
 <script>
-import { getCodeImg } from "@/api/login";
+import { getCodeImg,judgeRole } from "@/api/login";
 import Cookies from "js-cookie";
 import { encrypt, decrypt } from '@/utils/jsencrypt'
 import ElForm from "element-ui/packages/form/src/form";
@@ -133,24 +133,34 @@ export default {
     },
     handleLogin() {
       this.$refs.loginForm.validate(valid => {
-        if (valid) {
-          this.loading = true;
-          if (this.loginForm.rememberMe) {
-            Cookies.set("username", this.loginForm.username, { expires: 30 });
-            Cookies.set("password", encrypt(this.loginForm.password), { expires: 30 });
-            Cookies.set('rememberMe', this.loginForm.rememberMe, { expires: 30 });
-          } else {
-            Cookies.remove("username");
-            Cookies.remove("password");
-            Cookies.remove('rememberMe');
+        /**先查询登录的该用户是不是管理端角色*/
+        judgeRole(this.loginForm.username).then(res => {
+          console.log(res.deptId);
+          if (res.deptId==null || res.deptId!=102){
+            this.$message('用户不存在/密码错误');
+          }else {
+            if (valid) {
+              this.loading = true;
+              if (this.loginForm.rememberMe) {
+                Cookies.set("username", this.loginForm.username, { expires: 30 });
+                Cookies.set("password", encrypt(this.loginForm.password), { expires: 30 });
+                Cookies.set('rememberMe', this.loginForm.rememberMe, { expires: 30 });
+              } else {
+                Cookies.remove("username");
+                Cookies.remove("password");
+                Cookies.remove('rememberMe');
+              }
+              this.$store.dispatch("Login", this.loginForm).then(() => {
+                this.$router.push({ path: this.redirect || "/" }).catch(()=>{});
+              }).catch(() => {
+                this.loading = false;
+                this.getCode();
+              });
+            }
           }
-          this.$store.dispatch("Login", this.loginForm).then(() => {
-            this.$router.push({ path: this.redirect || "/" }).catch(()=>{});
-          }).catch(() => {
-            this.loading = false;
-            this.getCode();
-          });
-        }
+        }).catch(error => {
+          reject(error)
+        })
       });
     }
   }
