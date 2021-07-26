@@ -74,6 +74,14 @@ export function getUserDeclare() {
   })
 }
 
+// 申报进度过程
+export function declareProcess() {
+  return request({
+    url: '/declare/specialist/declareProcess',
+    method: 'get'
+  })
+}
+
 // 新增用户
 export function addUser(data) {
   return request({

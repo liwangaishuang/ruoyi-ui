@@ -3,6 +3,7 @@
     <p id="p_2"  style="display: none">您的申报正在审核中，请耐心等待</p>
     <p id="p_2_2"  style="display: none">您的审核已通过</p>
     <p id="p_2_3" style="display: none" >您好，您暂未进行专家申报</p>
+    <p id="p_2_4" style="display: none" >您的审核未通过</p>
     <!-- <img id="img_3" src="../../../assets/images/申报进度查看/test4.png" alt=""> -->
 
 
@@ -35,6 +36,7 @@
     <p id="p_4">申报进度过程</p>
     <el-table
       id="tab_5"
+      :data="informationList"
       :header-cell-style="{
         fontSize: '16px',
         color: 'black',
@@ -42,21 +44,22 @@
         textAlign: 'center',
       }"
     >
-      <el-table-column label="操作人"></el-table-column>
-      <el-table-column label="操作时间"></el-table-column>
-      <el-table-column label="操作内容"></el-table-column>
-      <el-table-column label="备注"></el-table-column>
+      <el-table-column label="操作人" prop="operator" align="center" />
+      <el-table-column label="操作时间" prop="createTime" align="center" />
+      <el-table-column label="操作内容" prop="operationalContext" align="center" />
+      <el-table-column label="备注" prop="remark" align="center" />
     </el-table>
   </div>
 </template>
 
 <script>
   import '../../css/专家申报/style_schedule.css';
-  import {getUserDeclare} from "@/api/declare/user";
+  import {getUserDeclare,declareProcess} from "@/api/declare/user";
     export default {
       name: "index",
       created(){
         this.getNow();
+        this.declareProcess();
       },
       data() {
         return {
@@ -109,7 +112,6 @@
             if(response.data!=null){
               this.queryParams=response.data;
             }
-            console.log(this.queryParams);
             this.judgePass();
           });
         },
@@ -118,16 +120,21 @@
           let pass = this.queryParams.isPass;
           let status = this.queryParams.applicationStatus;
           if (pass==null && status==null){
-            console.log(pass);
             document.getElementById("p_2_3").style.display='inline';
           }else if(pass==='0' && status==='1'){
-            console.log(pass);
             document.getElementById("p_2_2").style.display='inline';
           }else if(pass==='1' && status==='1'){
-            console.log(pass);
+            document.getElementById("p_2_4").style.display='inline';
+          } else if(status==='0'){
             document.getElementById("p_2").style.display='inline';
           }
-        }
+        },
+        /**申报进度过程*/
+        declareProcess(){
+          declareProcess().then(response =>{
+            this.informationList = response.data;
+          })
+        },
       }
     }
 </script>
