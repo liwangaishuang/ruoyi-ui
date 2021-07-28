@@ -1163,11 +1163,12 @@
           <div>
             <el-row>
               <el-col :span="24">
-                <el-form-item label="个人简历">
+                <el-form-item label="个人简历:">
                   <el-upload
                     class="upload-demo"
                     ref="upload"
                     action="https://jsonplaceholder.typicode.com/posts/"
+                    :limit="1"
                     :on-preview="handlePreview"
                     :on-remove="handleRemove"
                     :file-list="fileList"
@@ -1177,7 +1178,8 @@
                 </el-form-item>
               </el-col>
               <el-col :span="24">
-                <el-form-item label="专家登记表">
+                <el-form-item label="专家登记表:">
+                  <el-link type="danger" @click="importTemplate">下载模板</el-link>
                   <el-upload
                     class="upload-demo"
                     ref="upload"
@@ -1245,6 +1247,7 @@
     addUser,
     updateUser,
     exportUser,
+    importTemplate,
   } from "@/api/declare/user";
   import ImageUpload from "@/components/ImageUpload";
   import Editor from "@/components/Editor";
@@ -1422,6 +1425,7 @@
       //this.getNow();
       this.judgeType();
       this.getList();
+
       this.getDicts("id_number_type").then((response) => {
         this.idNumberTypeOptions = response.data;
       });
@@ -1480,6 +1484,14 @@
           corp: "",
           position: "",
           contact: "",
+        });
+      },
+      /** 下载模板操作 */
+      importTemplate() {
+        importTemplate().then(response => {
+          let blob = new Blob([response],{type:"application/word"});
+          let objectUrl = URL.createObjectURL(blob);
+          window.location.href = objectUrl;
         });
       },
       // 删除属性列
