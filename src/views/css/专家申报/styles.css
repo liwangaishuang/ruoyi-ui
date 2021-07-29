@@ -10,11 +10,25 @@
   margin-top:0px
 }
 
+#text_2 {
+  font-size: 25px;
+  font-weight: bold;
+  color: #70B603;
+  margin-top:0px
+}
+
+#text_3 {
+  font-size: 25px;
+  font-weight: bold;
+  color: red;
+  margin-top:0px
+}
+
 #img_2{
   margin-top:-15px
 }
 
-#text_3{
+#text3{
   font-size: 30px;
   font-weight: bold;
 }

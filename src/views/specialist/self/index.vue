@@ -3,14 +3,18 @@
     <!--第一页 inline none-->
     <div id="div_one" style="display: inline">
       <div id="div_1">
-        <p id="text_1"><span>您好，您暂未进行专家申报</span></p>
+        <p id="text_1" style="display: block"><span>您好，您暂未进行专家申报</span></p>
+        <p id="text_2" style="display: none"><span>您的审核已通过</span></p>
+        <p id="text_3" style="display: none"><span>您的审核未通过</span></p>
+        <p id="text_4" style="display: none"><span>您已被移除出人才专家库</span></p>
+        <p id="text_5" style="display: none"><span>您已被移除出人才专家库</span></p>
         <img
           id="img_2"
           src="../../../assets/images/专家申报/test1.png"
           alt=""
           style="width: 100%"
         />
-        <p id="text_3"><span>申报指南</span></p>
+        <p id="text3"><span>申报指南</span></p>
         <img
           id="img_4"
           src="../../../assets/images/专家申报/u187.svg"
@@ -1248,6 +1252,7 @@
     updateUser,
     exportUser,
     importTemplate,
+    getUserDeclare,
   } from "@/api/declare/user";
   import ImageUpload from "@/components/ImageUpload";
   import Editor from "@/components/Editor";
@@ -1412,6 +1417,20 @@
           resumeSite: null,
           status: null,
         },
+        //当前状态
+        nowParams: {
+          pageNum: 1,
+          pageSize: 10,
+          userId: null,
+          declarationId: null,
+          operator: null,
+          operationalContext: null,
+          applicationStatus: null,
+          remark: null,
+          isPass:null,
+          isRemove:null,
+          createTime:null,
+        },
         // 表单参数
         form: {},
         // 表单校验
@@ -1423,7 +1442,8 @@
       this.formData4.powerAttrList2 = [];
       this.formData5.powerAttrList3 = [];
       //this.getNow();
-      this.judgeType();
+      this.getUserNow();
+      //this.judgeType();
       this.getList();
 
       this.getDicts("id_number_type").then((response) => {
@@ -1493,6 +1513,48 @@
           let objectUrl = URL.createObjectURL(blob);
           window.location.href = objectUrl;
         });
+      },
+      /**获取该用户的申报状态信息*/
+      getUserNow() {
+        this.loading = true;
+        getUserDeclare().then(response => {
+          if(response.data!=null){
+            this.nowParams=response.data;
+          }
+          this.judgePass();
+        });
+      },
+      /**判断用户申报是否通过*/
+      judgePass(){
+        let pass = this.nowParams.isPass;
+        let status = this.nowParams.applicationStatus;
+        let isRemove = this.nowParams.isRemove;
+        if(status==='0'){ // 未审核
+          let divOne = document.getElementById("div_one");
+          let divTwo = document.getElementById("div_two");
+          let divThree = document.getElementById("div_three");
+          /**1、隐藏第一、二个模块页面*/
+          divOne.style.display = "none";
+          divTwo.style.display = "none";
+          /**2、显示第三个模块页面*/
+          divThree.style.display = "block";
+        } else if(pass==='0' && status==='1' && isRemove==='0'){ //审核通过
+          let textOne = document.getElementById("text_1");
+          let textTwo = document.getElementById("text_2");
+          /**1、隐藏第一行字符串*/
+          textOne.style.display = "none";
+          /**2、显示第二行字符串*/
+          textTwo.style.display = "block";
+        }else if(pass==='1' && status==='1' && isRemove==='0'){ //审核不通过
+          let textOne = document.getElementById("text_1");
+          let textThree = document.getElementById("text_3");
+          /**1、隐藏第一行字符串*/
+          textOne.style.display = "none";
+          /**2、显示第三行字符串*/
+          textThree.style.display = "block";
+        }else if(isRemove==='1'){ //已被移除
+
+        }
       },
       // 删除属性列
       removeRow(index) {
