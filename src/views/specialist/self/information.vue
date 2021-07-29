@@ -379,7 +379,7 @@
 </template>
 
 <script>
-import { getUser,listUser,exportWord } from "@/api/declare/user";
+import { getUserNowInfo,listUser,exportWord } from "@/api/declare/user";
 import ImageUpload from '@/components/ImageUpload';
 import Editor from '@/components/Editor';
 import '../../css/专家申报/styles_information.css';
@@ -517,7 +517,7 @@ export default {
     };
   },
   created() {
-    this.getNow(this.$route.query.id);
+    this.getUserNowInfo();
     this.getList();
     this.getDicts("id_number_type").then(response => {
       this.idNumberTypeOptions = response.data;
@@ -579,9 +579,9 @@ export default {
       });
     },
     /**接收该用户的信息，赋值给queryParams*/
-    getNow(id) {
+    getUserNowInfo() {
       this.loading = true;
-      getUser(id).then(response => {
+      getUserNowInfo().then(response => {
           this.queryParams=response.data;
       });
     },

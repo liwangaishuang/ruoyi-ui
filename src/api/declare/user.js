@@ -66,6 +66,14 @@ export function getUser(id) {
   })
 }
 
+// 查询用户详细
+export function getUserNowInfo() {
+  return request({
+    url: '/declare/specialist/getUserNowInfo',
+    method: 'get'
+  })
+}
+
 // 得到用户申报信息
 export function getUserDeclare() {
   return request({

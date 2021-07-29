@@ -7,7 +7,6 @@
         <p id="text_2" style="display: none"><span>您的审核已通过</span></p>
         <p id="text_3" style="display: none"><span>您的审核未通过</span></p>
         <p id="text_4" style="display: none"><span>您已被移除出人才专家库</span></p>
-        <p id="text_5" style="display: none"><span>您已被移除出人才专家库</span></p>
         <img
           id="img_2"
           src="../../../assets/images/专家申报/test1.png"
@@ -1430,6 +1429,7 @@
           isPass:null,
           isRemove:null,
           createTime:null,
+          overTime:null,
         },
         // 表单参数
         form: {},
@@ -1529,6 +1529,7 @@
         let pass = this.nowParams.isPass;
         let status = this.nowParams.applicationStatus;
         let isRemove = this.nowParams.isRemove;
+        let overTime = this.nowParams.overTime;
         if(status==='0'){ // 未审核
           let divOne = document.getElementById("div_one");
           let divTwo = document.getElementById("div_two");
@@ -1552,8 +1553,20 @@
           textOne.style.display = "none";
           /**2、显示第三行字符串*/
           textThree.style.display = "block";
-        }else if(isRemove==='1'){ //已被移除
-
+        }else if(isRemove==='1' && overTime=='永久移除'){ //已被永久移除
+          let textOne = document.getElementById("text_1");
+          let textFour = document.getElementById("text_4");
+          /**1、隐藏第一行字符串*/
+          textOne.style.display = "none";
+          /**2、显示第四行字符串*/
+          textFour.style.display = "block";
+        }else if(isRemove==='1' && overTime!='永久移除'){ //
+          let textOne = document.getElementById("text_1");
+          let textTwo = document.getElementById("text_2");
+          /**1、隐藏第一行字符串*/
+          textOne.style.display = "none";
+          /**2、显示第二行字符串*/
+          textTwo.style.display = "block";
         }
       },
       // 删除属性列
