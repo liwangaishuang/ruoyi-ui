@@ -34,6 +34,13 @@
   font-weight: bold;
 }
 
+#p_2_5 {
+  padding-top: 20px;
+  font-size: 36px;
+  color: red;
+  font-weight: bold;
+}
+
 #img_3 {
   margin: 0 auto;
   width: 80%;

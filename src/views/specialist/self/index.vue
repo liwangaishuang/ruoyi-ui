@@ -3,7 +3,7 @@
     <!--第一页 inline none-->
     <div id="div_one" style="display: inline">
       <div id="div_1">
-        <p id="text_1" style="display: block"><span>您好，您暂未进行专家申报</span></p>
+        <p id="text_1" style="display: none"><span>您好，您暂未进行专家申报</span></p>
         <p id="text_2" style="display: none"><span>您的审核已通过</span></p>
         <p id="text_3" style="display: none"><span>您的审核未通过</span></p>
         <p id="text_4" style="display: none"><span>您已被移除出人才专家库</span></p>
@@ -1229,7 +1229,6 @@
           <p>我们正在抓紧进行审核，审核结果将短信通知您，</p>
           <p>同时您也可以至“申报进度查看”页面查看审核结果及相关信息。</p>
           <p>在此之前，您不可以再次申报。</p>
-          <!--<el-link type="primary" href="../information">查看申报信息>></el-link>-->
           <router-link
             :to="{ path: '../information', query: { id: this.queryParams.id } }"
             target="_blank"
@@ -1530,7 +1529,10 @@
         let status = this.nowParams.applicationStatus;
         let isRemove = this.nowParams.isRemove;
         let overTime = this.nowParams.overTime;
-        if(status==='0'){ // 未审核
+        if (pass===null && status===null){ //未进行申报
+          let textOne = document.getElementById("text_1");
+          divOne.style.display = "block";
+        } else if(status==='0'){ // 未审核
           let divOne = document.getElementById("div_one");
           let divTwo = document.getElementById("div_two");
           let divThree = document.getElementById("div_three");
@@ -1560,7 +1562,7 @@
           textOne.style.display = "none";
           /**2、显示第四行字符串*/
           textFour.style.display = "block";
-        }else if(isRemove==='1' && overTime!='永久移除'){ //
+        }else if(isRemove==='1' && overTime!='永久移除'){ //已移除但不是永久移除
           let textOne = document.getElementById("text_1");
           let textTwo = document.getElementById("text_2");
           /**1、隐藏第一行字符串*/

@@ -74,7 +74,7 @@ export function getUserNowInfo() {
   })
 }
 
-// 得到用户申报信息
+// 获取当前登录用户的申报进度
 export function getUserDeclare() {
   return request({
     url: '/declare/specialist/schedule',

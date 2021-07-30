@@ -4,7 +4,7 @@
     <p id="p_2_2"  style="display: none">您的审核已通过</p>
     <p id="p_2_3" style="display: none" >您好，您暂未进行专家申报</p>
     <p id="p_2_4" style="display: none" >您的审核未通过</p>
-    <!-- <img id="img_3" src="../../../assets/images/申报进度查看/test4.png" alt=""> -->
+    <p id="p_2_5" style="display: none" >您已被移除出人才专家库</p>
 
 
     <div style="padding: 10px 0px">
@@ -94,7 +94,9 @@
             applicationStatus: null,
             remark: null,
             isPass:null,
+            isRemove:null,
             createTime:null,
+            overTime:null,
           },
           // 表单参数
           form: {},
@@ -119,14 +121,31 @@
         judgePass(){
           let pass = this.queryParams.isPass;
           let status = this.queryParams.applicationStatus;
-          if (pass==null && status==null){
-            document.getElementById("p_2_3").style.display='inline';
-          }else if(pass==='0' && status==='1'){
-            document.getElementById("p_2_2").style.display='inline';
-          }else if(pass==='1' && status==='1'){
-            document.getElementById("p_2_4").style.display='inline';
-          } else if(status==='0'){
-            document.getElementById("p_2").style.display='inline';
+          let isRemove = this.queryParams.isRemove;
+          let overTime = this.queryParams.overTime;
+          let divOne = document.getElementById("p_2_3");
+          if (pass===null && status===null){ //未进行申报
+            divOne.style.display = "block";
+          }else if(status==='0'){ // 未审核
+            let divTwo = document.getElementById("p_2");
+            divOne.style.display = "none";
+            divTwo.style.display = "block";
+          } else if(pass==='0' && status==='1' && isRemove==='0'){ //审核通过
+            let divTwo = document.getElementById("p_2_2");
+            divOne.style.display = "none";
+            divTwo.style.display = "block";
+          }else if(pass==='1' && status==='1' && isRemove==='0'){ //审核不通过
+            let divTwo = document.getElementById("p_2_4");
+            divOne.style.display = "none";
+            divTwo.style.display = "block";
+          }else if(isRemove==='1' && overTime=='永久移除'){ //已被永久移除
+            let divTwo = document.getElementById("p_2_5");
+            divOne.style.display = "none";
+            divTwo.style.display = "block";
+          }else if(isRemove==='1' && overTime!='永久移除'){ //已移除但不是永久移除
+            let divTwo = document.getElementById("p_2_2");
+            divOne.style.display = "none";
+            divTwo.style.display = "block";
           }
         },
         /**申报进度过程*/
