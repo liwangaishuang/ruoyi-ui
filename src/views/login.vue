@@ -13,6 +13,7 @@
         </el-form-item>
         <el-form-item prop="password">
           <el-input
+
             v-model="loginForm.password"
             type="password"
             auto-complete="off"
