@@ -691,7 +691,7 @@
           <span>6.工作经历</span>
         </div>
         <span>从最近的工作经历开始倒序填写</span>
-        <div id="div_two_6_2">
+        <div id="div_two_7_2">
           <div style="margin:20px;">
             <el-form
               :model="formData3"
@@ -789,7 +789,7 @@
           <span>7.教育经历</span>
         </div>
         <span>从最高教育经历开始倒序填写，直至大学阶段为止</span>
-        <div id="div_two_6_2">
+        <div id="div_two_8_2">
           <div style="margin:20px;">
             <el-form
               :model="formData3"
@@ -886,7 +886,7 @@
         <div id="div_two_9">
           <span>8.职业资格</span>
         </div>
-        <div id="div_two_6_2">
+        <div id="div_two_9_2">
           <div style="margin:20px;">
             <el-form
               :model="formData3"
@@ -1168,14 +1168,12 @@
               <el-col :span="24">
                 <el-form-item label="个人简历:">
                   <el-upload
-                    class="upload-demo"
                     ref="upload"
-                    action="https://jsonplaceholder.typicode.com/posts/"
+                    action="http://localhost:8080/common/upload2"
                     :limit="1"
-                    :on-preview="handlePreview"
-                    :on-remove="handleRemove"
                     :file-list="fileList"
-                    :auto-upload="false">
+                    :on-success="resumeSuccess"
+                    :auto-upload="true">
                     <el-button slot="trigger" size="small" type="primary">上传简历</el-button>
                   </el-upload>
                 </el-form-item>
@@ -1184,13 +1182,12 @@
                 <el-form-item label="专家登记表:">
                   <el-link type="danger" @click="importTemplate">下载模板</el-link>
                   <el-upload
-                    class="upload-demo"
                     ref="upload"
-                    action="https://jsonplaceholder.typicode.com/posts/"
-                    :on-preview="handlePreview"
-                    :on-remove="handleRemove"
+                    action="http://localhost:8080/common/upload2"
+                    :limit="1"
                     :file-list="fileList"
-                    :auto-upload="false">
+                    :on-success="registerSuccess"
+                    :auto-upload="true">
                     <el-button slot="trigger" size="small" type="primary">上传附件</el-button>
                   </el-upload>
                 </el-form-item>
@@ -1251,6 +1248,7 @@
     exportUser,
     importTemplate,
     getUserDeclare,
+    uploadFile,
   } from "@/api/declare/user";
   import ImageUpload from "@/components/ImageUpload";
   import Editor from "@/components/Editor";
@@ -1413,6 +1411,7 @@
           resultsOrPatents: null,
           honorsOrTitles: null,
           resumeSite: null,
+          expertRegister: null,
           status: null,
         },
         //当前状态
@@ -1495,6 +1494,19 @@
       });
     },
     methods: {
+      /**个人简历文件上传成功后的钩子*/
+      resumeSuccess(res,file){
+        /*console.log(file);
+        console.log(res);*/
+        this.queryParams.resumeSite=res.url
+      },
+
+      /**专家登记表上传成功后的钩子*/
+      registerSuccess(res,file){
+        /*console.log(file);
+        console.log(res);*/
+        this.queryParams.expertRegister=res.url
+      },
       // 增加工作经历
       addWork() {
         this.formData3.powerAttrList.push({
@@ -1507,11 +1519,14 @@
       },
       /** 下载模板操作 */
       importTemplate() {
-        importTemplate().then(response => {
+        let a = document.createElement('a')
+        a.href ="http://localhost:8080/declare/specialist/importTemplate"
+        a.click();
+        /*importTemplate().then(response => {
           let blob = new Blob([response],{type:"application/word"});
           let objectUrl = URL.createObjectURL(blob);
           window.location.href = objectUrl;
-        });
+        });*/
       },
       /**获取该用户的申报状态信息*/
       getUserNow() {

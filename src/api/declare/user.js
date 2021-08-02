@@ -172,3 +172,20 @@ export function exportWord(query) {
     params: query
   })
 }
+
+// 上传用户文件
+export function uploadFile(data) {
+  return request({
+    url: '/common/upload',
+    method: 'post',
+    data: data
+  })
+}
+
+// 下载用户导入模板
+export function importTemplate() {
+  return request({
+    url: '/declare/specialist/importTemplate',
+    method: 'get'
+  })
+}
